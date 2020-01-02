@@ -47,8 +47,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: [
+            Text('Running on: $_platformVersion\n'),
+            RaisedButton(
+                child: const Text("start ui"),
+                onPressed: () async => {await FlutterAuthUi.startUi}),
+          ],
         ),
       ),
     );
