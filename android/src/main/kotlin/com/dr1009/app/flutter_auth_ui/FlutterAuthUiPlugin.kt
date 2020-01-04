@@ -100,15 +100,6 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
             "getPlatformVersion" -> {
                 result.success("Android ${android.os.Build.VERSION.RELEASE}")
             }
-            "setEmail" -> {
-                providers.add(AuthUI.IdpConfig.EmailBuilder().build())
-            }
-            "setPhone" -> {
-                providers.add(AuthUI.IdpConfig.PhoneBuilder().build())
-            }
-            "setApple" -> {
-                providers.add(AuthUI.IdpConfig.AppleBuilder().build())
-            }
             "startUi" -> {
                 val intent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
@@ -117,6 +108,46 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                 activity?.startActivityForResult(intent, RC_SIGN_IN)
 
                 this.result = result
+            }
+            "setAnonymous" -> {
+                providers.add(AuthUI.IdpConfig.AnonymousBuilder().build())
+                result.success(true)
+            }
+            "setEmail" -> {
+                providers.add(AuthUI.IdpConfig.EmailBuilder().build())
+                result.success(true)
+            }
+            "setPhone" -> {
+                providers.add(AuthUI.IdpConfig.PhoneBuilder().build())
+                result.success(true)
+            }
+            "setApple" -> {
+                providers.add(AuthUI.IdpConfig.AppleBuilder().build())
+                result.success(true)
+            }
+            "setGithub" -> {
+                providers.add(AuthUI.IdpConfig.GitHubBuilder().build())
+                result.success(true)
+            }
+            "setMicrosoft" -> {
+                providers.add(AuthUI.IdpConfig.MicrosoftBuilder().build())
+                result.success(true)
+            }
+            "setYahoo" -> {
+                providers.add(AuthUI.IdpConfig.YahooBuilder().build())
+                result.success(true)
+            }
+            "setGoogle" -> {
+                providers.add(AuthUI.IdpConfig.GoogleBuilder().build())
+                result.success(true)
+            }
+            "setFacebook" -> {
+                providers.add(AuthUI.IdpConfig.FacebookBuilder().build())
+                result.success(true)
+            }
+            "setTwitter" -> {
+                providers.add(AuthUI.IdpConfig.TwitterBuilder().build())
+                result.success(true)
             }
             else -> {
                 result.notImplemented()

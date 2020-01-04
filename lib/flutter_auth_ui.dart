@@ -14,15 +14,53 @@ class FlutterAuthUi {
     await _channel.invokeMethod("startUi");
   }
 
-  static Future get setEmail async {
-    await _channel.invokeMethod("setEmail");
+  static Future<bool> get setAnonymous async {
+    final bool result = await _channel.invokeMethod("setAnonymous");
+    return result;
   }
 
-  static Future get setPhone async {
-    await _channel.invokeMethod("setPhone");
+  static Future<bool> get setEmail async {
+    final bool result = await _channel.invokeMethod("setEmail");
+    return result;
   }
 
-  static Future get setApple async {
-    await _channel.invokeMethod("setApple");
+  static Future<bool> get setPhone async {
+    final bool result = await _channel.invokeMethod("setPhone");
+    return result;
+  }
+
+  static Future<bool> get setApple async {
+    final bool result = await _channel.invokeMethod("setApple");
+    return result;
+  }
+
+  static Future<bool> get setGithub async {
+    final bool result = await _channel.invokeMethod("setGithub");
+    return result;
+  }
+
+  static Future<bool> get setMicrosoft async {
+    final bool result = await _channel.invokeMethod("setMicrosoft");
+    return result;
+  }
+
+  static Future<bool> get setYahoo async {
+    final bool result = await _channel.invokeMethod("setYahoo");
+    return result;
+  }
+
+  static Future<bool> get setGoogle async {
+    final bool result = await _channel.invokeMethod("setGoogle");
+    return result;
+  }
+
+  static Future<bool> get setFacebook async {
+    final bool result = await _channel.invokeMethod("setFacebook");
+    return result;
+  }
+
+  static Future<bool> get setTwitter async {
+    final bool result = await _channel.invokeMethod("setTwitter");
+    return result;
   }
 }
