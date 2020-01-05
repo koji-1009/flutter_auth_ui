@@ -17,7 +17,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    initProviders();
     initPlatformState();
+  }
+
+  Future<void> initProviders() async {
+    FlutterAuthUi.setEmail;
+    FlutterAuthUi.setApple;
+    FlutterAuthUi.setGithub;
+    FlutterAuthUi.setGoogle;
+    FlutterAuthUi.setMicrosoft;
+    FlutterAuthUi.setYahoo;
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -47,13 +57,15 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Column(
-          children: [
-            Text('Running on: $_platformVersion\n'),
-            RaisedButton(
-                child: const Text("start ui"),
-                onPressed: () async => {await FlutterAuthUi.startUi}),
-          ],
+        body: Center(
+          child: Column(
+            children: [
+              Text('Running on: $_platformVersion\n'),
+              RaisedButton(
+                  child: const Text("start ui"),
+                  onPressed: () async => {await FlutterAuthUi.startUi}),
+            ],
+          ),
         ),
       ),
     );
