@@ -10,56 +10,64 @@ class FlutterAuthUi {
     return version;
   }
 
-  static Future get startUi async {
+  static Future startUi() async {
     await _channel.invokeMethod("startUi");
   }
 
-  static Future<bool> get setAnonymous async {
+  static Future<bool> setAnonymous() async {
     final bool result = await _channel.invokeMethod("setAnonymous");
     return result;
   }
 
-  static Future<bool> get setEmail async {
-    final bool result = await _channel.invokeMethod("setEmail");
+  static Future<bool> setEmail(
+      {String url = "",
+      String packageName = "",
+      String minimumVersion = ""}) async {
+    final bool result =
+        await _channel.invokeMethod("setEmail", <String, String>{
+      'ios_url': url,
+      'ios_package_name': packageName,
+      'ios_minimum_version': minimumVersion
+    });
     return result;
   }
 
-  static Future<bool> get setPhone async {
+  static Future<bool> setPhone() async {
     final bool result = await _channel.invokeMethod("setPhone");
     return result;
   }
 
-  static Future<bool> get setApple async {
+  static Future<bool> setApple() async {
     final bool result = await _channel.invokeMethod("setApple");
     return result;
   }
 
-  static Future<bool> get setGithub async {
+  static Future<bool> setGithub() async {
     final bool result = await _channel.invokeMethod("setGithub");
     return result;
   }
 
-  static Future<bool> get setMicrosoft async {
+  static Future<bool> setMicrosoft() async {
     final bool result = await _channel.invokeMethod("setMicrosoft");
     return result;
   }
 
-  static Future<bool> get setYahoo async {
+  static Future<bool> setYahoo() async {
     final bool result = await _channel.invokeMethod("setYahoo");
     return result;
   }
 
-  static Future<bool> get setGoogle async {
+  static Future<bool> setGoogle() async {
     final bool result = await _channel.invokeMethod("setGoogle");
     return result;
   }
 
-  static Future<bool> get setFacebook async {
+  static Future<bool> setFacebook() async {
     final bool result = await _channel.invokeMethod("setFacebook");
     return result;
   }
 
-  static Future<bool> get setTwitter async {
+  static Future<bool> setTwitter() async {
     final bool result = await _channel.invokeMethod("setTwitter");
     return result;
   }
