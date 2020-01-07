@@ -34,6 +34,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
     private var providers: [FUIAuthProvider] = []
     private var result: FlutterResult? = nil
     
+    private var tosurl: URL? = nil
+    private var privacyPolicyUrl: URL? = nil
+    
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "getPlatformVersion":
@@ -49,6 +52,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             
             authUI.delegate = self
             authUI.providers = providers
+            
+            authUI.tosurl = tosurl
+            authUI.privacyPolicyURL = privacyPolicyUrl
             
             let authViewController = authUI.authViewController()
             let viewController = UIApplication.shared.delegate?.window??.rootViewController
@@ -110,6 +116,18 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         case "setTwitter":
             providers.append(FUIOAuth.twitterAuthProvider())
             result(true)
+            break
+        case "setTosAndPrivacyPolicy":
+            guard let args = call.arguments as? [String: String],
+                let tos = args["tos_url"],
+                let privacyPolicy = args["privacy_policy_url"] else {
+                tosurl = nil
+                privacyPolicyUrl = nil
+                break
+            }
+            
+            tosurl = URL(string: tos)
+            privacyPolicyUrl = URL(string: privacyPolicy)
             break
         default:
             result(FlutterMethodNotImplemented)

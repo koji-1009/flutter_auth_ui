@@ -94,6 +94,8 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     }
 
     private val providers = mutableListOf<AuthUI.IdpConfig>()
+    private var tosUrl: String? = null
+    private var privacyPolicyUrl: String? = null
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         when (call.method) {
@@ -101,10 +103,15 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                 result.success("Android ${android.os.Build.VERSION.RELEASE}")
             }
             "startUi" -> {
-                val intent = AuthUI.getInstance()
+                val builder = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
-                    .build()
+
+                if (tosUrl != null && privacyPolicyUrl != null) {
+                    builder.setTosAndPrivacyPolicyUrls(tosUrl!!, privacyPolicyUrl!!)                    
+                }
+
+                val intent = builder.build()
                 activity?.startActivityForResult(intent, RC_SIGN_IN)
 
                 this.result = result
@@ -148,6 +155,11 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
             "setTwitter" -> {
                 providers.add(AuthUI.IdpConfig.TwitterBuilder().build())
                 result.success(true)
+            }
+            "setTosAndPrivacyPolicy" -> {
+                tosUrl = call.argument("tos_url")
+                privacyPolicyUrl = call.argument("privacy_policy_url")
+                result.success(null)
             }
             else -> {
                 result.notImplemented()

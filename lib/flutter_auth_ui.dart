@@ -71,4 +71,12 @@ class FlutterAuthUi {
     final bool result = await _channel.invokeMethod("setTwitter");
     return result;
   }
+
+  static Future setTosAndPrivacyPolicy(
+      String tosUrl, String privacyPolicyUrl) async {
+    await _channel.invokeMethod("setTosAndPrivacyPolicy", <String, String>{
+      "tos_url": tosUrl,
+      "privacy_policy_url": privacyPolicyUrl
+    });
+  }
 }
