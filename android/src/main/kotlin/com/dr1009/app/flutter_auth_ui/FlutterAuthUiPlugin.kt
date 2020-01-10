@@ -24,10 +24,9 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     companion object {
 
-        @JvmStatic
-        val instance = FlutterAuthUiPlugin()
-
         private const val RC_SIGN_IN = 123
+
+        private val instance = FlutterAuthUiPlugin()
 
         @JvmStatic
         fun registerWith(registrar: Registrar) {
@@ -48,15 +47,15 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         // nop
     }
 
-    private val listener = PluginRegistry.ActivityResultListener { requestCode, resultCode, data ->
+    private val listener = PluginRegistry.ActivityResultListener { requestCode, resultCode, _ ->
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK && FirebaseAuth.getInstance().currentUser != null) {
-                result?.success(null)
+                instance.result?.success(null)
             } else {
-                result?.error(resultCode.toString(), "error result", null)
+                instance.result?.error(resultCode.toString(), "error result", null)
             }
 
-            result = null
+            instance.result = null
             return@ActivityResultListener true
         }
 
@@ -64,25 +63,25 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        activity = binding.activity
+        instance.activity = binding.activity
         val lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(binding)
 
         lifecycle?.addObserver(object : LifecycleObserver {
 
             @OnLifecycleEvent(value = Lifecycle.Event.ON_CREATE)
             fun setUp() {
-                binding.addActivityResultListener(listener)
+                binding.addActivityResultListener(instance.listener)
             }
 
             @OnLifecycleEvent(value = Lifecycle.Event.ON_DESTROY)
             fun tearDown() {
-                binding.removeActivityResultListener(listener)
+                binding.removeActivityResultListener(instance.listener)
             }
         })
     }
 
     override fun onDetachedFromActivity() {
-        activity = null
+        instance.activity = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
@@ -108,13 +107,13 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                     .setAvailableProviders(providers)
 
                 if (tosUrl != null && privacyPolicyUrl != null) {
-                    builder.setTosAndPrivacyPolicyUrls(tosUrl!!, privacyPolicyUrl!!)                    
+                    builder.setTosAndPrivacyPolicyUrls(tosUrl!!, privacyPolicyUrl!!)
                 }
 
                 val intent = builder.build()
-                activity?.startActivityForResult(intent, RC_SIGN_IN)
+                instance.activity?.startActivityForResult(intent, RC_SIGN_IN)
 
-                this.result = result
+                instance.result = result
             }
             "setAnonymous" -> {
                 providers.add(AuthUI.IdpConfig.AnonymousBuilder().build())
