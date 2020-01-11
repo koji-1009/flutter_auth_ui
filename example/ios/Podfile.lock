@@ -82,12 +82,12 @@ PODS:
     - FirebaseUI/Auth
   - Flutter (1.0.0)
   - flutter_auth_ui (0.0.1):
-    - FirebaseUI/Auth
-    - FirebaseUI/Email
-    - FirebaseUI/Facebook
-    - FirebaseUI/Google
-    - FirebaseUI/OAuth
-    - FirebaseUI/Phone
+    - FirebaseUI/Auth (~> 8.0)
+    - FirebaseUI/Email (~> 8.0)
+    - FirebaseUI/Facebook (~> 8.0)
+    - FirebaseUI/Google (~> 8.0)
+    - FirebaseUI/OAuth (~> 8.0)
+    - FirebaseUI/Phone (~> 8.0)
     - Flutter
   - flutter_plugin_android_lifecycle (0.0.1):
     - Flutter
@@ -203,7 +203,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FirebaseUI: 433550cb9e3d03ec7ee2c25f87493f76358d9b68
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_auth_ui: fc81ff67f58091750619a4568f7846a33a8d54c6
+  flutter_auth_ui: 3cb069d43a02a5debe0d875105d8c4f5fb128673
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
   GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5

@@ -5,24 +5,24 @@
 Pod::Spec.new do |s|
   s.name             = 'flutter_auth_ui'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin.'
+  s.summary          = 'A Flutter plugin for using the Firebase Auth UI with Dart in Flutter apps.'
   s.description      = <<-DESC
 A new Flutter plugin.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/koji-1009/flutter_auth_ui'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Koji Wakamiya' => 'koji.wakamiya@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   
   s.static_framework = true
-  s.dependency 'FirebaseUI/Auth'
-  s.dependency 'FirebaseUI/Email'
-  s.dependency 'FirebaseUI/Google'
-  s.dependency 'FirebaseUI/Facebook'
-  s.dependency 'FirebaseUI/Phone'
-  s.dependency 'FirebaseUI/OAuth'
+  s.dependency 'FirebaseUI/Auth', '~> 8.0'
+  s.dependency 'FirebaseUI/Email', '~> 8.0'
+  s.dependency 'FirebaseUI/Google', '~> 8.0'
+  s.dependency 'FirebaseUI/Facebook', '~> 8.0'
+  s.dependency 'FirebaseUI/Phone', '~> 8.0'
+  s.dependency 'FirebaseUI/OAuth', '~> 8.0'
   
   s.platform = :ios, '12.0'
 
