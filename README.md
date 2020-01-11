@@ -1,14 +1,13 @@
 # flutter_auth_ui
 
-A new Flutter plugin.
+A Flutter plugin for using the Firebase Auth UI with Dart in Flutter apps.
+(not official plugin.)
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+This plugin is wrapped Android/iOS's native plugin.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Check documents and setup your firebase project.
+
+* iOS : <https://firebase.google.com/docs/auth/ios/firebaseui>
+* Android : <https://firebase.google.com/docs/auth/android/firebaseui>
