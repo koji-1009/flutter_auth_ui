@@ -7,16 +7,10 @@ import 'package:flutter/services.dart';
 class FlutterAuthUi {
   static const MethodChannel _channel = const MethodChannel('flutter_auth_ui');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
   static Future<PlatformUser> startUi() async {
-    final result = await _channel.invokeMethod("startUi");
-    if (result == null) return null;
+    final data = await _channel.invokeMapMethod<String, dynamic>("startUi");
+    if (data == null) return null;
 
-    final Map<String, dynamic> data = new Map<String, dynamic>.from(result);
     final List<PlatformUserInfo> providerData = new List();
     data["providerData"].forEach((element) => providerData.add(PlatformUserInfo(
         providerId: element["providerId"],
@@ -103,8 +97,8 @@ class FlutterAuthUi {
   static Future setTosAndPrivacyPolicy(
       String tosUrl, String privacyPolicyUrl) async {
     await _channel.invokeMethod("setTosAndPrivacyPolicy", <String, String>{
-      "tos_url": tosUrl,
-      "privacy_policy_url": privacyPolicyUrl
+      "tosUrl": tosUrl,
+      "privacyPolicyUrl": privacyPolicyUrl
     });
   }
 }

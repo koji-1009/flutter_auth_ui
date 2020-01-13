@@ -100,9 +100,6 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
-            "getPlatformVersion" -> {
-                result.success("Android ${android.os.Build.VERSION.RELEASE}")
-            }
             "startUi" -> {
                 val builder = AuthUI.getInstance()
                     .createSignInIntentBuilder()
@@ -158,8 +155,8 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                 result.success(true)
             }
             "setTosAndPrivacyPolicy" -> {
-                tosUrl = call.argument("tos_url")
-                privacyPolicyUrl = call.argument("privacy_policy_url")
+                tosUrl = call.argument("tosUrl")
+                privacyPolicyUrl = call.argument("privacyPolicyUrl")
                 result.success(null)
             }
             else -> {

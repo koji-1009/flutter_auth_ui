@@ -38,9 +38,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
-        case "getPlatformVersion":
-            result("iOS " + UIDevice.current.systemVersion)
-            break
         case "startUi":
             self.result = result
             
@@ -118,8 +115,8 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             break
         case "setTosAndPrivacyPolicy":
             guard let args = call.arguments as? [String: String],
-                let tos = args["tos_url"],
-                let privacyPolicy = args["privacy_policy_url"] else {
+                let tos = args["tosUrl"],
+                let privacyPolicy = args["privacyPolicyUrl"] else {
                     tosurl = nil
                     privacyPolicyUrl = nil
                     break
