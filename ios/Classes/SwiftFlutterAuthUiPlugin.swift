@@ -137,10 +137,10 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
     private func mapFromUser(user: User) -> [String : Any] {
         var userMap = userInfoMap(userInfo: user)
         if let creationDate = user.metadata.creationDate {
-            userMap["creationTimestamp"] = creationDate.timeIntervalSince1970 * 1000
+            userMap["creationTimestamp"] = Int(creationDate.timeIntervalSince1970) * 1000
         }
         if let lastSignInDate = user.metadata.lastSignInDate {
-            userMap["lastSignInTimestamp"] = lastSignInDate.timeIntervalSince1970 * 1000
+            userMap["lastSignInTimestamp"] = Int(lastSignInDate.timeIntervalSince1970) * 1000
         }
         userMap["isAnonymous"] = user.isAnonymous
         userMap["isEmailVerified"] = user.isEmailVerified
