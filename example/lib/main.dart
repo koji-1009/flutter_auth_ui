@@ -63,7 +63,10 @@ class _MyAppState extends State<MyApp> {
               Text('Running on: $_platformVersion\n'),
               RaisedButton(
                   child: const Text("start ui"),
-                  onPressed: () async => {await FlutterAuthUi.startUi()}),
+                  onPressed: () async {
+                    final user = await FlutterAuthUi.startUi();
+                    print(user);
+                  }),
             ],
           ),
         ),

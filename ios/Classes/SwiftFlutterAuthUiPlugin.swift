@@ -21,9 +21,8 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
     }
     
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        if (user != nil) {
-            // TODO
-            result?.self(nil)
+        if let currentUser = user {
+            result?.self(mapFromUser(user: currentUser))
         } else {
             result?.self(error?.localizedDescription)
         }
@@ -121,9 +120,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             guard let args = call.arguments as? [String: String],
                 let tos = args["tos_url"],
                 let privacyPolicy = args["privacy_policy_url"] else {
-                tosurl = nil
-                privacyPolicyUrl = nil
-                break
+                    tosurl = nil
+                    privacyPolicyUrl = nil
+                    break
             }
             
             tosurl = URL(string: tos)
@@ -133,5 +132,44 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             result(FlutterMethodNotImplemented)
             break
         }
+    }
+    
+    private func mapFromUser(user: User) -> [String : Any] {
+        var userMap = userInfoMap(userInfo: user)
+        if let creationDate = user.metadata.creationDate {
+            userMap["creationTimestamp"] = creationDate.timeIntervalSince1970 * 1000
+        }
+        if let lastSignInDate = user.metadata.lastSignInDate {
+            userMap["lastSignInTimestamp"] = lastSignInDate.timeIntervalSince1970 * 1000
+        }
+        userMap["isAnonymous"] = user.isAnonymous
+        userMap["isEmailVerified"] = user.isEmailVerified
+        
+        let providerData = user.providerData.map { (userInfo) -> [String : Any] in userInfoMap(userInfo: userInfo) }
+        userMap["providerData"] = providerData
+        
+        return userMap
+    }
+    
+    private func userInfoMap(userInfo: UserInfo) -> [String : Any] {
+        var map = [
+            "providerId" : userInfo.providerID,
+            "uid": userInfo.uid
+        ]
+        
+        if let displayName = userInfo.displayName {
+            map["displayName"] = displayName
+        }
+        if let photoUrl = userInfo.photoURL?.absoluteString {
+            map["photoUrl"] = photoUrl
+        }
+        if let email = userInfo.email {
+            map["emial"] = email
+        }
+        if let phoneNumber = userInfo.phoneNumber {
+            map["phoneNumber"] = phoneNumber
+        }
+        
+        return map
     }
 }

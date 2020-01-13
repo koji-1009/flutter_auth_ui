@@ -7,6 +7,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserInfo
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -48,8 +50,9 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     private val listener = PluginRegistry.ActivityResultListener { requestCode, resultCode, _ ->
         if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK && FirebaseAuth.getInstance().currentUser != null) {
-                instance.result?.success(null)
+            if (resultCode == RESULT_OK) {
+                val user = FirebaseAuth.getInstance().currentUser
+                instance.result?.success(mapFromUser(user))
             } else {
                 instance.result?.error(resultCode.toString(), "error result", null)
             }
@@ -163,5 +166,47 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                 result.notImplemented()
             }
         }
+    }
+
+    private fun mapFromUser(user: FirebaseUser?): Map<String, Any>? {
+        if (user == null) {
+            return null
+        }
+
+        val userMap = userInfoToMap(user).toMutableMap()
+        val metadata = user.metadata
+        if (metadata != null) {
+            userMap["creationTimestamp"] = metadata.creationTimestamp
+            userMap["lastSignInTimestamp"] = metadata.lastSignInTimestamp
+        }
+        userMap["isAnonymous"] = user.isAnonymous
+        userMap["isEmailVerified"] = user.isEmailVerified
+
+        val providerData = user.providerData.map { userInfoToMap(it) }
+        userMap["providerData"] = providerData
+
+        return userMap
+    }
+
+    private fun userInfoToMap(userInfo: UserInfo): Map<String, Any> {
+        val map = mutableMapOf<String, Any>(
+            "providerId" to userInfo.providerId,
+            "uid" to userInfo.uid
+        )
+
+        if (userInfo.displayName != null) {
+            map["displayName"] = userInfo.displayName ?: ""
+        }
+        if (userInfo.photoUrl != null) {
+            map["photoUrl"] = userInfo.photoUrl.toString()
+        }
+        if (userInfo.email != null) {
+            map["email"] = userInfo.email ?: ""
+        }
+        if (userInfo.phoneNumber != null) {
+            map["phoneNumber"] = userInfo.phoneNumber ?: ""
+        }
+
+        return map.toMap()
     }
 }

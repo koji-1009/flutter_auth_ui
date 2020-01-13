@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/services.dart';
 
 class FlutterAuthUi {
@@ -10,8 +12,34 @@ class FlutterAuthUi {
     return version;
   }
 
-  static Future startUi() async {
-    await _channel.invokeMethod("startUi");
+  static Future<PlatformUser> startUi() async {
+    final result = await _channel.invokeMethod("startUi");
+    if (result == null) return null;
+
+    final Map<String, dynamic> data = new Map<String, dynamic>.from(result);
+    final List<PlatformUserInfo> providerData = new List();
+    data["providerData"].forEach((element) => providerData.add(PlatformUserInfo(
+        providerId: element["providerId"],
+        uid: element["uid"],
+        displayName: element["displayName"],
+        photoUrl: element["photoUrl"],
+        email: element["email"],
+        phoneNumber: element["phoneNumber"])));
+
+    final user = PlatformUser(
+        providerId: data["providerId"],
+        uid: data["uid"],
+        displayName: data["displayName"],
+        photoUrl: data["photoUrl"],
+        email: data["email"],
+        phoneNumber: data["phoneNumber"],
+        creationTimestamp: data["creationTimestamp"],
+        lastSignInTimestamp: data["lastSignInTimestamp"],
+        isAnonymous: data["isAnonymous"],
+        isEmailVerified: data["isEmailVerified"],
+        providerData: providerData);
+
+    return user;
   }
 
   static Future<bool> setAnonymous() async {
