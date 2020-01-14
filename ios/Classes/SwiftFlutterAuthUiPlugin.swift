@@ -62,15 +62,13 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             break
         case "setEmail":
             let actionCodeSettings = ActionCodeSettings()
-            if let args = call.arguments as? [String: String] {
-                if let url = args["ios_url"], !url.isEmpty {
-                    actionCodeSettings.url = URL(string: url)
-                    actionCodeSettings.handleCodeInApp = true
-                }
-                if let packageName = args["ios_package_name"], !packageName.isEmpty,
-                    let minimumVersion = args["ios_minimum_version"], !minimumVersion.isEmpty {
-                    actionCodeSettings.setAndroidPackageName(packageName, installIfNotAvailable: false, minimumVersion: minimumVersion)
-                }
+            if let url = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailHandleURL") as? String, !url.isEmpty {
+                actionCodeSettings.url = URL(string: url)
+                actionCodeSettings.handleCodeInApp = true
+            }
+            if let packageName = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidPackageName") as? String, !packageName.isEmpty,
+                let minimumVersion = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidMinimumVersion") as? String, !minimumVersion.isEmpty{
+                actionCodeSettings.setAndroidPackageName(packageName, installIfNotAvailable: false, minimumVersion: minimumVersion)
             }
             
             let provider = FUIEmailAuth.init(authAuthUI: FUIAuth.defaultAuthUI()!, signInMethod: EmailLinkAuthSignInMethod, forceSameDevice: false, allowNewEmailAccounts: true, actionCodeSetting: actionCodeSettings)

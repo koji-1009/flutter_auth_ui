@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/services.dart';
@@ -41,16 +40,17 @@ class FlutterAuthUi {
     return result;
   }
 
-  static Future<bool> setEmail(
-      {String url = "",
-      String packageName = "",
-      String minimumVersion = ""}) async {
-    final bool result =
-        await _channel.invokeMethod("setEmail", <String, String>{
-      'ios_url': url,
-      'ios_package_name': packageName,
-      'ios_minimum_version': minimumVersion
-    });
+  /// set Email provider.
+  ///
+  /// If you want iOS support, set following params your `Info.plist`.
+  /// (see <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>)
+  ///   - FirebaseAuthUiEmailHandleURL : String, set `ActionCodeSettings.url`
+  ///   - FirebaseAuthUiEmailAndroidPackageName : String, set `actionCodeSettings.setAndroidPackageName` - packageName
+  ///   - FirebaseAuthUiEmailAndroidMinimumVersion : Int, set `actionCodeSettings.setAndroidPackageName` - minimumVersion
+  ///
+  /// Return 'true' if configuration is successful.
+  static Future<bool> setEmail() async {
+    final bool result = await _channel.invokeMethod("setEmail");
     return result;
   }
 
