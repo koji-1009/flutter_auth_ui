@@ -72,7 +72,7 @@ packages:
     source: hosted
     version: "0.15.3"
   firebase_auth_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
