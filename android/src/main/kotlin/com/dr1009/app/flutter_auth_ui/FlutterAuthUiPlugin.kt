@@ -157,7 +157,7 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
             "setTosAndPrivacyPolicy" -> {
                 tosUrl = call.argument("tosUrl")
                 privacyPolicyUrl = call.argument("privacyPolicyUrl")
-                result.success(null)
+                result.success(true)
             }
             else -> {
                 result.notImplemented()

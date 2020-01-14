@@ -122,6 +122,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             
             tosurl = URL(string: tos)
             privacyPolicyUrl = URL(string: privacyPolicy)
+            result(true)
             break
         default:
             result(FlutterMethodNotImplemented)
