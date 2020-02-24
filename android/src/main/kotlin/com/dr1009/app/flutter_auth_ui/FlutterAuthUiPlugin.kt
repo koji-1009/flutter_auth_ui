@@ -7,8 +7,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserInfo
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -52,7 +50,7 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
-                instance.result?.success(mapFromUser(user))
+                instance.result?.success(user != null)
             } else {
                 instance.result?.error(resultCode.toString(), "error result", null)
             }
@@ -94,116 +92,46 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         // nop
     }
 
-    private val providers = mutableListOf<AuthUI.IdpConfig>()
-    private var tosUrl: String? = null
-    private var privacyPolicyUrl: String? = null
-
     override fun onMethodCall(call: MethodCall, result: Result) {
-        when (call.method) {
-            "startUi" -> {
-                val builder = AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .setAvailableProviders(providers)
+        val method = call.method
+        if (method != "startUi") {
+            result.notImplemented()
+            return
+        }
 
-                if (tosUrl != null && privacyPolicyUrl != null) {
-                    builder.setTosAndPrivacyPolicyUrls(tosUrl!!, privacyPolicyUrl!!)
+        val setProviders = call.argument<String>("providers").orEmpty().split(",")
+        val providers = setProviders.map { name ->
+            when (name) {
+                "Anonymous" -> AuthUI.IdpConfig.AnonymousBuilder().build()
+                "Email" -> AuthUI.IdpConfig.EmailBuilder().build()
+                "Phone" -> AuthUI.IdpConfig.PhoneBuilder().build()
+                "Apple" -> AuthUI.IdpConfig.AppleBuilder().build()
+                "Github" -> AuthUI.IdpConfig.GitHubBuilder().build()
+                "Microsoft" -> AuthUI.IdpConfig.MicrosoftBuilder().build()
+                "Yahoo" -> AuthUI.IdpConfig.YahooBuilder().build()
+                "Google" -> AuthUI.IdpConfig.GoogleBuilder().build()
+                "Facebook" -> AuthUI.IdpConfig.FacebookBuilder().build()
+                "Twitter" -> AuthUI.IdpConfig.TwitterBuilder().build()
+                else -> {
+                    result.notImplemented()
+                    return
                 }
-
-                val intent = builder.build()
-                instance.activity?.startActivityForResult(intent, RC_SIGN_IN)
-
-                instance.result = result
-            }
-            "setAnonymous" -> {
-                providers.add(AuthUI.IdpConfig.AnonymousBuilder().build())
-                result.success(true)
-            }
-            "setEmail" -> {
-                providers.add(AuthUI.IdpConfig.EmailBuilder().build())
-                result.success(true)
-            }
-            "setPhone" -> {
-                providers.add(AuthUI.IdpConfig.PhoneBuilder().build())
-                result.success(true)
-            }
-            "setApple" -> {
-                providers.add(AuthUI.IdpConfig.AppleBuilder().build())
-                result.success(true)
-            }
-            "setGithub" -> {
-                providers.add(AuthUI.IdpConfig.GitHubBuilder().build())
-                result.success(true)
-            }
-            "setMicrosoft" -> {
-                providers.add(AuthUI.IdpConfig.MicrosoftBuilder().build())
-                result.success(true)
-            }
-            "setYahoo" -> {
-                providers.add(AuthUI.IdpConfig.YahooBuilder().build())
-                result.success(true)
-            }
-            "setGoogle" -> {
-                providers.add(AuthUI.IdpConfig.GoogleBuilder().build())
-                result.success(true)
-            }
-            "setFacebook" -> {
-                providers.add(AuthUI.IdpConfig.FacebookBuilder().build())
-                result.success(true)
-            }
-            "setTwitter" -> {
-                providers.add(AuthUI.IdpConfig.TwitterBuilder().build())
-                result.success(true)
-            }
-            "setTosAndPrivacyPolicy" -> {
-                tosUrl = call.argument("tosUrl")
-                privacyPolicyUrl = call.argument("privacyPolicyUrl")
-                result.success(true)
-            }
-            else -> {
-                result.notImplemented()
             }
         }
-    }
 
-    private fun mapFromUser(user: FirebaseUser?): Map<String, Any>? {
-        if (user == null) {
-            return null
+        val builder = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+
+        val tosUrl = call.argument<String?>("tosUrl")
+        val privacyPolicyUrl = call.argument<String?>("privacyPolicyUrl")
+        if (!tosUrl.isNullOrEmpty() && !privacyPolicyUrl.isNullOrEmpty()) {
+            builder.setTosAndPrivacyPolicyUrls(tosUrl, privacyPolicyUrl)
         }
 
-        val userMap = userInfoToMap(user).toMutableMap()
-        val metadata = user.metadata
-        if (metadata != null) {
-            userMap["creationTimestamp"] = metadata.creationTimestamp
-            userMap["lastSignInTimestamp"] = metadata.lastSignInTimestamp
-        }
-        userMap["isAnonymous"] = user.isAnonymous
-        userMap["isEmailVerified"] = user.isEmailVerified
+        val intent = builder.build()
+        instance.activity?.startActivityForResult(intent, RC_SIGN_IN)
 
-        val providerData = user.providerData.map { userInfoToMap(it) }
-        userMap["providerData"] = providerData
-
-        return userMap
-    }
-
-    private fun userInfoToMap(userInfo: UserInfo): Map<String, Any> {
-        val map = mutableMapOf<String, Any>(
-            "providerId" to userInfo.providerId,
-            "uid" to userInfo.uid
-        )
-
-        if (userInfo.displayName != null) {
-            map["displayName"] = userInfo.displayName ?: ""
-        }
-        if (userInfo.photoUrl != null) {
-            map["photoUrl"] = userInfo.photoUrl.toString()
-        }
-        if (userInfo.email != null) {
-            map["email"] = userInfo.email ?: ""
-        }
-        if (userInfo.phoneNumber != null) {
-            map["phoneNumber"] = userInfo.phoneNumber ?: ""
-        }
-
-        return map.toMap()
+        instance.result = result
     }
 }

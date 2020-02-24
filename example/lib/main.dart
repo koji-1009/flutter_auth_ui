@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_ui/flutter_auth_ui.dart';
 
@@ -11,22 +9,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
-    initProviders();
-  }
-
-  Future<void> initProviders() async {
-    FlutterAuthUi.setEmail();
-    FlutterAuthUi.setApple();
-    FlutterAuthUi.setGithub();
-    FlutterAuthUi.setGoogle();
-    FlutterAuthUi.setMicrosoft();
-    FlutterAuthUi.setYahoo();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,8 +22,19 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                   child: const Text("start ui"),
                   onPressed: () async {
-                    final user = await FlutterAuthUi.startUi();
-                    print(user);
+                    final providers = [
+                      AuthEmail(),
+                      AuthApple(),
+                      AuthGithub(),
+                      AuthGoogle(),
+                      AuthMicrosoft(),
+                      AuthYahoo(),
+                    ];
+                    final tosAndPrivacyPolicy = TosAndPrivacyPolicy("", "");
+
+                    final result = await FlutterAuthUi.startUi(
+                        providers, tosAndPrivacyPolicy);
+                    print(result);
                   }),
             ],
           ),

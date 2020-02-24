@@ -17,7 +17,6 @@ dependencies:
     sdk: flutter
   firebase_auth: ^0.15.3
   flutter_plugin_android_lifecycle: ^1.0.3
-  firebase_auth_platform_interface: ^1.1.2
 
 dev_dependencies:
   flutter_test:
