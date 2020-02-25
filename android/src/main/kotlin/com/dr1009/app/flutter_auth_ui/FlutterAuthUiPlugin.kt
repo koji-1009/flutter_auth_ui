@@ -66,7 +66,7 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         instance.activity = binding.activity
         val lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(binding)
 
-        lifecycle?.addObserver(object : LifecycleObserver {
+        lifecycle.addObserver(object : LifecycleObserver {
 
             @OnLifecycleEvent(value = Lifecycle.Event.ON_CREATE)
             fun setUp() {
