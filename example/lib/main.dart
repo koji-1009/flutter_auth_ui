@@ -23,14 +23,15 @@ class _MyAppState extends State<MyApp> {
                   child: const Text("start ui"),
                   onPressed: () async {
                     final providers = [
-                      AuthEmail(),
-                      AuthApple(),
-                      AuthGithub(),
-                      AuthGoogle(),
-                      AuthMicrosoft(),
-                      AuthYahoo(),
+                      AuthUiItem.AuthEmail,
+                      AuthUiItem.AuthApple,
+                      AuthUiItem.AuthGithub,
+                      AuthUiItem.AuthGoogle,
+                      AuthUiItem.AuthMicrosoft,
+                      AuthUiItem.AuthYahoo,
                     ];
-                    final tosAndPrivacyPolicy = TosAndPrivacyPolicy("", "");
+                    final tosAndPrivacyPolicy = TosAndPrivacyPolicy(
+                        "https://www.google.com", "https://www.google.com");
 
                     final result = await FlutterAuthUi.startUi(
                         providers, tosAndPrivacyPolicy);
