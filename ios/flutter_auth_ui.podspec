@@ -17,16 +17,15 @@ A new Flutter plugin.
   s.dependency 'Flutter'
   
   s.static_framework = true
-  s.dependency 'FirebaseUI/Auth', '~> 8.0'
-  s.dependency 'FirebaseUI/Email', '~> 8.0'
-  s.dependency 'FirebaseUI/Google', '~> 8.0'
-  s.dependency 'FirebaseUI/Facebook', '~> 8.0'
-  s.dependency 'FirebaseUI/Phone', '~> 8.0'
-  s.dependency 'FirebaseUI/OAuth', '~> 8.0'
+  s.dependency 'FirebaseUI/Auth', '~> 8.4'
+  s.dependency 'FirebaseUI/Email', '~> 8.4'
+  s.dependency 'FirebaseUI/Google', '~> 8.4'
+  s.dependency 'FirebaseUI/Facebook', '~> 8.4'
+  s.dependency 'FirebaseUI/Phone', '~> 8.4'
+  s.dependency 'FirebaseUI/OAuth', '~> 8.4'
   
   s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
-  s.swift_version = '5.0'
 end
