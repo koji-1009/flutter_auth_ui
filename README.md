@@ -11,3 +11,20 @@ Check documents and setup your firebase project.
 
 * iOS : <https://firebase.google.com/docs/auth/ios/firebaseui>
 * Android : <https://firebase.google.com/docs/auth/android/firebaseui>
+
+## How to use
+
+```
+// Set provider
+final providers = [
+  AuthUiItem.AuthEmail,
+  AuthUiItem.AuthApple,
+  AuthUiItem.AuthGithub,
+  AuthUiItem.AuthGoogle,
+  AuthUiItem.AuthMicrosoft,
+  AuthUiItem.AuthYahoo,
+];
+
+final tosAndPrivacyPolicy = TosAndPrivacyPolicy(Terms of Service URL, Privacy Policy URL);
+final isSuccess = await FlutterAuthUi.startUi(providers, tosAndPrivacyPolicy);
+```

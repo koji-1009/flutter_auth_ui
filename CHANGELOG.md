@@ -1,3 +1,17 @@
+## 0.2.0
+
+Second beta release.
+
+### Breaking change
+
+- Change set provider function to enum
+- Change PlatformUser to Bool when success `startUi`
+
+### Minor change
+
+- Update libs
+- Update api doc
+
 ## 0.1.0
 
 First beta release of flutter plugin for Firebase Auth UI.
