@@ -1,3 +1,7 @@
+## 0.2.1
+
+Update firebase_auth to `0.16.0` .
+
 ## 0.2.0
 
 Second beta release.
