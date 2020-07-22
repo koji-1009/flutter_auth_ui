@@ -101,7 +101,7 @@ class FlutterAuthUi {
   static Future<bool> startUi(
       List<AuthUiItem> items, TosAndPrivacyPolicy tosAndPrivacyPolicy) async {
     final providers = items.map((e) => e.providerName).join(',');
-    final data = await _channel.invokeMapMethod('startUi', <String, String>{
+    final data = await _channel.invokeMethod('startUi', <String, String>{
       'providers': providers,
       'tosUrl': tosAndPrivacyPolicy.tosUrl,
       'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl
