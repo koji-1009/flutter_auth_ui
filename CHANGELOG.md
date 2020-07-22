@@ -1,6 +1,11 @@
+## 0.2.2
+
+- Fix startUi method. (Fix #3)
+- Update firebase_auth to `0.16.1`.
+
 ## 0.2.1
 
-Update firebase_auth to `0.16.0` .
+Update firebase_auth to `0.16.0`.
 
 ## 0.2.0
 
