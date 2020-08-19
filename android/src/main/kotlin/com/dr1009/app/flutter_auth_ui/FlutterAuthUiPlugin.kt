@@ -3,8 +3,8 @@ package com.dr1009.app.flutter_auth_ui
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -64,20 +64,23 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         instance.activity = binding.activity
-        val lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(binding)
-
-        lifecycle.addObserver(object : LifecycleObserver {
-
-            @OnLifecycleEvent(value = Lifecycle.Event.ON_CREATE)
-            fun setUp() {
-                binding.addActivityResultListener(instance.listener)
-            }
-
-            @OnLifecycleEvent(value = Lifecycle.Event.ON_DESTROY)
-            fun tearDown() {
-                binding.removeActivityResultListener(instance.listener)
-            }
-        })
+        FlutterLifecycleAdapter
+            .getActivityLifecycle(binding)
+            .addObserver(object : LifecycleEventObserver {
+                override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                    when (event) {
+                        Lifecycle.Event.ON_CREATE -> {
+                            binding.addActivityResultListener(instance.listener)
+                        }
+                        Lifecycle.Event.ON_DESTROY -> {
+                            binding.removeActivityResultListener(instance.listener)
+                        }
+                        else -> {
+                            // nop
+                        }
+                    }
+                }
+            })
     }
 
     override fun onDetachedFromActivity() {
