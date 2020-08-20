@@ -1,87 +1,67 @@
 PODS:
-  - AppAuth (1.3.0):
-    - AppAuth/Core (= 1.3.0)
-    - AppAuth/ExternalUserAgent (= 1.3.0)
-  - AppAuth/Core (1.3.0)
-  - AppAuth/ExternalUserAgent (1.3.0)
-  - FBSDKCoreKit (5.13.1):
-    - FBSDKCoreKit/Basics (= 5.13.1)
-    - FBSDKCoreKit/Core (= 5.13.1)
-  - FBSDKCoreKit/Basics (5.13.1)
-  - FBSDKCoreKit/Core (5.13.1):
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.13.1):
-    - FBSDKLoginKit/Login (= 5.13.1)
-  - FBSDKLoginKit/Login (5.13.1):
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
-  - Firebase/Auth (6.14.0):
+  - Firebase/Auth (6.26.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.4.1)
-  - Firebase/Core (6.14.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.7)
-  - Firebase/CoreOnly (6.14.0):
-    - FirebaseCore (= 6.5.0)
-  - firebase_auth (0.0.1):
-    - Firebase/Auth (~> 6.3)
-    - Firebase/Core
+    - FirebaseAuth (~> 6.5.3)
+  - Firebase/CoreOnly (6.26.0):
+    - FirebaseCore (= 6.7.2)
+  - firebase_auth (0.18.0):
+    - Firebase/Auth (~> 6.26.0)
+    - Firebase/CoreOnly (~> 6.26.0)
+    - firebase_core
     - Flutter
-  - firebase_auth_web (0.1.0):
+  - firebase_core (0.5.0):
+    - Firebase/CoreOnly (~> 6.26.0)
     - Flutter
-  - firebase_core (0.0.1):
-    - Firebase/Core
-    - Flutter
-  - firebase_core_web (0.1.0):
-    - Flutter
-  - FirebaseAnalytics (6.1.7):
-    - FirebaseCore (~> 6.5)
-    - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.7)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - FirebaseAuth (6.4.1):
+  - FirebaseAuth (6.5.3):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.2)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
-    - GoogleUtilities/Environment (~> 6.2)
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.5.0):
-    - FirebaseCoreDiagnostics (~> 1.0)
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.4)
-    - GoogleUtilities/Logger (~> 6.4)
-  - FirebaseCoreDiagnostics (1.1.2):
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleDataTransportCCTSupport (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GoogleUtilities/Logger (~> 6.2)
-    - nanopb (~> 0.3.901)
-  - FirebaseCoreDiagnosticsInterop (1.1.0)
-  - FirebaseInstanceID (4.2.8):
-    - FirebaseCore (~> 6.5)
-    - GoogleUtilities/Environment (~> 6.4)
-    - GoogleUtilities/UserDefaults (~> 6.4)
-  - FirebaseUI/Auth (8.4.0):
+  - FirebaseAuthInterop (1.1.0)
+  - FirebaseCore (6.7.2):
+    - FirebaseCoreDiagnostics (~> 1.3)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.5.0):
+    - GoogleDataTransport (~> 7.0)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30905.0)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseUI/Auth (8.4.2):
     - Firebase/Auth (~> 6.0)
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Email (8.4.0):
+  - FirebaseUI/Email (8.4.2):
     - FirebaseUI/Auth
-  - FirebaseUI/Facebook (8.4.0):
+  - FirebaseUI/Facebook (8.4.2):
     - FBSDKLoginKit (~> 5.0)
     - FirebaseUI/Auth
-  - FirebaseUI/Google (8.4.0):
+  - FirebaseUI/Google (8.4.2):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 5.0)
-  - FirebaseUI/OAuth (8.4.0):
+  - FirebaseUI/OAuth (8.4.2):
     - FirebaseUI/Auth
-  - FirebaseUI/Phone (8.4.0):
+  - FirebaseUI/Phone (8.4.2):
     - FirebaseUI/Auth
   - Flutter (1.0.0)
-  - flutter_auth_ui (0.1.0):
+  - flutter_auth_ui (0.2.2):
     - FirebaseUI/Auth (~> 8.4)
     - FirebaseUI/Email (~> 8.4)
     - FirebaseUI/Facebook (~> 8.4)
@@ -89,62 +69,49 @@ PODS:
     - FirebaseUI/OAuth (~> 8.4)
     - FirebaseUI/Phone (~> 8.4)
     - Flutter
-  - flutter_plugin_android_lifecycle (0.0.1):
-    - Flutter
-  - GoogleAppMeasurement (6.1.7):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.2.0)
-  - GoogleDataTransportCCTSupport (1.2.3):
-    - GoogleDataTransport (~> 3.2)
-    - nanopb (~> 0.3.901)
+  - GoogleDataTransport (7.2.0):
+    - nanopb (~> 1.30905.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (6.4.0):
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.4.0)
-  - GoogleUtilities/Logger (6.4.0):
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.4.0):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.4.0):
+  - GoogleUtilities/Network (6.7.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.4.0)"
-  - GoogleUtilities/Reachability (6.4.0):
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.4.0):
+  - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - GTMAppAuth (1.0.0):
     - AppAuth/Core (~> 1.0)
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.3.0):
-    - GTMSessionFetcher/Full (= 1.3.0)
-  - GTMSessionFetcher/Core (1.3.0)
-  - GTMSessionFetcher/Full (1.3.0):
-    - GTMSessionFetcher/Core (= 1.3.0)
-  - nanopb (0.3.9011):
-    - nanopb/decode (= 0.3.9011)
-    - nanopb/encode (= 0.3.9011)
-  - nanopb/decode (0.3.9011)
-  - nanopb/encode (0.3.9011)
+  - GTMSessionFetcher (1.4.0):
+    - GTMSessionFetcher/Full (= 1.4.0)
+  - GTMSessionFetcher/Core (1.4.0)
+  - GTMSessionFetcher/Full (1.4.0):
+    - GTMSessionFetcher/Core (= 1.4.0)
+  - nanopb (1.30905.0):
+    - nanopb/decode (= 1.30905.0)
+    - nanopb/encode (= 1.30905.0)
+  - nanopb/decode (1.30905.0)
+  - nanopb/encode (1.30905.0)
+  - PromisesObjC (1.2.10)
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
-  - firebase_auth_web (from `.symlinks/plugins/firebase_auth_web/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - Flutter (from `Flutter`)
   - flutter_auth_ui (from `.symlinks/plugins/flutter_auth_ui/ios`)
-  - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
 
 SPEC REPOS:
   trunk:
@@ -152,68 +119,53 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
-    - FirebaseAnalytics
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
-    - FirebaseInstanceID
     - FirebaseUI
-    - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleSignIn
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
     - nanopb
+    - PromisesObjC
 
 EXTERNAL SOURCES:
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
-  firebase_auth_web:
-    :path: ".symlinks/plugins/firebase_auth_web/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_core_web:
-    :path: ".symlinks/plugins/firebase_core_web/ios"
   Flutter:
     :path: Flutter
   flutter_auth_ui:
     :path: ".symlinks/plugins/flutter_auth_ui/ios"
-  flutter_plugin_android_lifecycle:
-    :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
 
 SPEC CHECKSUMS:
-  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
-  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
-  FBSDKLoginKit: c7c6ffd9ca9ea45aee32361840af040ad8f6706a
-  Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
-  firebase_auth: 1f46484071219159ad6c64d304af425ad7373052
-  firebase_auth_web: 0955c07bcc06e84af76b9d4e32e6f31518f2d7de
-  firebase_core: dc539d4bdc69894823e4a6e557034a9e48960f21
-  firebase_core_web: d501d8b946b60c8af265428ce483b0fff5ad52d1
-  FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
-  FirebaseAuth: 831577b184ecaba38bc886768c1c22a450cc44e3
-  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
-  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
-  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
-  FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
-  FirebaseUI: 433550cb9e3d03ec7ee2c25f87493f76358d9b68
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
+  firebase_auth: fcb8cb081751c7f96d9c069a2b5c83226d166e6a
+  firebase_core: 3134fe79d257d430f163b558caf52a10a87efe8a
+  FirebaseAuth: 7047aec89c0b17ecd924a550c853f0c27ac6015e
+  FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
+  FirebaseCore: f42e5e5f382cdcf6b617ed737bf6c871a6947b17
+  FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_auth_ui: 1010b1b855264b0e6b708122ed12c5597c9170cf
-  flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
-  GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
-  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
-  GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
+  flutter_auth_ui: 10e0c084a8bfb0f9a403cbf7730724f668064277
+  GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
-  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
-PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
