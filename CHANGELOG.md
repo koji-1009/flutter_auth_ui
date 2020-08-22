@@ -1,3 +1,10 @@
+## 0.2.3
+
+- Flutter 1.20.2
+- Dart 2.9.1
+- Update firebase_auth to `0.18.0+1`
+- Fix email-password sign-up on iOS
+
 ## 0.2.2
 
 - Fix startUi method. (Fix #3)

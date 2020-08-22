@@ -28,3 +28,6 @@ final providers = [
 final tosAndPrivacyPolicy = TosAndPrivacyPolicy(Terms of Service URL, Privacy Policy URL);
 final isSuccess = await FlutterAuthUi.startUi(providers, tosAndPrivacyPolicy);
 ```
+### Email link authentication
+
+If you want to enable email link authentication on iOS, check `AuthUiItem.AuthEmail' doc.

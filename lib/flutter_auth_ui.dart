@@ -9,7 +9,7 @@ enum AuthUiItem {
 
   /// set Email provider.
   ///
-  /// If you want iOS support, set following params your `Info.plist`.
+  /// If you want email link authentication on iOS , set following params your `Info.plist`.
   /// (see <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>)
   ///   - FirebaseAuthUiEmailHandleURL : String, set `ActionCodeSettings.url`
   ///   - FirebaseAuthUiEmailAndroidPackageName : String, set `actionCodeSettings.setAndroidPackageName` - packageName
