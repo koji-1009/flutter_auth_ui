@@ -1,3 +1,7 @@
+## 0.2.6
+
+- Downgrade Flutter to `1.20.0`
+
 ## 0.2.5
 
 - Downgrade Flutter to `1.20.1`
