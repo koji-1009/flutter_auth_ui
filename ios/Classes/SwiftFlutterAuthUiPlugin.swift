@@ -47,17 +47,23 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             case "Anonymous":
                 result(FlutterMethodNotImplemented)
             case "Email" :
-                let actionCodeSettings = ActionCodeSettings()
                 if let url = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailHandleURL") as? String, !url.isEmpty {
+                    // the email-link sign-in method.
+                    let actionCodeSettings = ActionCodeSettings()
+                    
                     actionCodeSettings.url = URL(string: url)
                     actionCodeSettings.handleCodeInApp = true
+                    
+                    if let packageName = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidPackageName") as? String, !packageName.isEmpty,
+                        let minimumVersion = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidMinimumVersion") as? String, !minimumVersion.isEmpty {
+                        actionCodeSettings.setAndroidPackageName(packageName, installIfNotAvailable: false, minimumVersion: minimumVersion)
+                    }
+                    
+                    providers.append(FUIEmailAuth(authAuthUI: FUIAuth.defaultAuthUI()!, signInMethod: EmailLinkAuthSignInMethod, forceSameDevice: false, allowNewEmailAccounts: true, actionCodeSetting: actionCodeSettings))
+                } else {
+                    // the email & password sign-in method.
+                    providers.append(FUIEmailAuth())
                 }
-                if let packageName = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidPackageName") as? String, !packageName.isEmpty,
-                    let minimumVersion = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidMinimumVersion") as? String, !minimumVersion.isEmpty{
-                    actionCodeSettings.setAndroidPackageName(packageName, installIfNotAvailable: false, minimumVersion: minimumVersion)
-                }
-                
-                providers.append(FUIEmailAuth.init(authAuthUI: FUIAuth.defaultAuthUI()!, signInMethod: EmailLinkAuthSignInMethod, forceSameDevice: false, allowNewEmailAccounts: true, actionCodeSetting: actionCodeSettings))
             case "Phone" :
                 providers.append(FUIPhoneAuth(authUI: FUIAuth.defaultAuthUI()!))
             case "Apple" :
