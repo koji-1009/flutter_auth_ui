@@ -1,11 +1,15 @@
+## 0.2.5
+
+- Downgrade Flutter to `1.20.1`
+
 ## 0.2.4
 
-- Downgrade Dart to 2.9.0
+- Downgrade Dart to `2.9.0`
 
 ## 0.2.3
 
-- Flutter 1.20.2
-- Dart 2.9.1
+- Flutter `1.20.2`
+- Dart `2.9.1`
 - Update firebase_auth to `0.18.0+1`
 - Fix email-password sign-up on iOS
 
