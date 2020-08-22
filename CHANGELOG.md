@@ -1,3 +1,7 @@
+## 0.2.4
+
+- Downgrade Dart to 2.9.0
+
 ## 0.2.3
 
 - Flutter 1.20.2
