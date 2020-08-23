@@ -13,7 +13,7 @@ enum AuthUiItem {
   /// (see <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>)
   ///   - FirebaseAuthUiEmailHandleURL : String, set `ActionCodeSettings.url`
   ///   - FirebaseAuthUiEmailAndroidPackageName : String, set `actionCodeSettings.setAndroidPackageName` - packageName
-  ///   - FirebaseAuthUiEmailAndroidMinimumVersion : Int, set `actionCodeSettings.setAndroidPackageName` - minimumVersion
+  ///   - FirebaseAuthUiEmailAndroidMinimumVersion : String, set `actionCodeSettings.setAndroidPackageName` - minimumVersion
   AuthEmail,
 
   /// set PhoneNumber provider.
