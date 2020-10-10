@@ -1,3 +1,10 @@
+## 0.3.0
+
+- Flutter `1.22.0`
+- Dart `2.10.0`
+- Update firebase_auth to `0.18.1+2`
+- Target & Compie SDK 30(Android)
+
 ## 0.2.6
 
 - Downgrade Flutter to `1.20.0`
