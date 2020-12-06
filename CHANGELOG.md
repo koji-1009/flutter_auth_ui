@@ -1,3 +1,8 @@
+## 0.3.1
+
+- Update firebase_auth to `0.18.4`
+- Firebase Auth UI v9.0(iOS) & v7.1.1(Android)
+
 ## 0.3.0
 
 - Flutter `1.22.0`
