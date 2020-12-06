@@ -17,12 +17,12 @@ A new Flutter plugin.
   s.dependency 'Flutter'
   
   s.static_framework = true
-  s.dependency 'FirebaseUI/Auth', '~> 8.4'
-  s.dependency 'FirebaseUI/Email', '~> 8.4'
-  s.dependency 'FirebaseUI/Google', '~> 8.4'
-  s.dependency 'FirebaseUI/Facebook', '~> 8.4'
-  s.dependency 'FirebaseUI/Phone', '~> 8.4'
-  s.dependency 'FirebaseUI/OAuth', '~> 8.4'
+  s.dependency 'FirebaseUI/Auth', '~> 9.0'
+  s.dependency 'FirebaseUI/Email', '~> 9.0'
+  s.dependency 'FirebaseUI/Google', '~> 9.0'
+  s.dependency 'FirebaseUI/Facebook', '~> 9.0'
+  s.dependency 'FirebaseUI/Phone', '~> 9.0'
+  s.dependency 'FirebaseUI/OAuth', '~> 9.0'
   
   s.platform = :ios, '12.0'
 
