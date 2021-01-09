@@ -122,8 +122,10 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
             }
         }
 
+        val enableSmartLockForAndroid = call.argument<Boolean>("enableSmartLockForAndroid")
         val builder = AuthUI.getInstance()
             .createSignInIntentBuilder()
+            .setIsSmartLockEnabled(enableSmartLockForAndroid ?: true) // default is true
             .setAvailableProviders(providers)
 
         val tosUrl = call.argument<String?>("tosUrl")

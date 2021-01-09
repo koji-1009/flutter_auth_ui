@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 enum AuthUiItem {
@@ -86,10 +87,13 @@ extension ExtendedAuthUiItem on AuthUiItem {
 
 /// Terms of service(Tos) and Privacy Policy link.
 class TosAndPrivacyPolicy {
-  TosAndPrivacyPolicy(this.tosUrl, this.privacyPolicyUrl);
+  TosAndPrivacyPolicy({
+    @required this.tosUrl,
+    @required this.privacyPolicyUrl,
+  });
 
-  String tosUrl;
-  String privacyPolicyUrl;
+  final String tosUrl;
+  final String privacyPolicyUrl;
 }
 
 class FlutterAuthUi {
@@ -98,13 +102,18 @@ class FlutterAuthUi {
   /// Start Firebase Auth UI process.
   ///
   /// Return `true` if login process is completed.
-  static Future<bool> startUi(
-      List<AuthUiItem> items, TosAndPrivacyPolicy tosAndPrivacyPolicy) async {
+  /// [enableSmartLockForAndroid] enables SmartLock on Android.
+  static Future<bool> startUi({
+    @required List<AuthUiItem> items,
+    @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
+    bool enableSmartLockForAndroid = true,
+  }) async {
     final providers = items.map((e) => e.providerName).join(',');
-    final data = await _channel.invokeMethod('startUi', <String, String>{
+    final data = await _channel.invokeMethod('startUi', <String, dynamic>{
       'providers': providers,
       'tosUrl': tosAndPrivacyPolicy.tosUrl,
-      'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl
+      'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl,
+      'enableSmartLockForAndroid': enableSmartLockForAndroid,
     });
     if (data == null) return false;
 
