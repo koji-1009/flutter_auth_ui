@@ -24,9 +24,16 @@ final providers = [
   AuthUiItem.AuthMicrosoft,
   AuthUiItem.AuthYahoo,
 ];
+final tosAndPrivacyPolicy = TosAndPrivacyPolicy(
+  tosUrl: Terms of Service URL,
+  privacyPolicyUrl: Privacy Policy URL,
+);
 
-final tosAndPrivacyPolicy = TosAndPrivacyPolicy(Terms of Service URL, Privacy Policy URL);
-final isSuccess = await FlutterAuthUi.startUi(providers, tosAndPrivacyPolicy);
+final result = await FlutterAuthUi.startUi(
+  items: providers,
+  tosAndPrivacyPolicy: tosAndPrivacyPolicy,
+  enableSmartLockForAndroid: (option) true(default)/false,
+);
 ```
 ### Email link authentication
 
