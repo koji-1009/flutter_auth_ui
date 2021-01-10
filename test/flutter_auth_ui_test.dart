@@ -18,6 +18,15 @@ void main() {
   });
 
   test('startUi', () async {
-    expect(await FlutterAuthUi.startUi([], TosAndPrivacyPolicy("", "")), true);
+    expect(
+      await FlutterAuthUi.startUi(
+        items: [],
+        tosAndPrivacyPolicy: TosAndPrivacyPolicy(
+          tosUrl: '',
+          privacyPolicyUrl: '',
+        ),
+      ),
+      true,
+    );
   });
 }
