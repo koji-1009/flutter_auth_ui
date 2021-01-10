@@ -37,4 +37,4 @@ final result = await FlutterAuthUi.startUi(
 ```
 ### Email link authentication
 
-If you want to enable email link authentication on iOS, check `AuthUiItem.AuthEmail' doc.
+If you want to enable email link authentication on iOS, check `AuthUiItem.AuthEmail` doc.

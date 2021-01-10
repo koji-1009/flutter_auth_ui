@@ -1,3 +1,9 @@
+## 1.0.0
+
+- stable release
+- Change API
+- Update firebase_auth to `0.18.4+1`
+
 ## 0.3.1
 
 - Update firebase_auth to `0.18.4`
