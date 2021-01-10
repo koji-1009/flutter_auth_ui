@@ -31,10 +31,15 @@ class _MyAppState extends State<MyApp> {
                       AuthUiItem.AuthYahoo,
                     ];
                     final tosAndPrivacyPolicy = TosAndPrivacyPolicy(
-                        "https://www.google.com", "https://www.google.com");
+                      tosUrl: "https://www.google.com",
+                      privacyPolicyUrl: "https://www.google.com",
+                    );
 
                     final result = await FlutterAuthUi.startUi(
-                        providers, tosAndPrivacyPolicy);
+                      items: providers,
+                      tosAndPrivacyPolicy: tosAndPrivacyPolicy,
+                      enableSmartLockForAndroid: false,
+                    );
                     print(result);
                   }),
             ],
