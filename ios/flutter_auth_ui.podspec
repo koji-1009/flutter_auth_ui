@@ -15,15 +15,15 @@ A new Flutter plugin.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  
+
   s.static_framework = true
-  s.dependency 'FirebaseUI/Auth', '~> 9.0'
-  s.dependency 'FirebaseUI/Email', '~> 9.0'
-  s.dependency 'FirebaseUI/Google', '~> 9.0'
-  s.dependency 'FirebaseUI/Facebook', '~> 9.0'
-  s.dependency 'FirebaseUI/Phone', '~> 9.0'
-  s.dependency 'FirebaseUI/OAuth', '~> 9.0'
-  
+  s.dependency 'FirebaseUI/Auth', '~> 10.0'
+  s.dependency 'FirebaseUI/Email', '~> 10.0'
+  s.dependency 'FirebaseUI/Facebook', '~> 10.0'
+  s.dependency 'FirebaseUI/Google', '~> 10.0'
+  s.dependency 'FirebaseUI/OAuth', '~> 10.0'
+  s.dependency 'FirebaseUI/Phone', '~> 10.0'
+
   s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
