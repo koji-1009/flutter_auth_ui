@@ -1,3 +1,9 @@
+## 1.1.0
+
+- Update FirebaseUI-iOS v10.0.2
+- Update firebase_auth to `0.20.0+1`
+- Fix iOS plugin
+
 ## 1.0.0
 
 - stable release
