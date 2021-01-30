@@ -38,7 +38,13 @@ class _MyAppState extends State<MyApp> {
                     final result = await FlutterAuthUi.startUi(
                       items: providers,
                       tosAndPrivacyPolicy: tosAndPrivacyPolicy,
-                      enableSmartLockForAndroid: false,
+                      androidOption: AndroidOption(
+                        enableSmartLock: false,
+                        requireName: false,
+                      ),
+                      iosOption: IosOption(
+                        requireName: false,
+                      ),
                     );
                     print(result);
                   }),

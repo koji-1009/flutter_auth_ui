@@ -96,24 +96,51 @@ class TosAndPrivacyPolicy {
   final String privacyPolicyUrl;
 }
 
+class AndroidOption {
+  /// [enableSmartLock] enables SmartLock on Android.
+  /// [requireName] enables require name option on Android.
+  AndroidOption({
+    this.enableSmartLock = true,
+    this.requireName = true,
+  });
+
+  final bool enableSmartLock;
+  final bool requireName;
+}
+
+class IosOption {
+  /// [requireName] enables require name option on iOS.
+  IosOption({
+    this.requireName = true,
+  });
+
+  final bool requireName;
+}
+
 class FlutterAuthUi {
   static const MethodChannel _channel = const MethodChannel('flutter_auth_ui');
 
   /// Start Firebase Auth UI process.
   ///
   /// Return `true` if login process is completed.
-  /// [enableSmartLockForAndroid] enables SmartLock on Android.
   static Future<bool> startUi({
     @required List<AuthUiItem> items,
     @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
-    bool enableSmartLockForAndroid = true,
+    AndroidOption androidOption,
+    IosOption iosOption,
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
     final data = await _channel.invokeMethod('startUi', <String, dynamic>{
       'providers': providers,
       'tosUrl': tosAndPrivacyPolicy.tosUrl,
       'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl,
-      'enableSmartLockForAndroid': enableSmartLockForAndroid,
+
+      /// Android
+      'enableSmartLockForAndroid': androidOption.enableSmartLock,
+      'requireNameForAndroid': androidOption.requireName,
+
+      /// iOS
+      'requireNameForIos': iosOption.requireName,
     });
     if (data == null) return false;
 
