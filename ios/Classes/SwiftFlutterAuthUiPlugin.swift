@@ -43,6 +43,10 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         let setProviders = setProvidersList?.split(separator: ",") ?? []
         var providers: [FUIAuthProvider] = []
         
+        guard let authUI = FUIAuth.defaultAuthUI() else {
+            result(false)
+            return
+        }
         setProviders.forEach { (e) in
             switch e {
             case "Anonymous":
@@ -78,9 +82,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             case "Yahoo" :
                 providers.append(FUIOAuth.yahooAuthProvider())
             case "Google" :
-                providers.append(FUIGoogleAuth())
+                providers.append(FUIGoogleAuth.init(authUI: authUI))
             case "Facebook" :
-                providers.append(FUIFacebookAuth())
+                providers.append(FUIFacebookAuth.init(authUI: authUI))
             case "Twitter" :
                 providers.append(FUIOAuth.twitterAuthProvider())
             default :
@@ -89,10 +93,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         }
         
         self.result = result
-        guard let authUI = FUIAuth.defaultAuthUI() else {
-            result(false)
-            return
-        }
         
         authUI.delegate = self
         authUI.providers = providers
