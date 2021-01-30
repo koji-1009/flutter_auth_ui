@@ -34,12 +34,13 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             return
         }
         
-        guard let args = call.arguments as? [String: String] else {
+        guard let args = call.arguments as? [String: Any] else {
             result(FlutterMethodNotImplemented)
             return
         }
         
-        let setProviders = args["providers"]?.split(separator: ",") ?? []
+        let setProvidersList = args["providers"] as? String
+        let setProviders = setProvidersList?.split(separator: ",") ?? []
         var providers: [FUIAuthProvider] = []
         
         setProviders.forEach { (e) in
@@ -96,7 +97,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         authUI.delegate = self
         authUI.providers = providers
         
-        if let tos = args["tosUrl"], let tosurl = URL(string: tos), let privacyPolicy = args["privacyPolicyUrl"], let privacyPolicyUrl = URL(string: privacyPolicy) {
+        if let tos = args["tosUrl"] as? String, let tosurl = URL(string: tos), let privacyPolicy = args["privacyPolicyUrl"] as? String, let privacyPolicyUrl = URL(string: privacyPolicy) {
             authUI.tosurl = tosurl
             authUI.privacyPolicyURL = privacyPolicyUrl
         }
