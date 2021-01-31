@@ -5,16 +5,14 @@ import 'package:flutter/services.dart';
 
 enum AuthUiItem {
   /// set Anonymous provider.
-  /// Note: Anonymous ui is not supported on iOS
+  /// Note: Anonymous is not supported on iOS
   AuthAnonymous,
 
   /// set Email provider.
   ///
-  /// If you want email link authentication on iOS , set following params your `Info.plist`.
+  /// If you want email link authentication, set enableEmailLink at option.
   /// (see <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>)
-  ///   - FirebaseAuthUiEmailHandleURL : String, set `ActionCodeSettings.url`
-  ///   - FirebaseAuthUiEmailAndroidPackageName : String, set `actionCodeSettings.setAndroidPackageName` - packageName
-  ///   - FirebaseAuthUiEmailAndroidMinimumVersion : String, set `actionCodeSettings.setAndroidPackageName` - minimumVersion
+  /// (see <https://firebase.google.com/docs/auth/android/firebaseui#email_link_authentication>)
   AuthEmail,
 
   /// set PhoneNumber provider.
@@ -36,24 +34,24 @@ enum AuthUiItem {
   ///
   /// Google Sign-In needs extra configurations.
   /// See following guide.
-  ///   - iOS : <https://firebase.google.com/docs/auth/ios/firebaseui#google>
-  ///   - Android : <https://firebase.google.com/docs/auth/android/google-signin>
+  ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#google>
+  ///   - Android: <https://firebase.google.com/docs/auth/android/google-signin>
   AuthGoogle,
 
   /// set Facebook Login provider.
   ///
   /// Facebook login needs extra configurations.
   /// See following guide.
-  ///   - iOS : <https://firebase.google.com/docs/auth/ios/firebaseui#facebook>
-  ///   - Android : <https://firebase.google.com/docs/auth/android/facebook-login>
+  ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#facebook>
+  ///   - Android: <https://firebase.google.com/docs/auth/android/facebook-login>
   AuthFacebook,
 
   /// set Twitter provider.
   ///
   /// Twitter login needs extra configurations.
   /// See following guide.
-  ///   - iOS : <https://firebase.google.com/docs/auth/ios/firebaseui#twittern>
-  ///   - Android : <https://firebase.google.com/docs/auth/android/twitter-login>
+  ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#twittern>
+  ///   - Android: <https://firebase.google.com/docs/auth/android/twitter-login>
   AuthTwitter
 }
 
@@ -99,23 +97,44 @@ class TosAndPrivacyPolicy {
 
 class AndroidOption {
   /// [enableSmartLock] enables SmartLock on Android.
+  /// [enableMailLink] enables email link sign in instead of password based sign in on Android.
   /// [requireName] enables require name option on Android.
-  AndroidOption({
+  const AndroidOption({
     this.enableSmartLock = true,
+    this.enableMailLink = false,
     this.requireName = true,
   });
 
+  final bool enableMailLink;
   final bool enableSmartLock;
   final bool requireName;
 }
 
 class IosOption {
+  /// [enableMailLink] enables email link sign in instead of password based sign in on iOS.
   /// [requireName] enables require name option on iOS.
-  IosOption({
+  const IosOption({
+    this.enableMailLink = false,
     this.requireName = true,
   });
 
+  final bool enableMailLink;
   final bool requireName;
+}
+
+class EmailAuthOption {
+  /// [handleURL] represents the state/Continue URL in the form of a universal link.
+  /// [androidPackageName] the Android package name, if available.
+  /// [androidMinimumVersion] the minimum Android version supported, if available.
+  const EmailAuthOption({
+    this.handleURL = '',
+    this.androidPackageName = '',
+    this.androidMinimumVersion = '',
+  });
+
+  final String handleURL;
+  final String androidPackageName;
+  final String androidMinimumVersion;
 }
 
 class FlutterAuthUi {
@@ -127,8 +146,9 @@ class FlutterAuthUi {
   static Future<bool> startUi({
     @required List<AuthUiItem> items,
     @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
-    AndroidOption androidOption,
-    IosOption iosOption,
+    AndroidOption androidOption = const AndroidOption(),
+    IosOption iosOption = const IosOption(),
+    EmailAuthOption emailAuthOption = const EmailAuthOption(),
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
     final data = await _channel.invokeMethod('startUi', <String, dynamic>{
@@ -138,10 +158,17 @@ class FlutterAuthUi {
 
       /// Android
       'enableSmartLockForAndroid': androidOption.enableSmartLock,
+      'enableEmailLinkForAndroid': androidOption.enableMailLink,
       'requireNameForAndroid': androidOption.requireName,
 
       /// iOS
+      'enableEmailLinkForIos': iosOption.enableMailLink,
       'requireNameForIos': iosOption.requireName,
+
+      /// EmailLink
+      'emailLinkHandleURL': emailAuthOption.handleURL,
+      'emailLinkAndroidPackageName': emailAuthOption.androidPackageName,
+      'emailLinkAndroidMinimumVersion': emailAuthOption.androidMinimumVersion,
     });
     if (data == null) return false;
 

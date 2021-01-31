@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.ActionCodeSettings
 import com.google.firebase.auth.FirebaseAuth
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -106,9 +107,34 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         val providers = setProviders.map { name ->
             when (name) {
                 "Anonymous" -> AuthUI.IdpConfig.AnonymousBuilder().build()
-                "Email" -> AuthUI.IdpConfig.EmailBuilder()
-                    .setRequireName(call.argument<Boolean?>("requireNameForAndroid") ?: true)
-                    .build()
+                "Email" -> AuthUI.IdpConfig.EmailBuilder().apply {
+                    setRequireName(call.argument<Boolean>("requireNameForAndroid") ?: true)
+                    if (call.argument<Boolean>("enableEmailLinkForAndroid") == true) {
+                        val url = call.argument<String>("emailLinkHandleURL")
+                        if (url.isNullOrEmpty()) {
+                            result.error(
+                                "InvalidArgs",
+                                "Missing handleURL",
+                                "Expected valid handleURL."
+                            )
+                            return
+                        }
+                        enableEmailLinkSignIn()
+
+                        val actionCodeSettings = ActionCodeSettings.newBuilder()
+                            .setHandleCodeInApp(true)
+                            .setUrl(url).apply {
+                                val packageName =
+                                    call.argument<String>("emailLinkAndroidPackageName")
+                                val minimumVersion =
+                                    call.argument<String>("emailLinkAndroidMinimumVersion")
+                                if (!packageName.isNullOrEmpty()) {
+                                    setAndroidPackageName(packageName, false, minimumVersion)
+                                }
+                            }.build()
+                        setActionCodeSettings(actionCodeSettings)
+                    }
+                }.build()
                 "Phone" -> AuthUI.IdpConfig.PhoneBuilder().build()
                 "Apple" -> AuthUI.IdpConfig.AppleBuilder().build()
                 "Github" -> AuthUI.IdpConfig.GitHubBuilder().build()
@@ -130,8 +156,8 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
             .setIsSmartLockEnabled(enableSmartLockForAndroid ?: true) // default is true
             .setAvailableProviders(providers)
 
-        val tosUrl = call.argument<String?>("tosUrl")
-        val privacyPolicyUrl = call.argument<String?>("privacyPolicyUrl")
+        val tosUrl = call.argument<String>("tosUrl")
+        val privacyPolicyUrl = call.argument<String>("privacyPolicyUrl")
         if (!tosUrl.isNullOrEmpty() && !privacyPolicyUrl.isNullOrEmpty()) {
             builder.setTosAndPrivacyPolicyUrls(tosUrl, privacyPolicyUrl)
         }

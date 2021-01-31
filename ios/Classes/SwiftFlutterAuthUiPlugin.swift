@@ -12,7 +12,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
     }
 
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
@@ -35,7 +35,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         }
 
         guard let args = call.arguments as? [String: Any] else {
-            result(FlutterMethodNotImplemented)
+            result(FlutterError(code: "InvalidArgs", message: "Missing arguments", details: "Expected valid arguments."))
             return
         }
 
@@ -54,13 +54,19 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             case "Email" :
                 let requireDisplayName = args["requireNameForIos"] as? Bool ?? true
                 let actionCodeSettings = ActionCodeSettings()
-                if let url = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailHandleURL") as? String, !url.isEmpty {
+                if args["enableEmailLinkForIos"] as? Bool ?? false {
                     // the email-link sign-in method.
+                    let url = args["emailLinkHandleURL"] as? String ?? ""
+                    guard url.isEmpty else {
+                        result(FlutterError(code: "invalidArgs", message: "Missing handleURL", details: "Expected valid handleURL."))
+                        return
+                    }
                     actionCodeSettings.url = URL(string: url)
                     actionCodeSettings.handleCodeInApp = true
 
-                    if let packageName = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidPackageName") as? String, !packageName.isEmpty,
-                       let minimumVersion = Bundle.main.object(forInfoDictionaryKey: "FirebaseAuthUiEmailAndroidMinimumVersion") as? String, !minimumVersion.isEmpty {
+                    let packageName = args["emailLinkAndroidPackageName"] as? String ?? ""
+                    let minimumVersion = args["emailLinkAndroidMinimumVersion"] as? String ?? ""
+                    if !packageName.isEmpty, !minimumVersion.isEmpty {
                         actionCodeSettings.setAndroidPackageName(packageName, installIfNotAvailable: false, minimumVersion: minimumVersion)
                     }
 

@@ -18,23 +18,36 @@ Check documents and setup your firebase project.
 // Set provider
 final providers = [
   AuthUiItem.AuthEmail,
+  AuthUiItem.AuthPhone,
   AuthUiItem.AuthApple,
+  AuthUiItem.AuthFacebook,
   AuthUiItem.AuthGithub,
   AuthUiItem.AuthGoogle,
   AuthUiItem.AuthMicrosoft,
   AuthUiItem.AuthYahoo,
+  AuthUiItem.AuthTwitter,
 ];
-final tosAndPrivacyPolicy = TosAndPrivacyPolicy(
-  tosUrl: Terms of Service URL,
-  privacyPolicyUrl: Privacy Policy URL,
-);
 
 final result = await FlutterAuthUi.startUi(
   items: providers,
-  tosAndPrivacyPolicy: tosAndPrivacyPolicy,
-  enableSmartLockForAndroid: (option) true(default)/false,
+  tosAndPrivacyPolicy: TosAndPrivacyPolicy(
+    tosUrl: "https://www.google.com",
+    privacyPolicyUrl: "https://www.google.com",
+  ),
+  androidOption: AndroidOption(
+    enableSmartLock: false, // default true
+    enableMailLink: false, // default false
+    requireName: true, // default true
+  ),
+  iosOption: IosOption(
+    enableMailLink: false, // default false
+    requireName: true, // default true
+  ),
+  // If you need EmailLink mode, please set EmailAuthOption
+  emailAuthOption: EmailAuthOption(
+    handleURL: '',
+    androidPackageName: '',
+    androidMinimumVersion: '',
+  ),
 );
 ```
-### Email link authentication
-
-If you want to enable email link authentication on iOS, check `AuthUiItem.AuthEmail` doc.
