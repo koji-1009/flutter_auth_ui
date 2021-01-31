@@ -1,3 +1,9 @@
+## 1.1.1
+
+- Fix EmailLink option
+- Update README
+- Update sample code
+
 ## 1.1.0
 
 - Update FirebaseUI-iOS v10.0.2
