@@ -106,7 +106,9 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         val providers = setProviders.map { name ->
             when (name) {
                 "Anonymous" -> AuthUI.IdpConfig.AnonymousBuilder().build()
-                "Email" -> AuthUI.IdpConfig.EmailBuilder().build()
+                "Email" -> AuthUI.IdpConfig.EmailBuilder()
+                    .setRequireName(call.argument<Boolean?>("requireNameForAndroid") ?: true)
+                    .build()
                 "Phone" -> AuthUI.IdpConfig.PhoneBuilder().build()
                 "Apple" -> AuthUI.IdpConfig.AppleBuilder().build()
                 "Github" -> AuthUI.IdpConfig.GitHubBuilder().build()

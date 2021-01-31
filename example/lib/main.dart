@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () async {
                     final providers = [
                       AuthUiItem.AuthEmail,
+                      AuthUiItem.AuthPhone,
                       AuthUiItem.AuthApple,
                       AuthUiItem.AuthGithub,
                       AuthUiItem.AuthGoogle,
@@ -38,7 +39,13 @@ class _MyAppState extends State<MyApp> {
                     final result = await FlutterAuthUi.startUi(
                       items: providers,
                       tosAndPrivacyPolicy: tosAndPrivacyPolicy,
-                      enableSmartLockForAndroid: false,
+                      androidOption: AndroidOption(
+                        enableSmartLock: false,
+                        requireName: false,
+                      ),
+                      iosOption: IosOption(
+                        requireName: false,
+                      ),
                     );
                     print(result);
                   }),
