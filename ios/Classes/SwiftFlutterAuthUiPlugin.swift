@@ -35,7 +35,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         }
 
         guard let args = call.arguments as? [String: Any] else {
-            result(FlutterError(code: "invalidArgs", message: "Missing arguments", details: "Expected valid arguments."))
+            result(FlutterError(code: "InvalidArgs", message: "Missing arguments", details: "Expected valid arguments."))
             return
         }
 

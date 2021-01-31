@@ -113,7 +113,7 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                         val url = call.argument<String>("emailLinkHandleURL")
                         if (url.isNullOrEmpty()) {
                             result.error(
-                                "invalidArgs",
+                                "InvalidArgs",
                                 "Missing handleURL",
                                 "Expected valid handleURL."
                             )
