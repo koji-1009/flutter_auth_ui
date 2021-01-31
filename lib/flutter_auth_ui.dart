@@ -45,14 +45,15 @@ enum AuthUiItem {
   /// Facebook login needs extra configurations.
   /// See following guide.
   ///   - iOS : <https://firebase.google.com/docs/auth/ios/firebaseui#facebook>
-  ///   - Android : <https://firebase.google.com/docs/auth/android/firebaseui#before_you_begin>
+  ///   - Android : <https://firebase.google.com/docs/auth/android/facebook-login>
   AuthFacebook,
 
   /// set Twitter provider.
   ///
   /// Twitter login needs extra configurations.
   /// See following guide.
-  ///   - Android : <https://firebase.google.com/docs/auth/android/firebaseui#before_you_begin>
+  ///   - iOS : <https://firebase.google.com/docs/auth/ios/firebaseui#twittern>
+  ///   - Android : <https://firebase.google.com/docs/auth/android/twitter-login>
   AuthTwitter
 }
 

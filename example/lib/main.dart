@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () async {
                     final providers = [
                       AuthUiItem.AuthEmail,
+                      AuthUiItem.AuthPhone,
                       AuthUiItem.AuthApple,
                       AuthUiItem.AuthGithub,
                       AuthUiItem.AuthGoogle,
