@@ -20,35 +20,43 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               RaisedButton(
-                  child: const Text("start ui"),
-                  onPressed: () async {
-                    final providers = [
-                      AuthUiItem.AuthEmail,
-                      AuthUiItem.AuthPhone,
-                      AuthUiItem.AuthApple,
-                      AuthUiItem.AuthGithub,
-                      AuthUiItem.AuthGoogle,
-                      AuthUiItem.AuthMicrosoft,
-                      AuthUiItem.AuthYahoo,
-                    ];
-                    final tosAndPrivacyPolicy = TosAndPrivacyPolicy(
+                child: const Text("start ui"),
+                onPressed: () async {
+                  final providers = [
+                    AuthUiItem.AuthEmail,
+                    AuthUiItem.AuthPhone,
+                    AuthUiItem.AuthApple,
+                    AuthUiItem.AuthGithub,
+                    AuthUiItem.AuthGoogle,
+                    AuthUiItem.AuthMicrosoft,
+                    AuthUiItem.AuthYahoo,
+                  ];
+
+                  final result = await FlutterAuthUi.startUi(
+                    items: providers,
+                    tosAndPrivacyPolicy: TosAndPrivacyPolicy(
                       tosUrl: "https://www.google.com",
                       privacyPolicyUrl: "https://www.google.com",
-                    );
-
-                    final result = await FlutterAuthUi.startUi(
-                      items: providers,
-                      tosAndPrivacyPolicy: tosAndPrivacyPolicy,
-                      androidOption: AndroidOption(
-                        enableSmartLock: false,
-                        requireName: false,
-                      ),
-                      iosOption: IosOption(
-                        requireName: false,
-                      ),
-                    );
-                    print(result);
-                  }),
+                    ),
+                    androidOption: AndroidOption(
+                      enableSmartLock: false, // default true
+                      enableMailLink: false, // default false
+                      requireName: true, // default true
+                    ),
+                    iosOption: IosOption(
+                      enableMailLink: false, // default false
+                      requireName: true, // default true
+                    ),
+                    // If you need EmailLink mode, please set EmailAuthOption
+                    emailAuthOption: EmailAuthOption(
+                      handleURL: '',
+                      androidPackageName: '',
+                      androidMinimumVersion: '',
+                    ),
+                  );
+                  print(result);
+                },
+              ),
             ],
           ),
         ),
