@@ -18,39 +18,42 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 
-/** FlutterAuthUiPlugin */
+/**
+ * FlutterAuthUiPlugin
+ */
 class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
-    companion object {
-        private const val RC_SIGN_IN = 123
-    }
-
+    private var methodChannel: MethodChannel? = null
     private var activity: Activity? = null
     private var result: Result? = null
 
-    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        val channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_auth_ui")
-        channel.setMethodCallHandler(this)
+    override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        methodChannel = MethodChannel(binding.binaryMessenger, "flutter_auth_ui")
+        methodChannel?.setMethodCallHandler(this)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        // nop
+        activity = null
+        result = null
+
+        methodChannel?.setMethodCallHandler(null)
+        methodChannel = null
     }
 
     private val listener = PluginRegistry.ActivityResultListener { requestCode, resultCode, _ ->
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
-                result?.success(user != null)
-            } else {
-                result?.error(resultCode.toString(), "error result", null)
-            }
-
-            result = null
-            return@ActivityResultListener true
+        if (requestCode != RC_SIGN_IN) {
+            return@ActivityResultListener false
         }
 
-        return@ActivityResultListener false
+        if (resultCode == RESULT_OK) {
+            val user = FirebaseAuth.getInstance().currentUser
+            result?.success(user != null)
+        } else {
+            result?.error(resultCode.toString(), "error result", null)
+        }
+
+        result = null
+        return@ActivityResultListener true
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
@@ -156,5 +159,9 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         activity?.startActivityForResult(intent, RC_SIGN_IN)
 
         this.result = result
+    }
+
+    companion object {
+        private const val RC_SIGN_IN = 123
     }
 }
