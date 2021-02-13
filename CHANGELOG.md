@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Added tips for changing the AppBar in FirebaseUI-Android
+- Update Kotlin 1.4.30
+- Remove support for Android v1 plugin
+
 ## 1.1.1
 
 - Fix EmailLink option
@@ -26,7 +32,7 @@
 - Flutter `1.22.0`
 - Dart `2.10.0`
 - Update firebase_auth to `0.18.1+2`
-- Target & Compie SDK 30(Android)
+- Target & Compile SDK 30(Android)
 
 ## 0.2.6
 
