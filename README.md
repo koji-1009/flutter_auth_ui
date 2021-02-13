@@ -56,7 +56,7 @@ final result = await FlutterAuthUi.startUi(
 
 ### To change the title of AppBar on Android
 
-Add the string value as `app_name` or `fui_default_toolbar_title` to your app's` strings.xml` file.
+Add the string value as `app_name` or `fui_default_toolbar_title` to your app's `strings.xml` file.
 Sample code is [here](https://github.com/koji-1009/flutter_auth_ui/blob/change_appbar_title/example/android/app/src/main/res/values/strings.xml).
 
 Behavior depends on [this](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/src/main/AndroidManifest.xml).
