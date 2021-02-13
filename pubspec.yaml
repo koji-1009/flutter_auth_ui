@@ -11,6 +11,9 @@ flutter:
         pluginClass: FlutterAuthUiPlugin
       ios:
         pluginClass: SwiftFlutterAuthUiPlugin
+      web:
+        pluginClass: FlutterAuthUiWeb
+        fileName: flutter_auth_ui_web.dart
 
 dependencies:
   flutter:
