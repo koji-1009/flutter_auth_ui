@@ -17,64 +17,57 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** FlutterAuthUiPlugin */
+/**
+ * FlutterAuthUiPlugin
+ */
 class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
-    companion object {
-
-        private const val RC_SIGN_IN = 123
-
-        private val instance = FlutterAuthUiPlugin()
-
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            val channel = MethodChannel(registrar.messenger(), "flutter_auth_ui")
-            channel.setMethodCallHandler(instance)
-        }
-    }
-
+    private var methodChannel: MethodChannel? = null
     private var activity: Activity? = null
     private var result: Result? = null
 
-    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        val channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_auth_ui")
-        channel.setMethodCallHandler(instance)
+    override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        methodChannel = MethodChannel(binding.binaryMessenger, "flutter_auth_ui")
+        methodChannel?.setMethodCallHandler(this)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        // nop
+        activity = null
+        result = null
+
+        methodChannel?.setMethodCallHandler(null)
+        methodChannel = null
     }
 
     private val listener = PluginRegistry.ActivityResultListener { requestCode, resultCode, _ ->
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
-                instance.result?.success(user != null)
-            } else {
-                instance.result?.error(resultCode.toString(), "error result", null)
-            }
-
-            instance.result = null
-            return@ActivityResultListener true
+        if (requestCode != RC_SIGN_IN) {
+            return@ActivityResultListener false
         }
 
-        return@ActivityResultListener false
+        if (resultCode == RESULT_OK) {
+            val user = FirebaseAuth.getInstance().currentUser
+            result?.success(user != null)
+        } else {
+            result?.error(resultCode.toString(), "error result", null)
+        }
+
+        result = null
+        return@ActivityResultListener true
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        instance.activity = binding.activity
+        activity = binding.activity
         FlutterLifecycleAdapter
             .getActivityLifecycle(binding)
             .addObserver(object : LifecycleEventObserver {
                 override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                     when (event) {
                         Lifecycle.Event.ON_CREATE -> {
-                            binding.addActivityResultListener(instance.listener)
+                            binding.addActivityResultListener(listener)
                         }
                         Lifecycle.Event.ON_DESTROY -> {
-                            binding.removeActivityResultListener(instance.listener)
+                            binding.removeActivityResultListener(listener)
                         }
                         else -> {
                             // nop
@@ -85,7 +78,7 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     }
 
     override fun onDetachedFromActivity() {
-        instance.activity = null
+        activity = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
@@ -163,8 +156,12 @@ class FlutterAuthUiPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
         }
 
         val intent = builder.build()
-        instance.activity?.startActivityForResult(intent, RC_SIGN_IN)
+        activity?.startActivityForResult(intent, RC_SIGN_IN)
 
-        instance.result = result
+        this.result = result
+    }
+
+    companion object {
+        private const val RC_SIGN_IN = 123
     }
 }
