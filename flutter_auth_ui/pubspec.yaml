@@ -1,0 +1,29 @@
+name: flutter_auth_ui
+description: A Flutter plugin for using the Firebase Auth UI with Dart in Flutter apps.
+version: 1.2.0
+homepage: https://github.com/koji-1009/flutter_auth_ui
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.dr1009.app.flutter_auth_ui
+        pluginClass: FlutterAuthUiPlugin
+      ios:
+        pluginClass: SwiftFlutterAuthUiPlugin
+      web:
+        default_package: flutter_auth_ui_web
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_auth: ^0.20.0+1
+  flutter_plugin_android_lifecycle: ^1.0.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+environment:
+  sdk: ">=2.10.0 <3.0.0"
+  flutter: ">=1.22.0"

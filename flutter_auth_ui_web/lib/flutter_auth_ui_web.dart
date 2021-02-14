@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'package:firebase/firebase.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_auth_ui/web/firebaseui_web.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:flutter_auth_ui_web/src/firebaseui_web.dart';
 
 class FlutterAuthUiWeb {
   static void registerWith(Registrar registrar) {
