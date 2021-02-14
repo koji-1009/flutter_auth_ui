@@ -1,17 +1,15 @@
 import 'dart:async';
-// In order to *not* need this ignore, consider extracting the "web" version
-// of your plugin as a separate package, instead of inlining it in the same
-// package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html show window;
 
+import 'dart:html' as html;
+import 'package:firebase/firebase.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_auth_ui/web/firebaseui_web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:js/js.dart';
 
-/// A web implementation of the FlutterAuthUi plugin.
 class FlutterAuthUiWeb {
   static void registerWith(Registrar registrar) {
-    final MethodChannel channel = MethodChannel(
+    final channel = MethodChannel(
       'flutter_auth_ui',
       const StandardMethodCodec(),
       registrar,
@@ -21,25 +19,91 @@ class FlutterAuthUiWeb {
     channel.setMethodCallHandler(pluginInstance.handleMethodCall);
   }
 
-  /// Handles method calls over the MethodChannel of this plugin.
-  /// Note: Check the "federated" architecture for a new way of doing this:
-  /// https://flutter.dev/go/federated-plugins
   Future<dynamic> handleMethodCall(MethodCall call) async {
-    switch (call.method) {
-      case 'getPlatformVersion':
-        return getPlatformVersion();
-        break;
-      default:
-        throw PlatformException(
-          code: 'Unimplemented',
-          details: 'flutter_auth_ui for web doesn\'t implement \'${call.method}\'',
-        );
+    if (call.method != 'startUi') {
+      throw PlatformException(
+        code: 'Unimplemented',
+        details: 'doesn\'t implement \'${call.method}\'',
+      );
     }
-  }
 
-  /// Returns a [String] containing the version of the platform.
-  Future<String> getPlatformVersion() {
-    final version = html.window.navigator.userAgent;
-    return Future.value(version);
+    // add history
+    final title = html.window.document.documentElement.title;
+    final path = html.window.location.origin + '/#/';
+    html.window.history.pushState(null, title, path);
+
+    final args = Map<String, dynamic>.from(call.arguments);
+    final providers = args['providers'] as String;
+    final setProviders = providers.split(',');
+    final options = setProviders.map((name) {
+      switch (name) {
+        case "Anonymous":
+          return 'anonymous';
+        case "Email":
+          return EmailAuthProvider.PROVIDER_ID;
+        case "Phone":
+          return PhoneAuthProvider.PROVIDER_ID;
+        case "Apple":
+          return 'apple.com';
+        case "GitHub":
+          return GithubAuthProvider.PROVIDER_ID;
+        case "Microsoft":
+          return 'microsoft.com';
+        case "Yahoo":
+          return 'yahoo.com';
+        case "Google":
+          return GoogleAuthProvider.PROVIDER_ID;
+        case "Facebook":
+          return FacebookAuthProvider.PROVIDER_ID;
+        case "Twitter":
+          return TwitterAuthProvider.PROVIDER_ID;
+      }
+    }).toList();
+
+    final tosUrl = args["tosUrl"];
+    final privacyPolicyUrl = args["privacyPolicyUrl"];
+
+    // add div element instead of 'firebaseui-auth-container' div
+    final containerDiv = html.Element.div();
+    html.window.document.documentElement.append(containerDiv);
+
+    // get flutter web's main view
+    final fltGlassPane = html.window.document
+        .getElementsByTagName('flt-glass-pane')[0] as html.Element;
+
+    // watch back event, if not, we cannot support back key
+    html.window.addEventListener('popstate', (event) {
+      containerDiv.remove();
+      fltGlassPane.style.visibility = 'visible';
+    });
+
+    final completer = Completer();
+    final callbacks = Callbacks(
+      signInSuccessWithAuthResult: allowInterop((authResult, redirectUrl) {
+        completer.complete(auth().currentUser != null);
+        html.window.history.back();
+
+        return false;
+      }),
+      signInFailure: allowInterop((error) {
+        completer.completeError(error);
+        html.window.history.back();
+      }),
+      uiShown: allowInterop(() {
+        fltGlassPane.style.visibility = 'hidden';
+      }),
+    );
+
+    final config = Config(
+      callbacks: callbacks,
+      signInOptions: options,
+      tosUrl: tosUrl,
+      privacyPolicyUrl: privacyPolicyUrl,
+    );
+
+    final authUi = getInstance(auth().app.name) ?? AuthUI(auth().jsObject);
+    authUi.start(containerDiv, config);
+
+    return completer.future;
   }
 }
