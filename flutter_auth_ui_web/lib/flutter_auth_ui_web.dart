@@ -37,31 +37,31 @@ class FlutterAuthUiWeb {
     final setProviders = providers.split(',');
     final options = setProviders.map((name) {
       switch (name) {
-        case "Anonymous":
+        case 'Anonymous':
           return 'anonymous';
-        case "Email":
+        case 'Email':
           return EmailAuthProvider.PROVIDER_ID;
-        case "Phone":
+        case 'Phone':
           return PhoneAuthProvider.PROVIDER_ID;
-        case "Apple":
+        case 'Apple':
           return 'apple.com';
-        case "GitHub":
+        case 'GitHub':
           return GithubAuthProvider.PROVIDER_ID;
-        case "Microsoft":
+        case 'Microsoft':
           return 'microsoft.com';
-        case "Yahoo":
+        case 'Yahoo':
           return 'yahoo.com';
-        case "Google":
+        case 'Google':
           return GoogleAuthProvider.PROVIDER_ID;
-        case "Facebook":
+        case 'Facebook':
           return FacebookAuthProvider.PROVIDER_ID;
-        case "Twitter":
+        case 'Twitter':
           return TwitterAuthProvider.PROVIDER_ID;
       }
     }).toList();
 
-    final tosUrl = args["tosUrl"];
-    final privacyPolicyUrl = args["privacyPolicyUrl"];
+    final tosUrl = args['tosUrl'];
+    final privacyPolicyUrl = args['privacyPolicyUrl'];
 
     // add div element instead of 'firebaseui-auth-container' div
     final containerDiv = html.Element.div();
