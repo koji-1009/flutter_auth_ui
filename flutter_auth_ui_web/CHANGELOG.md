@@ -1,4 +1,4 @@
 ## 0.1.0
 
-First beta release of flutter web plugin for Firebase Auth UI.
+First beta release.
 (This version does not have EmailLink support.)

@@ -1,11 +1,11 @@
 {
-    "name": "flutter_auth_ui_example",
-    "short_name": "flutter_auth_ui_example",
+    "name": "flutter_auth_ui_web_example",
+    "short_name": "flutter_auth_ui_web_example",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Demonstrates how to use the flutter_auth_ui plugin.",
+    "description": "Demonstrates how to use the flutter_auth_ui_web plugin.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
