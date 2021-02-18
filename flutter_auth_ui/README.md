@@ -61,7 +61,6 @@ final result = await FlutterAuthUi.startUi(
 
 - minSdkVersion 21
 - compileSdkVersion 30
-- Kotlin 1.4.30
 
 ### iOS
 
