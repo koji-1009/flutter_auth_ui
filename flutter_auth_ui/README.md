@@ -52,6 +52,21 @@ final result = await FlutterAuthUi.startUi(
 );
 ```
 
+## Requirements
+
+- flutter 1.22.0 or higher
+- [firebase_auth](https://pub.dev/packages/firebase_auth) 0.20.1
+
+### Android
+
+- minSdkVersion 21
+- compileSdkVersion 30
+- Kotlin 1.4.30
+
+### iOS
+
+- iOS 12 or higher
+
 ## Tips
 
 ### To change the title of AppBar on Android
