@@ -208,6 +208,11 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers);
 
+        boolean autoUpgradeAnonymousUsers = call.argument("autoUpgradeAnonymousUsers");
+        if (autoUpgradeAnonymousUsers) {
+            builder.enableAnonymousUsersAutoUpgrade();
+        }
+
         Boolean enableSmartLockForAndroid = call.argument("enableSmartLockForAndroid");
         if (enableSmartLockForAndroid != null) {
             builder.setIsSmartLockEnabled(enableSmartLockForAndroid);

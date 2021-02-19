@@ -47,6 +47,8 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             result(false)
             return
         }
+        authUI.shouldAutoUpgradeAnonymousUsers = args["autoUpgradeAnonymousUsers"] as? Bool ?? false
+
         setProviders.forEach { (e) in
             switch e {
             case "Anonymous":
