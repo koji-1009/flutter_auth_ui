@@ -151,27 +151,36 @@ class FlutterAuthUi {
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
-    final data = await _channel.invokeMethod('startUi', <String, dynamic>{
-      'providers': providers,
-      'tosUrl': tosAndPrivacyPolicy.tosUrl,
-      'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl,
+    try {
+      final data = await _channel.invokeMethod<bool>(
+        'startUi',
+        <String, dynamic>{
+          'providers': providers,
+          'tosUrl': tosAndPrivacyPolicy.tosUrl,
+          'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl,
 
-      /// Android
-      'enableSmartLockForAndroid': androidOption.enableSmartLock,
-      'enableEmailLinkForAndroid': androidOption.enableMailLink,
-      'requireNameForAndroid': androidOption.requireName,
+          /// Android
+          'enableSmartLockForAndroid': androidOption.enableSmartLock,
+          'enableEmailLinkForAndroid': androidOption.enableMailLink,
+          'requireNameForAndroid': androidOption.requireName,
 
-      /// iOS
-      'enableEmailLinkForIos': iosOption.enableMailLink,
-      'requireNameForIos': iosOption.requireName,
+          /// iOS
+          'enableEmailLinkForIos': iosOption.enableMailLink,
+          'requireNameForIos': iosOption.requireName,
 
-      /// EmailLink
-      'emailLinkHandleURL': emailAuthOption.handleURL,
-      'emailLinkAndroidPackageName': emailAuthOption.androidPackageName,
-      'emailLinkAndroidMinimumVersion': emailAuthOption.androidMinimumVersion,
-    });
-    if (data == null) return false;
+          /// EmailLink
+          'emailLinkHandleURL': emailAuthOption.handleURL,
+          'emailLinkAndroidPackageName': emailAuthOption.androidPackageName,
+          'emailLinkAndroidMinimumVersion':
+              emailAuthOption.androidMinimumVersion,
+        },
+      );
+      if (data == null) return false;
 
-    return true;
+      return data;
+    } catch (e) {
+      print('flutter_auth_ui: error => $e');
+      return false;
+    }
   }
 }
