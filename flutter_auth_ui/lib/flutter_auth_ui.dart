@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 enum AuthUiItem {
   /// set Anonymous provider.
-  /// Note: Anonymous is not supported on iOS
   AuthAnonymous,
 
   /// set Email provider.

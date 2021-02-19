@@ -50,7 +50,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         setProviders.forEach { (e) in
             switch e {
             case "Anonymous":
-                result(FlutterMethodNotImplemented)
+                providers.append(FUIAnonymousAuth(authUI: authUI))
             case "Email" :
                 let requireDisplayName = args["requireNameForIos"] as? Bool ?? true
                 let actionCodeSettings = ActionCodeSettings()
