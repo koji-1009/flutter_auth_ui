@@ -47,10 +47,12 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             result(false)
             return
         }
+        authUI.shouldAutoUpgradeAnonymousUsers = args["autoUpgradeAnonymousUsers"] as? Bool ?? false
+
         setProviders.forEach { (e) in
             switch e {
             case "Anonymous":
-                result(FlutterMethodNotImplemented)
+                providers.append(FUIAnonymousAuth(authUI: authUI))
             case "Email" :
                 let requireDisplayName = args["requireNameForIos"] as? Bool ?? true
                 let actionCodeSettings = ActionCodeSettings()

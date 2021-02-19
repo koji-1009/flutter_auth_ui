@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
                 child: const Text("start ui"),
                 onPressed: () async {
                   final providers = [
+                    AuthUiItem.AuthAnonymous,
                     AuthUiItem.AuthEmail,
                     AuthUiItem.AuthPhone,
                     AuthUiItem.AuthApple,

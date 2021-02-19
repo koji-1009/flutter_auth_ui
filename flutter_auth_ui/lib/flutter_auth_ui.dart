@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 enum AuthUiItem {
   /// set Anonymous provider.
-  /// Note: Anonymous is not supported on iOS
   AuthAnonymous,
 
   /// set Email provider.
@@ -146,6 +145,7 @@ class FlutterAuthUi {
   static Future<bool> startUi({
     @required List<AuthUiItem> items,
     @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
+    bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
     IosOption iosOption = const IosOption(),
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
@@ -158,6 +158,9 @@ class FlutterAuthUi {
           'providers': providers,
           'tosUrl': tosAndPrivacyPolicy.tosUrl,
           'privacyPolicyUrl': tosAndPrivacyPolicy.privacyPolicyUrl,
+
+          /// anonymous
+          'autoUpgradeAnonymousUsers': autoUpgradeAnonymousUsers,
 
           /// Android
           'enableSmartLockForAndroid': androidOption.enableSmartLock,

@@ -18,6 +18,7 @@ A new Flutter plugin.
 
   s.static_framework = true
   s.dependency 'FirebaseUI/Auth', '~> 10.0'
+  s.dependency 'FirebaseUI/Anonymous', '~> 10.0'
   s.dependency 'FirebaseUI/Email', '~> 10.0'
   s.dependency 'FirebaseUI/Facebook', '~> 10.0'
   s.dependency 'FirebaseUI/Google', '~> 10.0'
