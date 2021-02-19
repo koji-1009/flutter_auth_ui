@@ -1,3 +1,11 @@
+## 1.2.1
+
+- Remove Kotlin
+- Update firebase_auth to `0.20.1`
+- Support anonymous login
+- Fixed the return value of the `startUi` method
+- Update README
+
 ## 1.2.0
 
 - Added tips for changing the AppBar in FirebaseUI-Android
