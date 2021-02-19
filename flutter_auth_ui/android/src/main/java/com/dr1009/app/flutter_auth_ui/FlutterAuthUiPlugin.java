@@ -57,6 +57,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
         }
     }
 
+    @NonNull
     private final PluginRegistry.ActivityResultListener listener =
             new PluginRegistry.ActivityResultListener() {
                 @Override
