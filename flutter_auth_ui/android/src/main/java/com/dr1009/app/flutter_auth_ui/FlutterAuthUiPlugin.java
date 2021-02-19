@@ -111,12 +111,12 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
     @Override
     public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
-        // nop
+        activity = binding.getActivity();
     }
 
     @Override
     public void onDetachedFromActivityForConfigChanges() {
-        // nop
+        activity = null;
     }
 
     @Override
