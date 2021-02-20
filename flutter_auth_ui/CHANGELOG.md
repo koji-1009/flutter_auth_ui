@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Fix package.yml
+
 ## 1.2.1
 
 - Remove Kotlin

@@ -4,8 +4,8 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_auth_ui'
-  s.version          = '1.2.1'
-  s.summary          = 'A Flutter plugin for using the Firebase Auth UI with Dart in Flutter apps.'
+  s.version          = '1.2.2'
+  s.summary          = 'Unofficial firebaseui package for flutter. This library is personally managed and aims to provide support for Android, iOS and the web. Login with Email, Phone, Apple, Google, GitHub account and etc.'
   s.description      = <<-DESC
 A new Flutter plugin.
                        DESC
