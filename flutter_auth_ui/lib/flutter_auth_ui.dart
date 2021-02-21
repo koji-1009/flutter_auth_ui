@@ -10,8 +10,9 @@ enum AuthUiItem {
   /// set Email provider.
   ///
   /// If you want email link authentication, set enableEmailLink at option.
-  /// (see <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>)
-  /// (see <https://firebase.google.com/docs/auth/android/firebaseui#email_link_authentication>)
+  ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>
+  ///   - Android: <https://firebase.google.com/docs/auth/android/firebaseui#email_link_authentication>
+  ///   - Web: <https://firebase.google.com/docs/auth/web/firebaseui#email_link_authentication>
   AuthEmail,
 
   /// set PhoneNumber provider.
@@ -34,7 +35,6 @@ enum AuthUiItem {
   /// Google Sign-In needs extra configurations.
   /// See following guide.
   ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#google>
-  ///   - Android: <https://firebase.google.com/docs/auth/android/google-signin>
   AuthGoogle,
 
   /// set Facebook Login provider.
@@ -42,15 +42,10 @@ enum AuthUiItem {
   /// Facebook login needs extra configurations.
   /// See following guide.
   ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#facebook>
-  ///   - Android: <https://firebase.google.com/docs/auth/android/facebook-login>
+  ///   - Android: <https://firebase.google.com/docs/auth/android/firebaseui#facebook>
   AuthFacebook,
 
   /// set Twitter provider.
-  ///
-  /// Twitter login needs extra configurations.
-  /// See following guide.
-  ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#twittern>
-  ///   - Android: <https://firebase.google.com/docs/auth/android/twitter-login>
   AuthTwitter
 }
 
@@ -96,41 +91,29 @@ class TosAndPrivacyPolicy {
 
 class AndroidOption {
   /// [enableSmartLock] enables SmartLock on Android.
-  /// [enableMailLink] enables email link sign in instead of password based sign in on Android.
-  /// [requireName] enables require name option on Android.
   const AndroidOption({
     this.enableSmartLock = true,
-    this.enableMailLink = false,
-    this.requireName = true,
   });
 
-  final bool enableMailLink;
   final bool enableSmartLock;
-  final bool requireName;
-}
-
-class IosOption {
-  /// [enableMailLink] enables email link sign in instead of password based sign in on iOS.
-  /// [requireName] enables require name option on iOS.
-  const IosOption({
-    this.enableMailLink = false,
-    this.requireName = true,
-  });
-
-  final bool enableMailLink;
-  final bool requireName;
 }
 
 class EmailAuthOption {
-  /// [handleURL] represents the state/Continue URL in the form of a universal link.
+  /// [requireDisplayName] enables the option to require the display name.
+  /// [enableMailLink] enables email link signin instead of password based signin.
+  /// [handleURL] represents the state/continue URL in the form of a universal link.
   /// [androidPackageName] the Android package name, if available.
   /// [androidMinimumVersion] the minimum Android version supported, if available.
   const EmailAuthOption({
+    this.requireDisplayName = true,
+    this.enableMailLink = false,
     this.handleURL = '',
     this.androidPackageName = '',
     this.androidMinimumVersion = '',
   });
 
+  final bool requireDisplayName;
+  final bool enableMailLink;
   final String handleURL;
   final String androidPackageName;
   final String androidMinimumVersion;
@@ -147,7 +130,6 @@ class FlutterAuthUi {
     @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
     bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
-    IosOption iosOption = const IosOption(),
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
@@ -164,14 +146,10 @@ class FlutterAuthUi {
 
           /// Android
           'enableSmartLockForAndroid': androidOption.enableSmartLock,
-          'enableEmailLinkForAndroid': androidOption.enableMailLink,
-          'requireNameForAndroid': androidOption.requireName,
-
-          /// iOS
-          'enableEmailLinkForIos': iosOption.enableMailLink,
-          'requireNameForIos': iosOption.requireName,
 
           /// EmailLink
+          'emailLinkRequireDisplayName': emailAuthOption.requireDisplayName,
+          'emailLinkEnableEmailLink': emailAuthOption.enableMailLink,
           'emailLinkHandleURL': emailAuthOption.handleURL,
           'emailLinkAndroidPackageName': emailAuthOption.androidPackageName,
           'emailLinkAndroidMinimumVersion':

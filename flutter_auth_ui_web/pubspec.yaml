@@ -21,7 +21,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_auth_ui: ^1.2.0
 
 environment:
   sdk: ">=2.10.0 <3.0.0"

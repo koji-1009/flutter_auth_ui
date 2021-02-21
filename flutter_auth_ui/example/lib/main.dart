@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              RaisedButton(
+              ElevatedButton(
                 child: const Text("start ui"),
                 onPressed: () async {
                   final providers = [
@@ -38,15 +38,10 @@ class MyApp extends StatelessWidget {
                     ),
                     androidOption: AndroidOption(
                       enableSmartLock: false, // default true
-                      enableMailLink: false, // default false
-                      requireName: true, // default true
                     ),
-                    iosOption: IosOption(
-                      enableMailLink: false, // default false
-                      requireName: true, // default true
-                    ),
-                    // If you need EmailLink mode, please set EmailAuthOption
                     emailAuthOption: EmailAuthOption(
+                      requireDisplayName: true, // default true
+                      enableMailLink: false, // default false
                       handleURL: '',
                       androidPackageName: '',
                       androidMinimumVersion: '',

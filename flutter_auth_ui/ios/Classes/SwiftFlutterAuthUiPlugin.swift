@@ -54,9 +54,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             case "Anonymous":
                 providers.append(FUIAnonymousAuth(authUI: authUI))
             case "Email" :
-                let requireDisplayName = args["requireNameForIos"] as? Bool ?? true
+                let requireDisplayName = args["emailLinkRequireDisplayName"] as? Bool ?? true
                 let actionCodeSettings = ActionCodeSettings()
-                if args["enableEmailLinkForIos"] as? Bool ?? false {
+                if args["emailLinkEnableEmailLink"] as? Bool ?? false {
                     // the email-link sign-in method.
                     let url = args["emailLinkHandleURL"] as? String ?? ""
                     guard url.isEmpty else {

@@ -14,9 +14,10 @@ Check documents and setup your firebase project.
 
 ## How to use
 
-```
+```dart
 // Set provider
 final providers = [
+  AuthUiItem.AuthAnonymous,
   AuthUiItem.AuthEmail,
   AuthUiItem.AuthPhone,
   AuthUiItem.AuthApple,
@@ -36,15 +37,10 @@ final result = await FlutterAuthUi.startUi(
   ),
   androidOption: AndroidOption(
     enableSmartLock: false, // default true
-    enableMailLink: false, // default false
-    requireName: true, // default true
   ),
-  iosOption: IosOption(
-    enableMailLink: false, // default false
-    requireName: true, // default true
-  ),
-  // If you need EmailLink mode, please set EmailAuthOption
   emailAuthOption: EmailAuthOption(
+    requireDisplayName: true, // default true
+    enableMailLink: false, // default false
     handleURL: '',
     androidPackageName: '',
     androidMinimumVersion: '',
