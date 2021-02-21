@@ -38,15 +38,10 @@ class MyApp extends StatelessWidget {
                     ),
                     androidOption: AndroidOption(
                       enableSmartLock: false, // default true
-                      enableMailLink: false, // default false
-                      requireName: true, // default true
                     ),
-                    iosOption: IosOption(
-                      enableMailLink: false, // default false
-                      requireName: true, // default true
-                    ),
-                    // If you need EmailLink mode, please set EmailAuthOption
                     emailAuthOption: EmailAuthOption(
+                      enableMailLink: false, // default false
+                      requireName: true, // default true
                       handleURL: '',
                       androidPackageName: '',
                       androidMinimumVersion: '',

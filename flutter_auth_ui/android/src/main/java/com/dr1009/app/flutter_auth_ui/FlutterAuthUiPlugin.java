@@ -138,13 +138,13 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                         break;
                     case "Email":
                         AuthUI.IdpConfig.EmailBuilder builder = new AuthUI.IdpConfig.EmailBuilder();
-                        Boolean requireName = call.argument("requireNameForAndroid");
+                        Boolean requireName = call.argument("emailLinkRequireName");
                         if (requireName != null) {
                             builder.setRequireName(requireName);
                         }
 
-                        Boolean enableEmailLinkForAndroid = call.argument("enableEmailLinkForAndroid");
-                        if (enableEmailLinkForAndroid != null && enableEmailLinkForAndroid) {
+                        Boolean enableEmailLink = call.argument("emailLinkEnableEmailLink");
+                        if (enableEmailLink != null && enableEmailLink) {
                             builder.enableEmailLinkSignIn();
 
                             ActionCodeSettings.Builder actionCodeSettings = ActionCodeSettings

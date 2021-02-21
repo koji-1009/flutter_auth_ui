@@ -40,13 +40,13 @@ class FlutterAuthUiWeb {
         case 'Anonymous':
           return 'anonymous';
         case 'Email':
-          bool requireNameForWeb = args["requireNameForWeb"] ?? true;
-          bool enableEmailLinkForWeb = args["enableEmailLinkForWeb"] ?? false;
-          if (!enableEmailLinkForWeb) {
+          bool requireName = args["emailLinkRequireName"] ?? true;
+          bool enableEmailLink = args["emailLinkEnableEmailLink"] ?? false;
+          if (!enableEmailLink) {
             return EmailSignInOption(
               provider: 'password',
               signInMethod: 'password',
-              requireDisplayName: requireNameForWeb,
+              requireDisplayName: requireName,
             );
           }
 
@@ -63,7 +63,7 @@ class FlutterAuthUiWeb {
           return EmailSignInOption(
             provider: 'password',
             signInMethod: 'emailLink',
-            requireDisplayName: requireNameForWeb,
+            requireDisplayName: requireName,
             emailLinkSignIn: ActionCodeSettings(
               url: url,
               handleCodeInApp: true,
