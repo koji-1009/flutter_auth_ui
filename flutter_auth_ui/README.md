@@ -67,6 +67,7 @@ final result = await FlutterAuthUi.startUi(
 
 Add the string value as `app_name` or `fui_default_toolbar_title` to your app's `strings.xml` file.
 Sample code is [strings.xml](https://github.com/koji-1009/flutter_auth_ui/blob/main/flutter_auth_ui/example/android/app/src/main/res/values/strings.xml).
-If you change AppBar color, change `colorPrimary` and `colorPrimaryDark`. See [colors.xml](https://github.com/koji-1009/flutter_auth_ui/blob/main/flutter_auth_ui/example/android/app/src/main/res/values/colors.xml).
+
+If you want to customize the color of AppBar, change `colorPrimary` and `colorPrimaryDark`. See [colors.xml](https://github.com/koji-1009/flutter_auth_ui/blob/main/flutter_auth_ui/example/android/app/src/main/res/values/colors.xml).
 
 Behavior depends on [FirebaseUI-Android](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/src/main/AndroidManifest.xml).
