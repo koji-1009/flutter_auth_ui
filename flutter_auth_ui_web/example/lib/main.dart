@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
                 child: const Text("start ui"),
                 onPressed: () async {
                   final providers = [
+                    AuthUiItem.AuthAnonymous,
                     AuthUiItem.AuthEmail,
                     AuthUiItem.AuthPhone,
                     AuthUiItem.AuthApple,
@@ -41,6 +42,10 @@ class MyApp extends StatelessWidget {
                       requireName: true, // default true
                     ),
                     iosOption: IosOption(
+                      enableMailLink: false, // default false
+                      requireName: true, // default true
+                    ),
+                    webOption: WebOption(
                       enableMailLink: false, // default false
                       requireName: true, // default true
                     ),

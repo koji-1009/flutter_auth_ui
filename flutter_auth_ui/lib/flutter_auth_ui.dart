@@ -121,6 +121,18 @@ class IosOption {
   final bool requireName;
 }
 
+class WebOption {
+  /// [enableMailLink] enables email link sign in instead of password based sign in on Web.
+  /// [requireName] enables require name option on Web.
+  const WebOption({
+    this.enableMailLink = false,
+    this.requireName = true,
+  });
+
+  final bool enableMailLink;
+  final bool requireName;
+}
+
 class EmailAuthOption {
   /// [handleURL] represents the state/Continue URL in the form of a universal link.
   /// [androidPackageName] the Android package name, if available.
@@ -148,6 +160,7 @@ class FlutterAuthUi {
     bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
     IosOption iosOption = const IosOption(),
+    WebOption webOption = const WebOption(),
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
@@ -170,6 +183,10 @@ class FlutterAuthUi {
           /// iOS
           'enableEmailLinkForIos': iosOption.enableMailLink,
           'requireNameForIos': iosOption.requireName,
+
+          /// Web
+          'enableEmailLinkForWeb': webOption.enableMailLink,
+          'requireNameForWeb': webOption.requireName,
 
           /// EmailLink
           'emailLinkHandleURL': emailAuthOption.handleURL,

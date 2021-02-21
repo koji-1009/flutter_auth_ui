@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'dart:html' as html;
-import 'package:firebase/firebase.dart';
+
+import 'package:firebase/firebase.dart' show auth;
 import 'package:flutter/services.dart';
-import 'package:js/js.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:flutter_auth_ui_web/src/firebaseui_web.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:js/js.dart' show allowInterop;
 
 class FlutterAuthUiWeb {
   static void registerWith(Registrar registrar) {
@@ -40,23 +40,59 @@ class FlutterAuthUiWeb {
         case 'Anonymous':
           return 'anonymous';
         case 'Email':
-          return EmailAuthProvider.PROVIDER_ID;
+          bool requireNameForWeb = args["requireNameForWeb"] ?? true;
+          bool enableEmailLinkForWeb = args["enableEmailLinkForWeb"] ?? false;
+          if (!enableEmailLinkForWeb) {
+            return EmailSignInOption(
+              provider: 'password',
+              signInMethod: 'password',
+              requireDisplayName: requireNameForWeb,
+            );
+          }
+
+          String url = args['emailLinkHandleURL'] ?? '';
+          if (url.isEmpty) {
+            throw PlatformException(
+              code: 'InvalidArgs',
+              details: 'Missing handleURL',
+            );
+          }
+
+          String packageName = args["emailLinkAndroidPackageName"] ?? '';
+          String minimumVersion = args["emailLinkAndroidMinimumVersion"] ?? '';
+          return EmailSignInOption(
+            provider: 'password',
+            signInMethod: 'emailLink',
+            requireDisplayName: requireNameForWeb,
+            emailLinkSignIn: ActionCodeSettings(
+              url: url,
+              handleCodeInApp: true,
+              android: packageName.isNotEmpty
+                  ? ActionCodeSettingsAndroid(
+                      packageName: packageName,
+                      installApp: false,
+                      minimumVersion: minimumVersion,
+                    )
+                  : null,
+            ),
+          );
+          return 'password';
         case 'Phone':
-          return PhoneAuthProvider.PROVIDER_ID;
+          return 'phone';
         case 'Apple':
           return 'apple.com';
         case 'GitHub':
-          return GithubAuthProvider.PROVIDER_ID;
+          return 'github.com';
         case 'Microsoft':
           return 'microsoft.com';
         case 'Yahoo':
           return 'yahoo.com';
         case 'Google':
-          return GoogleAuthProvider.PROVIDER_ID;
+          return 'google.com';
         case 'Facebook':
-          return FacebookAuthProvider.PROVIDER_ID;
+          return 'facebook.com';
         case 'Twitter':
-          return TwitterAuthProvider.PROVIDER_ID;
+          return 'twitter.com';
       }
     }).toList();
 
@@ -97,6 +133,8 @@ class FlutterAuthUiWeb {
     final config = Config(
       callbacks: callbacks,
       signInOptions: options,
+      signInFlow: 'popup',
+      autoUpgradeAnonymousUsers: args["autoUpgradeAnonymousUsers"] ?? false,
       tosUrl: tosUrl,
       privacyPolicyUrl: privacyPolicyUrl,
     );
