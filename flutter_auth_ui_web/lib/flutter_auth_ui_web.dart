@@ -140,6 +140,7 @@ class FlutterAuthUiWeb {
     );
 
     final authUi = getInstance(auth().app.name) ?? AuthUI(auth().jsObject);
+    authUi.reset();
     authUi.start(containerDiv, config);
 
     return completer.future;

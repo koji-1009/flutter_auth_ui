@@ -12,17 +12,9 @@ external AuthUI getInstance(String appId);
 class AuthUI {
   external factory AuthUI(dynamic auth, [String appId]);
 
-  external void disableAutoSignIn();
-
   external void start(html.Element element, Config config);
 
-  external void setConfig(Config config);
-
-  external void signIn();
-
   external void reset();
-
-  external bool isPendingRedirect();
 }
 
 typedef SignInAuthResultSuccess = bool Function(
