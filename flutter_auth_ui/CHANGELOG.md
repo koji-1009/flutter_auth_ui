@@ -1,3 +1,9 @@
+## 1.3.0
+
+- Change EmailAuth option
+- Delete iOS option class
+- Update README
+
 ## 1.2.2
 
 - Fix package.yml
