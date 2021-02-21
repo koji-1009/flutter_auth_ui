@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                     ),
                     // If you need EmailLink mode, please set EmailAuthOption
                     emailAuthOption: EmailAuthOption(
-                      requireName: true, // default true
+                      requireDisplayName: true, // default true
                       enableMailLink: false, // default false
                       handleURL: '',
                       androidPackageName: '',

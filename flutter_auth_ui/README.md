@@ -39,7 +39,7 @@ final result = await FlutterAuthUi.startUi(
     enableSmartLock: false, // default true
   ),
   emailAuthOption: EmailAuthOption(
-    requireName: true, // default true
+    requireDisplayName: true, // default true
     enableMailLink: false, // default false
     handleURL: '',
     androidPackageName: '',

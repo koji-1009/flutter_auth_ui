@@ -99,20 +99,20 @@ class AndroidOption {
 }
 
 class EmailAuthOption {
-  /// [requireName] enables require name option.
+  /// [requireDisplayName] enables the option to require the display name.
   /// [enableMailLink] enables email link signin instead of password based signin.
-  /// [handleURL] represents the state/Continue URL in the form of a universal link.
+  /// [handleURL] represents the state/continue URL in the form of a universal link.
   /// [androidPackageName] the Android package name, if available.
   /// [androidMinimumVersion] the minimum Android version supported, if available.
   const EmailAuthOption({
-    this.requireName = true,
+    this.requireDisplayName = true,
     this.enableMailLink = false,
     this.handleURL = '',
     this.androidPackageName = '',
     this.androidMinimumVersion = '',
   });
 
-  final bool requireName;
+  final bool requireDisplayName;
   final bool enableMailLink;
   final String handleURL;
   final String androidPackageName;
@@ -148,7 +148,7 @@ class FlutterAuthUi {
           'enableSmartLockForAndroid': androidOption.enableSmartLock,
 
           /// EmailLink
-          'emailLinkRequireName': emailAuthOption.requireName,
+          'emailLinkRequireDisplayName': emailAuthOption.requireDisplayName,
           'emailLinkEnableEmailLink': emailAuthOption.enableMailLink,
           'emailLinkHandleURL': emailAuthOption.handleURL,
           'emailLinkAndroidPackageName': emailAuthOption.androidPackageName,
