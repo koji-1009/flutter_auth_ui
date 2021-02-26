@@ -28,7 +28,7 @@ class FlutterAuthUiWeb {
     }
 
     // add history
-    final title = html.window.document.documentElement.title;
+    final title = html.window.document.documentElement?.title ?? '';
     final path = html.window.location.origin + '/#/';
     html.window.history.pushState(null, title, path);
 
@@ -101,7 +101,7 @@ class FlutterAuthUiWeb {
 
     // add div element instead of 'firebaseui-auth-container' div
     final containerDiv = html.Element.div();
-    html.window.document.documentElement.append(containerDiv);
+    html.window.document.documentElement?.append(containerDiv);
 
     // get flutter web's main view
     final fltGlassPane = html.window.document

@@ -2,11 +2,11 @@
 library firebaseui;
 
 import 'dart:html' as html;
-import 'package:flutter/foundation.dart';
+
 import 'package:js/js.dart';
 
 @JS('AuthUI.getInstance')
-external AuthUI getInstance(String appId);
+external AuthUI? getInstance(String appId);
 
 @JS('AuthUI')
 class AuthUI {
@@ -57,9 +57,9 @@ abstract class Config {
   external String get privacyPolicyUrl;
 
   external factory Config({
-    @required Callbacks callbacks,
-    @required List<dynamic> signInOptions,
-    @required String signInFlow,
+    Callbacks callbacks,
+    List<dynamic> signInOptions,
+    String signInFlow,
     bool autoUpgradeAnonymousUsers,
     String tosUrl,
     String privacyPolicyUrl,
@@ -76,9 +76,9 @@ abstract class ActionCodeSettings {
   external ActionCodeSettingsAndroid get android;
 
   external factory ActionCodeSettings({
-    @required String url,
-    @required bool handleCodeInApp,
-    @required ActionCodeSettingsAndroid android,
+    String url,
+    bool handleCodeInApp,
+    ActionCodeSettingsAndroid? android,
   });
 }
 
@@ -92,9 +92,9 @@ abstract class ActionCodeSettingsAndroid {
   external String get minimumVersion;
 
   external factory ActionCodeSettingsAndroid({
-    @required String packageName,
-    @required bool installApp,
-    @required String minimumVersion,
+    String packageName,
+    bool installApp,
+    String minimumVersion,
   });
 }
 
@@ -110,9 +110,9 @@ abstract class EmailSignInOption {
   external ActionCodeSettings get emailLinkSignIn;
 
   external factory EmailSignInOption({
-    @required String provider,
-    @required bool requireDisplayName,
-    @required String signInMethod,
+    String provider,
+    bool requireDisplayName,
+    String signInMethod,
     ActionCodeSettings emailLinkSignIn,
   });
 }
