@@ -1,3 +1,7 @@
+## 1.0.0
+
+- null safety
+
 ## 0.2.0
 
 - Support EmailLink

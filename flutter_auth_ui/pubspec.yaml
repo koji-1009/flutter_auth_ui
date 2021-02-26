@@ -11,14 +11,15 @@ flutter:
         pluginClass: FlutterAuthUiPlugin
       ios:
         pluginClass: SwiftFlutterAuthUiPlugin
-#      web:
-#        default_package: flutter_auth_ui_web
+      web:
+        default_package: flutter_auth_ui_web
 
 dependencies:
   flutter:
     sdk: flutter
   firebase_auth: ^1.0.0
   flutter_plugin_android_lifecycle: ^2.0.0
+  flutter_auth_ui_web: ^1.0.0
 
 dev_dependencies:
   flutter_test:

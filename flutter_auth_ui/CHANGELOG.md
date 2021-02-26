@@ -1,3 +1,8 @@
+## 2.0.0
+
+- null safety
+- support web
+
 ## 1.3.0
 
 - Change EmailAuth option
