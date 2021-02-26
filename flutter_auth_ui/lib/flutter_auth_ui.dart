@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 enum AuthUiItem {
@@ -81,8 +80,8 @@ extension ExtendedAuthUiItem on AuthUiItem {
 /// Terms of service(Tos) and Privacy Policy link.
 class TosAndPrivacyPolicy {
   TosAndPrivacyPolicy({
-    @required this.tosUrl,
-    @required this.privacyPolicyUrl,
+    required this.tosUrl,
+    required this.privacyPolicyUrl,
   });
 
   final String tosUrl;
@@ -126,8 +125,8 @@ class FlutterAuthUi {
   ///
   /// Return `true` if login process is completed.
   static Future<bool> startUi({
-    @required List<AuthUiItem> items,
-    @required TosAndPrivacyPolicy tosAndPrivacyPolicy,
+    required List<AuthUiItem> items,
+    required TosAndPrivacyPolicy tosAndPrivacyPolicy,
     bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
