@@ -19,6 +19,8 @@ dev_dependencies:
 
   flutter_auth_ui:
     path: ../../flutter_auth_ui/
+
+dependency_overrides:
   flutter_auth_ui_web:
     path: ../
 

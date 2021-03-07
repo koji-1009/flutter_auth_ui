@@ -10,4 +10,4 @@ A Flutter plugin for using the Firebase Auth UI with Dart in Flutter apps.
 - iOS
   - support
 - web
-  - support(beta)
+  - support
