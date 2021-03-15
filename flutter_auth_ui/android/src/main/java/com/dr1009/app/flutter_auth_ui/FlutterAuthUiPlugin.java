@@ -208,6 +208,16 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers);
 
+        // design
+        boolean showLogoAndroid = call.argument("showLogoAndroid");
+        if (showLogoAndroid) {
+            builder.setLogo(R.drawable.flutter_auth_ui_logo);
+        }
+        boolean overrideThemeAndroid = call.argument("overrideThemeAndroid");
+        if (overrideThemeAndroid) {
+            builder.setTheme(R.style.flutter_auth_ui_style);
+        }
+
         boolean autoUpgradeAnonymousUsers = call.argument("autoUpgradeAnonymousUsers");
         if (autoUpgradeAnonymousUsers) {
             builder.enableAnonymousUsersAutoUpgrade();
