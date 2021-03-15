@@ -63,6 +63,20 @@ final result = await FlutterAuthUi.startUi(
 
 ## Tips
 
+### Localizing
+
+#### Android
+
+Supported without any special settings.
+
+#### iOS
+
+Check [Localizing for iOS: Updating the iOS app bundle](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#localizing-for-ios-updating-the-ios-app-bundle).
+
+#### Web
+
+Check [Installation - Option 1: CDN - Localized Widget](https://github.com/firebase/firebaseui-web#localized-widget).
+
 ### To change the title of AppBar on Android
 
 Add the string value as `app_name` or `fui_default_toolbar_title` to your app's `strings.xml` file.
