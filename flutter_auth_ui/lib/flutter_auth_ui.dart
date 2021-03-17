@@ -92,9 +92,13 @@ class AndroidOption {
   /// [enableSmartLock] enables SmartLock on Android.
   const AndroidOption({
     this.enableSmartLock = true,
+    this.showLogo = false,
+    this.overrideTheme = false,
   });
 
   final bool enableSmartLock;
+  final bool showLogo;
+  final bool overrideTheme;
 }
 
 class EmailAuthOption {
@@ -145,6 +149,8 @@ class FlutterAuthUi {
 
           /// Android
           'enableSmartLockForAndroid': androidOption.enableSmartLock,
+          'showLogoAndroid': androidOption.showLogo,
+          'overrideThemeAndroid': androidOption.overrideTheme,
 
           /// EmailLink
           'emailLinkRequireDisplayName': emailAuthOption.requireDisplayName,

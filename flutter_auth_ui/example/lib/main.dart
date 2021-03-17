@@ -38,6 +38,8 @@ class MyApp extends StatelessWidget {
                     ),
                     androidOption: AndroidOption(
                       enableSmartLock: false, // default true
+                      showLogo: true, // default false
+                      overrideTheme: true, // default false
                     ),
                     emailAuthOption: EmailAuthOption(
                       requireDisplayName: true, // default true
