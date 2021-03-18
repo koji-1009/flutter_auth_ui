@@ -1,3 +1,8 @@
+## 2.0.1
+
+- Update README
+- Support Logo in FirebaseUI-Android
+
 ## 2.0.0
 
 - null safety

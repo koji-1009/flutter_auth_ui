@@ -19,7 +19,7 @@ PODS:
     - FirebaseAuth (~> 7.3.0)
   - Firebase/CoreOnly (7.3.0):
     - FirebaseCore (= 7.3.0)
-  - firebase_auth (1.0.0):
+  - firebase_auth (1.0.1):
     - Firebase/Auth (= 7.3.0)
     - firebase_core
     - Flutter
@@ -58,7 +58,7 @@ PODS:
   - FirebaseUI/Phone (10.0.2):
     - FirebaseUI/Auth
   - Flutter (1.0.0)
-  - flutter_auth_ui (2.0.0):
+  - flutter_auth_ui (2.0.1):
     - FirebaseUI/Anonymous (~> 10.0)
     - FirebaseUI/Auth (~> 10.0)
     - FirebaseUI/Email (~> 10.0)
@@ -144,14 +144,14 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
-  firebase_auth: f07f3ee03813d95157ee08ce763c649c656174b5
+  firebase_auth: 9f6491ea8e44570323361ae713a2ae3175b3f21a
   firebase_core: f47224dd6a9b928b4cf0128b0d004ec9e47d4bf2
   FirebaseAuth: c224a0cf1afa0949bd5c7bfcf154b4f5ce8ddef2
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
   FirebaseCoreDiagnostics: ee1184d51da3293335b83355aad20f537acc24cf
   FirebaseUI: 59db3d833773f985550897d54ceb811ba37fb9a5
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_auth_ui: 0cb565bcd571046d9d8d3ee4d43f028e8930b810
+  flutter_auth_ui: 678705691c5e3f67a13a1777602878fe9ade595f
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
