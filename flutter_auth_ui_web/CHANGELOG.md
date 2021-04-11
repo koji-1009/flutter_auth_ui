@@ -1,3 +1,7 @@
+## 1.0.1
+
+- `firebase ^9.0.1`
+
 ## 1.0.0
 
 - null safety
