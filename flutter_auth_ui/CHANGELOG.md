@@ -1,3 +1,10 @@
+## 2.0.2
+
+- Update README
+- `firebase_auth ^1.0.3`
+- `flutter_plugin_android_lifecycle ^2.0.1`
+- `flutter_auth_ui_web ^1.0.1`
+
 ## 2.0.1
 
 - Update README
