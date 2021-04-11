@@ -10,6 +10,7 @@ Check documents and setup your firebase project.
 
 * iOS : <https://firebase.google.com/docs/auth/ios/firebaseui>
 * Android : <https://firebase.google.com/docs/auth/android/firebaseui>
+* Web: <https://firebase.google.com/docs/auth/web/firebaseui>
 
 ## How to use
 
@@ -52,7 +53,7 @@ final result = await FlutterAuthUi.startUi(
 ## Requirements
 
 - flutter 2.0.0 or higher
-- [firebase_auth](https://pub.dev/packages/firebase_auth) 1.0.0
+- [firebase_auth](https://pub.dev/packages/firebase_auth) 1.0.3
 
 ### Android
 
