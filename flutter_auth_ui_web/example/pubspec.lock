@@ -110,21 +110,21 @@ packages:
       path: "../../flutter_auth_ui"
       relative: true
     source: path
-    version: "2.0.1"
+    version: "2.0.2"
   flutter_auth_ui_web:
     dependency: "direct overridden"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.0.0"
+    version: "1.0.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter

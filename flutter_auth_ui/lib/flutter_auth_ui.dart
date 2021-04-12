@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
+/// Supported providers
 enum AuthUiItem {
   /// set Anonymous provider.
   AuthAnonymous,
@@ -48,7 +49,7 @@ enum AuthUiItem {
   AuthTwitter
 }
 
-extension ExtendedAuthUiItem on AuthUiItem {
+extension _ExtendedAuthUiItem on AuthUiItem {
   String get providerName {
     switch (this) {
       case AuthUiItem.AuthAnonymous:
@@ -79,34 +80,50 @@ extension ExtendedAuthUiItem on AuthUiItem {
 
 /// Terms of service(Tos) and Privacy Policy link.
 class TosAndPrivacyPolicy {
+  /// Set Terms of service url and Privacy Policy url.
   TosAndPrivacyPolicy({
     required this.tosUrl,
     required this.privacyPolicyUrl,
   });
 
+  /// Terms of service url.
   final String tosUrl;
+
+  /// Privacy Policy url.
   final String privacyPolicyUrl;
 }
 
+/// for FirebaseUI-Android
 class AndroidOption {
   /// [enableSmartLock] enables SmartLock on Android.
+  /// [showLogo] enables logo display on Android.
+  /// [overrideTheme] enables own theme on Android.
   const AndroidOption({
     this.enableSmartLock = true,
     this.showLogo = false,
     this.overrideTheme = false,
   });
 
+  /// enables SmartLock on Android.
   final bool enableSmartLock;
+
+  /// enables logo display on Android.
   final bool showLogo;
+
+  /// enables own theme on Android.
   final bool overrideTheme;
 }
 
+/// Email sign-in config
 class EmailAuthOption {
   /// [requireDisplayName] enables the option to require the display name.
-  /// [enableMailLink] enables email link signin instead of password based signin.
-  /// [handleURL] represents the state/continue URL in the form of a universal link.
+  /// [enableMailLink] enables email link sign-in
+  /// instead of password based sign-in.
+  /// [handleURL] represents the state/continue URL
+  /// in the form of a universal link.
   /// [androidPackageName] the Android package name, if available.
-  /// [androidMinimumVersion] the minimum Android version supported, if available.
+  /// [androidMinimumVersion] the minimum Android version supported,
+  /// if available.
   const EmailAuthOption({
     this.requireDisplayName = true,
     this.enableMailLink = false,
@@ -115,15 +132,25 @@ class EmailAuthOption {
     this.androidMinimumVersion = '',
   });
 
+  /// enables the option to require the display name.
   final bool requireDisplayName;
+
+  /// enables email link sign-in instead of password based sign-in.
   final bool enableMailLink;
+
+  /// represents the state/continue URL in the form of a universal link.
   final String handleURL;
+
+  /// the Android package name, if available.
   final String androidPackageName;
+
+  /// the minimum Android version supported, if available.
   final String androidMinimumVersion;
 }
 
+/// Call FirebaseUI-Android/iOS/Web using MethodChannel.
 class FlutterAuthUi {
-  static const MethodChannel _channel = const MethodChannel('flutter_auth_ui');
+  static const MethodChannel _channel = MethodChannel('flutter_auth_ui');
 
   /// Start Firebase Auth UI process.
   ///
@@ -164,7 +191,7 @@ class FlutterAuthUi {
       if (data == null) return false;
 
       return data;
-    } catch (e) {
+    } on Exception catch (e) {
       print('flutter_auth_ui: error => $e');
       return false;
     }
