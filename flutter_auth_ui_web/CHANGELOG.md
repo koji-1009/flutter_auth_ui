@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Change `redirectUrl` as nullable
+
 ## 1.0.1
 
 - `firebase ^9.0.1`
