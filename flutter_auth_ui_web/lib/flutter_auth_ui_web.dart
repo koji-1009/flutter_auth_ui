@@ -3,10 +3,12 @@ import 'dart:html' as html;
 
 import 'package:firebase/firebase.dart' show auth;
 import 'package:flutter/services.dart';
-import 'package:flutter_auth_ui_web/src/firebaseui_web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart' show allowInterop;
 
+import 'src/firebaseui_web.dart';
+
+/// Implementation for the firebaseui-web
 class FlutterAuthUiWeb {
   static void registerWith(Registrar registrar) {
     final channel = MethodChannel(
@@ -29,7 +31,7 @@ class FlutterAuthUiWeb {
 
     // add history
     final title = html.window.document.documentElement?.title ?? '';
-    final path = html.window.location.origin + '/#/';
+    final path = '${html.window.location.origin}/#/';
     html.window.history.pushState(null, title, path);
 
     final args = Map<String, dynamic>.from(call.arguments);
@@ -76,7 +78,6 @@ class FlutterAuthUiWeb {
                   : null,
             ),
           );
-          return 'password';
         case 'Phone':
           return 'phone';
         case 'Apple':
