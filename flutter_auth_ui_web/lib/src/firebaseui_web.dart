@@ -19,7 +19,7 @@ class AuthUI {
 
 typedef SignInAuthResultSuccess = bool Function(
   dynamic authResult,
-  String redirectUrl,
+  String? redirectUrl,
 );
 typedef SignInFailure = void Function(
   dynamic error,
