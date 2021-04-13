@@ -110,14 +110,14 @@ packages:
       path: "../../flutter_auth_ui"
       relative: true
     source: path
-    version: "2.0.2"
+    version: "2.1.0"
   flutter_auth_ui_web:
     dependency: "direct overridden"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.0.2+1"
+    version: "1.0.2+2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

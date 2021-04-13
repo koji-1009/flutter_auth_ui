@@ -117,7 +117,7 @@ packages:
       name: flutter_auth_ui_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2+1"
+    version: "1.0.2+2"
   flutter_plugin_android_lifecycle:
     dependency: "direct main"
     description:

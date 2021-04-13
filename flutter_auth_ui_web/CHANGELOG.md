@@ -1,3 +1,7 @@
+## 1.0.2+2
+
+- Fix homepage url
+
 ## 1.0.2+1
 
 - Use `effective_dart` style
