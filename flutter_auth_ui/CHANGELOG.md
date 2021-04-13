@@ -1,3 +1,9 @@
+## 2.1.0
+
+### Breaking changes
+
+- Rename `AuthUiProvider` from `AuthUiItem`
+
 ## 2.0.2+1
 
 - Use `effective_dart` style
