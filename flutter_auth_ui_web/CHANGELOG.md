@@ -1,3 +1,7 @@
+## 1.0.2+1
+
+- Use `effective_dart` style
+
 ## 1.0.2
 
 - Change `redirectUrl` as nullable
