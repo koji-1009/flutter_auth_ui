@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 /// Supported providers
-enum AuthUiItem {
+enum AuthUiProvider {
   /// set Anonymous provider.
-  AuthAnonymous,
+  anonymous,
 
   /// set Email provider.
   ///
@@ -13,29 +13,29 @@ enum AuthUiItem {
   ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication>
   ///   - Android: <https://firebase.google.com/docs/auth/android/firebaseui#email_link_authentication>
   ///   - Web: <https://firebase.google.com/docs/auth/web/firebaseui#email_link_authentication>
-  AuthEmail,
+  email,
 
   /// set PhoneNumber provider.
-  AuthPhone,
+  phone,
 
   /// set Sign in with Apple provider.
-  AuthApple,
+  apple,
 
   /// set Github provider.
-  AuthGithub,
+  github,
 
   /// set Microsoft provider.
-  AuthMicrosoft,
+  microsoft,
 
   /// set Yahoo provider.
-  AuthYahoo,
+  yahoo,
 
   /// set Google Sign-In provider.
   ///
   /// Google Sign-In needs extra configurations.
   /// See following guide.
   ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#google>
-  AuthGoogle,
+  google,
 
   /// set Facebook Login provider.
   ///
@@ -43,37 +43,35 @@ enum AuthUiItem {
   /// See following guide.
   ///   - iOS: <https://firebase.google.com/docs/auth/ios/firebaseui#facebook>
   ///   - Android: <https://firebase.google.com/docs/auth/android/firebaseui#facebook>
-  AuthFacebook,
+  facebook,
 
   /// set Twitter provider.
-  AuthTwitter
+  twitter
 }
 
-extension _ExtendedAuthUiItem on AuthUiItem {
+extension _AuthUiProviderExt on AuthUiProvider {
   String get providerName {
     switch (this) {
-      case AuthUiItem.AuthAnonymous:
+      case AuthUiProvider.anonymous:
         return 'Anonymous';
-      case AuthUiItem.AuthEmail:
+      case AuthUiProvider.email:
         return 'Email';
-      case AuthUiItem.AuthPhone:
+      case AuthUiProvider.phone:
         return 'Phone';
-      case AuthUiItem.AuthApple:
+      case AuthUiProvider.apple:
         return 'Apple';
-      case AuthUiItem.AuthGithub:
+      case AuthUiProvider.github:
         return 'Github';
-      case AuthUiItem.AuthMicrosoft:
+      case AuthUiProvider.microsoft:
         return 'Microsoft';
-      case AuthUiItem.AuthYahoo:
+      case AuthUiProvider.yahoo:
         return 'Yahoo';
-      case AuthUiItem.AuthGoogle:
+      case AuthUiProvider.google:
         return 'Google';
-      case AuthUiItem.AuthFacebook:
+      case AuthUiProvider.facebook:
         return 'Facebook';
-      case AuthUiItem.AuthTwitter:
+      case AuthUiProvider.twitter:
         return 'Twitter';
-      default:
-        return '';
     }
   }
 }
@@ -156,7 +154,7 @@ class FlutterAuthUi {
   ///
   /// Return `true` if login process is completed.
   static Future<bool> startUi({
-    required List<AuthUiItem> items,
+    required List<AuthUiProvider> items,
     required TosAndPrivacyPolicy tosAndPrivacyPolicy,
     bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
