@@ -1,3 +1,7 @@
+## 2.0.2+1
+
+- Use `effective_dart` style
+
 ## 2.0.2
 
 - Update README
