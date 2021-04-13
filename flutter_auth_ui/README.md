@@ -17,16 +17,16 @@ Check documents and setup your firebase project.
 ```dart
 // Set provider
 final providers = [
-  AuthUiItem.AuthAnonymous,
-  AuthUiItem.AuthEmail,
-  AuthUiItem.AuthPhone,
-  AuthUiItem.AuthApple,
-  AuthUiItem.AuthFacebook,
-  AuthUiItem.AuthGithub,
-  AuthUiItem.AuthGoogle,
-  AuthUiItem.AuthMicrosoft,
-  AuthUiItem.AuthYahoo,
-  AuthUiItem.AuthTwitter,
+  AuthUiProvider.anonymous,
+  AuthUiProvider.email,
+  AuthUiProvider.phone,
+  AuthUiProvider.apple,
+  AuthUiProvider.facebook,
+  AuthUiProvider.github,
+  AuthUiProvider.google,
+  AuthUiProvider.microsoft,
+  AuthUiProvider.yahoo,
+  AuthUiProvider.twitter,
 ];
 
 final result = await FlutterAuthUi.startUi(
