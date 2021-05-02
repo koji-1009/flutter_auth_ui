@@ -64,6 +64,10 @@ final result = await FlutterAuthUi.startUi(
 
 - iOS 12 or higher
 
+## Link
+
+* [Introduction of flutter_auth_ui.](https://koji-1009.medium.com/introduction-of-flutter-auth-ui-ad5895646f3c)
+
 ## Tips
 
 ### Localizing
