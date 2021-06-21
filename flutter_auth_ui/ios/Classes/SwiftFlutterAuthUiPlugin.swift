@@ -1,6 +1,12 @@
+import FirebaseAnonymousAuthUI
+import FirebaseAuthUI
+import FirebaseEmailAuthUI
+import FirebaseFacebookAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseOAuthUI
+import FirebasePhoneAuthUI
 import Flutter
 import UIKit
-import FirebaseUI
 
 public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate {
 
@@ -11,7 +17,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         registrar.addApplicationDelegate(instance)
     }
 
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
@@ -25,11 +31,11 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         result = nil
     }
 
-    private var result: FlutterResult? = nil
+    private var result: FlutterResult?
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         let method = call.method
-        if (method != "startUi") {
+        if method != "startUi" {
             result(FlutterMethodNotImplemented)
             return
         }
