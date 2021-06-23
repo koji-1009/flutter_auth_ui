@@ -1,3 +1,8 @@
+## 1.0.3
+
+- Update dependencies
+- Fix example project
+
 ## 1.0.2+2
 
 - Fix homepage url
