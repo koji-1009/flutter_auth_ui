@@ -65,7 +65,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
                 if args["emailLinkEnableEmailLink"] as? Bool ?? false {
                     // the email-link sign-in method.
                     let url = args["emailLinkHandleURL"] as? String ?? ""
-                    guard url.isEmpty else {
+                    guard !url.isEmpty else {
                         result(FlutterError(code: "invalidArgs", message: "Missing handleURL", details: "Expected valid handleURL."))
                         return
                     }
