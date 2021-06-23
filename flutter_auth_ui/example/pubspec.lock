@@ -96,14 +96,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.1.0"
+    version: "2.2.0"
   flutter_auth_ui_web:
     dependency: transitive
     description:
       name: flutter_auth_ui_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2+2"
+    version: "1.0.3"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

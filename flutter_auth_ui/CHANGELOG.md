@@ -1,3 +1,9 @@
+## 2.2.0
+
+- Update firebase_auth to `1.4.1`
+- FirebaseUI-Android 7.2.0
+- FirebaseUI-iOS 11.0.3
+
 ## 2.1.0
 
 ### Breaking changes
