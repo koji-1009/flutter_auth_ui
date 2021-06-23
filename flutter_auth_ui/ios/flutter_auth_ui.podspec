@@ -17,13 +17,14 @@ A new Flutter plugin.
   s.dependency 'Flutter'
 
   s.static_framework = true
-  s.dependency 'FirebaseUI/Auth', '~> 10.0'
-  s.dependency 'FirebaseUI/Anonymous', '~> 10.0'
-  s.dependency 'FirebaseUI/Email', '~> 10.0'
-  s.dependency 'FirebaseUI/Facebook', '~> 10.0'
-  s.dependency 'FirebaseUI/Google', '~> 10.0'
-  s.dependency 'FirebaseUI/OAuth', '~> 10.0'
-  s.dependency 'FirebaseUI/Phone', '~> 10.0'
+
+  s.dependency 'FirebaseUI/Auth', '~> 11.0'
+  s.dependency 'FirebaseUI/Anonymous', '~> 11.0'
+  s.dependency 'FirebaseUI/Email', '~> 11.0'
+  s.dependency 'FirebaseUI/Facebook', '~> 11.0'
+  s.dependency 'FirebaseUI/Google', '~> 11.0'
+  s.dependency 'FirebaseUI/OAuth', '~> 11.0'
+  s.dependency 'FirebaseUI/Phone', '~> 11.0'
 
   s.platform = :ios, '12.0'
 
