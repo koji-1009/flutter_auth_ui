@@ -26,7 +26,7 @@ PODS:
   - firebase_core (1.3.0):
     - Firebase/CoreOnly (= 8.0.0)
     - Flutter
-  - FirebaseAnonymousAuthUI (11.0.0):
+  - FirebaseAnonymousAuthUI (11.0.3):
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
@@ -35,9 +35,8 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/Environment (~> 7.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseAuthUI (11.0.0):
-    - Firebase/Auth (~> 8.0)
-    - FirebaseAuth
+  - FirebaseAuthUI (11.0.3):
+    - FirebaseAuth (~> 8.0)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
   - FirebaseCore (8.0.0):
@@ -49,47 +48,47 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseEmailAuthUI (11.0.0):
+  - FirebaseEmailAuthUI (11.0.3):
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseFacebookAuthUI (11.0.0):
+  - FirebaseFacebookAuthUI (11.0.3):
     - FBSDKCoreKit
     - FBSDKLoginKit (~> 9.0)
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseGoogleAuthUI (11.0.0):
+  - FirebaseGoogleAuthUI (11.0.3):
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleSignIn (~> 5.0)
     - GoogleUtilities/UserDefaults
-  - FirebaseOAuthUI (11.0.0):
+  - FirebaseOAuthUI (11.0.3):
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebasePhoneAuthUI (11.0.0):
+  - FirebasePhoneAuthUI (11.0.3):
     - FirebaseAuth (~> 8.0)
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Anonymous (11.0.2):
+  - FirebaseUI/Anonymous (11.0.3):
     - FirebaseAnonymousAuthUI (~> 11.0)
-  - FirebaseUI/Auth (11.0.2):
+  - FirebaseUI/Auth (11.0.3):
     - FirebaseAuthUI (~> 11.0)
-  - FirebaseUI/Email (11.0.2):
+  - FirebaseUI/Email (11.0.3):
     - FirebaseEmailAuthUI (~> 11.0)
-  - FirebaseUI/Facebook (11.0.2):
+  - FirebaseUI/Facebook (11.0.3):
     - FirebaseFacebookAuthUI (~> 11.0)
-  - FirebaseUI/Google (11.0.2):
+  - FirebaseUI/Google (11.0.3):
     - FirebaseGoogleAuthUI (~> 11.0)
-  - FirebaseUI/OAuth (11.0.2):
+  - FirebaseUI/OAuth (11.0.3):
     - FirebaseOAuthUI (~> 11.0)
-  - FirebaseUI/Phone (11.0.2):
+  - FirebaseUI/Phone (11.0.3):
     - FirebasePhoneAuthUI (~> 11.0)
   - Flutter (1.0.0)
   - flutter_auth_ui (2.0.1):
@@ -185,17 +184,17 @@ SPEC CHECKSUMS:
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   firebase_auth: 6532658f5a4f76be32cd5e7518753ebedd4544d2
   firebase_core: cda81ae37eda6df2bc2d16027fda527987c4bd33
-  FirebaseAnonymousAuthUI: 250139e53ca84bb18b9cd67e35be0d4d63e22418
+  FirebaseAnonymousAuthUI: 64de9383870378e8f16ef428d73e8c18e74ce5cc
   FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
-  FirebaseAuthUI: a44ed5d5da7337fd1dfbd9ac4a32ac3217ea8f2c
+  FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
-  FirebaseEmailAuthUI: 6548e3456fd339e73a8e9b5e7825b29863d8ba00
-  FirebaseFacebookAuthUI: 757715ef67ee9511fc2da6f7120feeca82949be1
-  FirebaseGoogleAuthUI: eea5adfab55c5a9f1789510e342306b7351d7c2f
-  FirebaseOAuthUI: 1d34e7784438663b08c68e9c1cea131abe1e34b0
-  FirebasePhoneAuthUI: 94d6ba23d0b2cf89dff3dbcaad39fccab355cb67
-  FirebaseUI: 856f01abf223b93c89f19f608cc393434109ee0b
+  FirebaseEmailAuthUI: 10586bc5b460a2e02172a2ee6d267eca60cbe684
+  FirebaseFacebookAuthUI: 18606f15a129f699ddddd358aa127f8145c21ef3
+  FirebaseGoogleAuthUI: b73b9fad6b1e3f7baeb8189fc7b3a6eb6fa1430d
+  FirebaseOAuthUI: 1addb4d5dd14606e127b8b6c44af1d7d74023ca3
+  FirebasePhoneAuthUI: ee72e8b968bf39420c3af4f8cf810c7f755f032f
+  FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_auth_ui: 3fb998edbe64d611b797eafeda9bb942a4e54b26
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
