@@ -25,6 +25,44 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         // other URL handling goes here.
         return false
     }
+    
+    public func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]) -> Void) -> Bool {
+        return handleActivity(userActivity)
+    }
+    
+// "2. Once you catch the deep link, you will need to pass it to the auth UI so it can be handled."
+// See https:firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication
+   @discardableResult private func handleActivity(_ userActivity: NSUserActivity) -> Bool {
+        guard
+            let bundle = Bundle.main.bundleIdentifier,
+            let authUI = FUIAuth.defaultAuthUI(),
+            let link = link(from: userActivity) else {
+            return false
+        }
+        
+    
+        guard
+            Auth.auth().isSignIn(withEmailLink: link.absoluteString),
+            authUI.handleOpen(link, sourceApplication: bundle) else {
+            return false
+        }
+    
+        return true
+    }
+
+//  See https://firebase.google.com/docs/dynamic-links/create-manually#parameters
+    private func link(from activity: NSUserActivity) -> URL? {
+        guard
+            activity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = activity.webpageURL,
+            let components = NSURLComponents(string: url.absoluteString),
+            let link = components.queryItems?.first(where: { $0.name == "link" })?.value,
+            let url = URL(string: link) else {
+            return nil
+        }
+        
+        return url
+    }
 
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         result?(user != nil)
