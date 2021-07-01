@@ -67,8 +67,11 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             authUI.providers = [FUIEmailAuth()]
         }
     
-        Auth.auth().isSignIn(withEmailLink: link.absoluteString)
-        authUI.handleOpen(link, sourceApplication: bundle)
+        guard Auth.auth().isSignIn(withEmailLink: link.absoluteString) else {
+            return
+        }
+    
+        let _ = authUI.handleOpen(link, sourceApplication: bundle)
     }
 
 //  See https://firebase.google.com/docs/dynamic-links/create-manually#parameters
