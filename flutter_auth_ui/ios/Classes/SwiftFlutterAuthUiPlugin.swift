@@ -17,7 +17,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         registrar.addApplicationDelegate(instance)
     }
 
-//  #############################################################
 //  As the email is persisted and available between launches it's
 //  possible to finish authentication process even if the user
 //  closed the application before tapping the link.
@@ -29,7 +28,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         // Allow others to handle their part
         return false
     }
-//  ##############################################################
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
@@ -55,7 +53,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         }
         
     
-//    #######################################################################
 //    If the deep link is being caught during the cold launch of the app
 //    i.e. in application(_:, didFinishLaunchingWithOptions:)
 //    there are no providers registered in AuthUI yet. However, the email
@@ -65,8 +62,6 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         if (authUI.providers.isEmpty) {
             authUI.providers = [FUIEmailAuth()]
         }
-//    ########################################################################
-    
         guard
             Auth.auth().isSignIn(withEmailLink: link.absoluteString),
             authUI.handleOpen(link, sourceApplication: bundle) else {
