@@ -53,7 +53,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             let bundle = Bundle.main.bundleIdentifier,
             let authUI = FUIAuth.defaultAuthUI(),
             let link = link(from: userActivity) else {
-            return false
+            return
         }
         
     
