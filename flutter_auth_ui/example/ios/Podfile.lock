@@ -91,7 +91,7 @@ PODS:
   - FirebaseUI/Phone (11.0.3):
     - FirebasePhoneAuthUI (~> 11.0)
   - Flutter (1.0.0)
-  - flutter_auth_ui (2.2.0):
+  - flutter_auth_ui (2.2.1):
     - FirebaseUI/Anonymous (~> 11.0)
     - FirebaseUI/Auth (~> 11.0)
     - FirebaseUI/Email (~> 11.0)
@@ -196,7 +196,7 @@ SPEC CHECKSUMS:
   FirebasePhoneAuthUI: ee72e8b968bf39420c3af4f8cf810c7f755f032f
   FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_auth_ui: 0ecfe9aa6a5a804d78dcfd4237b4ea9860892e46
+  flutter_auth_ui: a292c877aaae988250e5bd01500067b22574e67d
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20

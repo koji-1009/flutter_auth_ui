@@ -1,3 +1,7 @@
+## 2.2.1
+
+- Support Email link auth on iOS
+
 ## 2.2.0
 
 - Update firebase_auth to `1.4.1`
