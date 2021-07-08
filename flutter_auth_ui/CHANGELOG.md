@@ -1,3 +1,7 @@
+## 2.2.2
+
+- Fix iOS code error
+
 ## 2.2.1
 
 - Support Email link auth on iOS
