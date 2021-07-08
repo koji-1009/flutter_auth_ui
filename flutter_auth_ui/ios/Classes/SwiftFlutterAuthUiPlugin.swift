@@ -17,9 +17,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         registrar.addApplicationDelegate(instance)
     }
 
-//  As the email is persisted and available between launches it's
-//  possible to finish authentication process even if the user
-//  closed the application before tapping the link.
+    // As the email is persisted and available between launches it's
+    // possible to finish authentication process even if the user
+    // closed the application before tapping the link.
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any] = [:]) -> Bool {
         if let activity = launchOptions[UIApplication.LaunchOptionsKey.userActivityDictionary] as? NSUserActivity {
             handleActivity(activity)
@@ -46,9 +46,9 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         return false
     }
 
-// "2. Once you catch the deep link, you will need to pass it to the auth UI so it can be handled."
-// See https:firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication
-   private func handleActivity(_ userActivity: NSUserActivity) {
+    // "2. Once you catch the deep link, you will need to pass it to the auth UI so it can be handled."
+    // See https:firebase.google.com/docs/auth/ios/firebaseui#email_link_authentication
+    private func handleActivity(_ userActivity: NSUserActivity) {
         guard
             let bundle = Bundle.main.bundleIdentifier,
             let authUI = FUIAuth.defaultAuthUI(),
@@ -56,12 +56,12 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             return
         }
 
-//    If the deep link is being caught during the cold launch of the app
-//    i.e. in application(_:, didFinishLaunchingWithOptions:)
-//    there are no providers registered in AuthUI yet. However, the email
-//    is persisted so we can finish authentication process if the persisted
-//    email matches the link tapped. To do this we have to add FUIEmailAuth to
-//    the providers list.
+        // If the deep link is being caught during the cold launch of the app
+        // i.e. in application(_:, didFinishLaunchingWithOptions:)
+        // there are no providers registered in AuthUI yet. However, the email
+        // is persisted so we can finish authentication process if the persisted
+        // email matches the link tapped. To do this we have to add FUIEmailAuth to
+        // the providers list.
         if authUI.providers.isEmpty {
             authUI.providers = [FUIEmailAuth()]
         }
@@ -73,12 +73,12 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         _ = authUI.handleOpen(link, sourceApplication: bundle)
     }
 
-//  See https://firebase.google.com/docs/dynamic-links/create-manually#parameters
+    // See https://firebase.google.com/docs/dynamic-links/create-manually#parameters
     private func link(from activity: NSUserActivity) -> URL? {
         guard
             activity.activityType == NSUserActivityTypeBrowsingWeb,
-            let url = activity.webpageURL,
-            let components = NSURLComponents(string: url.absoluteString),
+            let webpageURL = activity.webpageURL,
+            let components = NSURLComponents(string: webpageURL.absoluteString),
             let link = components.queryItems?.first(where: { $0.name == "link" })?.value,
             let url = URL(string: link) else {
             return nil
