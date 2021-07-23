@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// Supported providers
@@ -190,7 +191,7 @@ class FlutterAuthUi {
 
       return data;
     } on Exception catch (e) {
-      print('flutter_auth_ui: error => $e');
+      debugPrint('flutter_auth_ui: error => $e');
       return false;
     }
   }
