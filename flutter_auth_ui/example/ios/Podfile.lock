@@ -86,7 +86,7 @@ PODS:
   - FirebaseUI/Phone (12.0.0):
     - FirebasePhoneAuthUI (~> 12.0)
   - Flutter (1.0.0)
-  - flutter_auth_ui (2.2.2):
+  - flutter_auth_ui (2.3.0):
     - FirebaseUI/Anonymous (~> 12.0)
     - FirebaseUI/Auth (~> 12.0)
     - FirebaseUI/Email (~> 12.0)
@@ -193,7 +193,7 @@ SPEC CHECKSUMS:
   FirebasePhoneAuthUI: d84be4a096ddc19f9aace4a6ebcf80fe334f466b
   FirebaseUI: f64b6d8f3b8b3adf2b183505999ce568e9550d51
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_auth_ui: 80d3cca6549d8415d02191cde293664308f4da87
+  flutter_auth_ui: ecff614d031f1ddf4b189890819df54aa900a558
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleSignIn: 1b0c4ec33a6fe282f4fa35d8ac64263230ddaf36
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
@@ -204,4 +204,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 44060a700414ac2ceaba2cf540f4019e6b665587
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

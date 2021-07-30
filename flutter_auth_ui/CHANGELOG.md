@@ -1,3 +1,8 @@
+## 2.3.0
+
+- Update firebase_auth to `^3.0.0`
+- FirebaseUI-iOS 12.0.0
+
 ## 2.2.2
 
 - Fix iOS code error
