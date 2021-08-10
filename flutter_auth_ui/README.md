@@ -70,6 +70,49 @@ final result = await FlutterAuthUi.startUi(
 
 ## Tips
 
+### EmailLink
+
+Note: In order to implement EmailLink, you will need to prepare in advance; check the [firebase documentation](https://firebase.google.com/docs/auth) first.
+
+* [Android](https://firebase.google.com/docs/auth/android/email-link-auth)
+* [iOS](https://firebase.google.com/docs/auth/ios/email-link-auth)
+* [Web](https://firebase.google.com/docs/auth/web/email-link-auth)
+
+#### Android
+
+To handle dynamic link, add `FlutterAuthUiPlugin.catchEmailLink` to `onCreate` and `onNewIntent`.
+(If you don't use EmailLink, then you don't need to add it.)
+
+```java
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.dr1009.app.flutter_auth_ui.FlutterAuthUiPlugin;
+
+import io.flutter.embedding.android.FlutterActivity;
+
+public class MainActivity extends FlutterActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // check intent
+        FlutterAuthUiPlugin.catchEmailLink(this, getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(@NonNull Intent intent) {
+        super.onNewIntent(intent);
+
+        // check intent
+        FlutterAuthUiPlugin.catchEmailLink(this, intent);
+    }
+}
+```
+
 ### Localizing
 
 #### Android
