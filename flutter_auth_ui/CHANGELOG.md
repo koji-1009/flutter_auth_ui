@@ -1,3 +1,8 @@
+## 2.3.1
+
+- Fix EmailLink on Android
+- Update README
+
 ## 2.3.0
 
 - Update firebase_auth to `^3.0.0`
