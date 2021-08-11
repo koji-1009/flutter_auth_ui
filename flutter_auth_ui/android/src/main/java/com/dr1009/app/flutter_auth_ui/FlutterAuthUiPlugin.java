@@ -2,6 +2,8 @@ package com.dr1009.app.flutter_auth_ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -31,7 +34,31 @@ import io.flutter.plugin.common.PluginRegistry;
  */
 public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
 
+    /**
+     * If use the EmailLink option, call this method with {@link Activity#onCreate(Bundle)} and
+     * {@link Activity#onNewIntent(Intent)}.
+     *
+     * @param activity Activity where the plugin is set
+     * @param intent   retrieved Intent
+     */
+    public static void catchEmailLink(@NonNull Activity activity, @Nullable Intent intent) {
+        if (intent == null) {
+            return;
+        }
+
+        Uri emailLink = intent.getData();
+        if (emailLink != null) {
+            Intent signInIntent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setEmailLink(emailLink.toString())
+                    .setAvailableProviders(Collections.<AuthUI.IdpConfig>emptyList())
+                    .build();
+            activity.startActivityForResult(signInIntent, RC_EMAIL_LINK);
+        }
+    }
+
     private static final int RC_SIGN_IN = 123;
+    private static final int RC_EMAIL_LINK = 124;
 
     @Nullable
     private MethodChannel methodChannel = null;
@@ -39,6 +66,8 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
     private Activity activity = null;
     @Nullable
     private Result result = null;
+
+    private boolean possibilityEmailLink = false;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
@@ -62,7 +91,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
             new PluginRegistry.ActivityResultListener() {
                 @Override
                 public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-                    if (requestCode != RC_SIGN_IN) {
+                    if (requestCode != RC_SIGN_IN && requestCode != RC_EMAIL_LINK) {
                         return false;
                     }
 
@@ -74,11 +103,17 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                     if (resultCode == Activity.RESULT_OK) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         result.success(user != null);
-                    } else {
-                        result.error(String.valueOf(resultCode), "error result", null);
+                        result = null;
+
+                        return true;
                     }
 
-                    result = null;
+                    if (possibilityEmailLink) {
+                        // It may be that EmailLink is being handled, so it is not an error.
+                        return true;
+                    }
+
+                    result.error(String.valueOf(resultCode), "error result", "canceled action");
                     return true;
                 }
             };
@@ -128,6 +163,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
             return;
         }
 
+        possibilityEmailLink = false;
         ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>();
         String providerArray = call.argument("providers");
         if (providerArray != null && !providerArray.isEmpty()) {
@@ -145,6 +181,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
                         Boolean enableEmailLink = call.argument("emailLinkEnableEmailLink");
                         if (enableEmailLink != null && enableEmailLink) {
+                            possibilityEmailLink = true;
                             builder.enableEmailLinkSignIn();
 
                             ActionCodeSettings.Builder actionCodeSettings = ActionCodeSettings
