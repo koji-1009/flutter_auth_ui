@@ -1,3 +1,7 @@
+## 2.3.2
+
+- Update dependencies
+
 ## 2.3.1
 
 - Fix EmailLink on Android
