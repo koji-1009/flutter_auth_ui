@@ -195,4 +195,8 @@ class FlutterAuthUi {
       return false;
     }
   }
+
+  static Future<void> signOut() {
+    return _channel.invokeMethod<void>('signOut');
+  }
 }

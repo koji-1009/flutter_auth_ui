@@ -35,8 +35,8 @@ import io.flutter.plugin.common.PluginRegistry;
 public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
 
     /**
-     * If use the EmailLink option, call this method with {@link Activity#onCreate(Bundle)} and
-     * {@link Activity#onNewIntent(Intent)}.
+     * If use the EmailLink option, call this method with
+     * {@link Activity#onCreate(Bundle)} and {@link Activity#onNewIntent(Intent)}.
      *
      * @param activity Activity where the plugin is set
      * @param intent   retrieved Intent
@@ -48,11 +48,8 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
         Uri emailLink = intent.getData();
         if (emailLink != null) {
-            Intent signInIntent = AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .setEmailLink(emailLink.toString())
-                    .setAvailableProviders(Collections.<AuthUI.IdpConfig>emptyList())
-                    .build();
+            Intent signInIntent = AuthUI.getInstance().createSignInIntentBuilder().setEmailLink(emailLink.toString())
+                    .setAvailableProviders(Collections.<AuthUI.IdpConfig>emptyList()).build();
             activity.startActivityForResult(signInIntent, RC_EMAIL_LINK);
         }
     }
@@ -87,57 +84,54 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
     }
 
     @NonNull
-    private final PluginRegistry.ActivityResultListener listener =
-            new PluginRegistry.ActivityResultListener() {
-                @Override
-                public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-                    if (requestCode != RC_SIGN_IN && requestCode != RC_EMAIL_LINK) {
-                        return false;
-                    }
+    private final PluginRegistry.ActivityResultListener listener = new PluginRegistry.ActivityResultListener() {
+        @Override
+        public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (requestCode != RC_SIGN_IN && requestCode != RC_EMAIL_LINK) {
+                return false;
+            }
 
-                    if (result == null) {
-                        // error
-                        return true;
-                    }
+            if (result == null) {
+                // error
+                return true;
+            }
 
-                    if (resultCode == Activity.RESULT_OK) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        result.success(user != null);
-                        result = null;
+            if (resultCode == Activity.RESULT_OK) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                result.success(user != null);
+                result = null;
 
-                        return true;
-                    }
+                return true;
+            }
 
-                    if (possibilityEmailLink) {
-                        // It may be that EmailLink is being handled, so it is not an error.
-                        return true;
-                    }
+            if (possibilityEmailLink) {
+                // It may be that EmailLink is being handled, so it is not an error.
+                return true;
+            }
 
-                    result.error(String.valueOf(resultCode), "error result", "canceled action");
-                    return true;
-                }
-            };
+            result.error(String.valueOf(resultCode), "error result", "canceled action");
+            return true;
+        }
+    };
 
     @Override
     public void onAttachedToActivity(@NonNull final ActivityPluginBinding binding) {
         activity = binding.getActivity();
-        FlutterLifecycleAdapter
-                .getActivityLifecycle(binding)
-                .addObserver(new LifecycleEventObserver() {
-                    @Override
-                    public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-                        switch (event) {
-                            case ON_CREATE:
-                                binding.addActivityResultListener(listener);
-                                break;
-                            case ON_DESTROY:
-                                binding.removeActivityResultListener(listener);
-                                break;
-                            default:
-                                // nop
-                        }
-                    }
-                });
+        FlutterLifecycleAdapter.getActivityLifecycle(binding).addObserver(new LifecycleEventObserver() {
+            @Override
+            public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
+                switch (event) {
+                    case ON_CREATE:
+                        binding.addActivityResultListener(listener);
+                        break;
+                    case ON_DESTROY:
+                        binding.removeActivityResultListener(listener);
+                        break;
+                    default:
+                        // nop
+                }
+            }
+        });
     }
 
     @Override
@@ -155,13 +149,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
         activity = null;
     }
 
-    @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        String method = call.method;
-        if (!"startUi".equals(method)) {
-            result.notImplemented();
-            return;
-        }
+    private void startUi(@NonNull MethodCall call, @NonNull Result result) {
 
         possibilityEmailLink = false;
         ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>();
@@ -184,17 +172,12 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                             possibilityEmailLink = true;
                             builder.enableEmailLinkSignIn();
 
-                            ActionCodeSettings.Builder actionCodeSettings = ActionCodeSettings
-                                    .newBuilder()
+                            ActionCodeSettings.Builder actionCodeSettings = ActionCodeSettings.newBuilder()
                                     .setHandleCodeInApp(true);
 
                             String url = call.argument("emailLinkHandleURL");
                             if (url == null || url.isEmpty()) {
-                                result.error(
-                                        "InvalidArgs",
-                                        "Missing handleURL",
-                                        "Expected valid handleURL."
-                                );
+                                result.error("InvalidArgs", "Missing handleURL", "Expected valid handleURL.");
                                 return;
                             }
                             actionCodeSettings.setUrl(url);
@@ -240,9 +223,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
             }
         }
 
-        AuthUI.SignInIntentBuilder builder = AuthUI
-                .getInstance()
-                .createSignInIntentBuilder()
+        AuthUI.SignInIntentBuilder builder = AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(providers);
 
         // design
@@ -267,8 +248,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
         String tosUrl = call.argument("tosUrl");
         String privacyPolicyUrl = call.argument("privacyPolicyUrl");
-        if (tosUrl != null && !tosUrl.isEmpty() &&
-                privacyPolicyUrl != null && !privacyPolicyUrl.isEmpty()) {
+        if (tosUrl != null && !tosUrl.isEmpty() && privacyPolicyUrl != null && !privacyPolicyUrl.isEmpty()) {
             builder.setTosAndPrivacyPolicyUrls(tosUrl, privacyPolicyUrl);
         }
 
@@ -278,5 +258,28 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
         }
 
         this.result = result;
+    }
+
+    private void signOut(@NonNull MethodCall call, @NonNull Result result) {
+        if (activity != null) {
+            AuthUI.getInstance().signOut(activity);
+        }
+    }
+
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        String method = call.method;
+        switch (method) {
+            case "startUi":
+                startUi(call, result);
+                break;
+            case "signOut":
+                signOut(call, result);
+                break;
+            default:
+                result.notImplemented();
+                break;
+        }
+
     }
 }
