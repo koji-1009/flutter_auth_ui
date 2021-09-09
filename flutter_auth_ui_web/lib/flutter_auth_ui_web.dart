@@ -141,8 +141,6 @@ class FlutterAuthUiWeb {
   }
 
   Future<void> signOut(MethodCall call) async {
-    final authUi = getInstance(auth().app.name) ?? AuthUI(auth().jsObject);
-    authUi.reset();
     await auth().signOut();
   }
 
