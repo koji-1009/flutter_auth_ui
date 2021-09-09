@@ -195,7 +195,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
             result(nil)
             return
         }
-        authUI.signOut()
+        try? authUI.signOut()
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
