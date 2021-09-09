@@ -21,14 +21,7 @@ class FlutterAuthUiWeb {
     channel.setMethodCallHandler(pluginInstance.handleMethodCall);
   }
 
-  Future<dynamic> handleMethodCall(MethodCall call) async {
-    if (call.method != 'startUi') {
-      throw PlatformException(
-        code: 'Unimplemented',
-        details: 'doesn\'t implement \'${call.method}\'',
-      );
-    }
-
+  Future<dynamic> startUi(MethodCall call) async {
     // add history
     final title = html.window.document.documentElement?.title ?? '';
     final path = '${html.window.location.origin}/#/';
@@ -145,5 +138,25 @@ class FlutterAuthUiWeb {
     authUi.start(containerDiv, config);
 
     return completer.future;
+  }
+
+  Future<void> signOut(MethodCall call) async {
+    final authUi = getInstance(auth().app.name) ?? AuthUI(auth().jsObject);
+    authUi.reset();
+    await auth().signOut();
+  }
+
+  Future<dynamic> handleMethodCall(MethodCall call) async {
+    switch (call.method) {
+      case 'startUi':
+        return await startUi(call);
+      case 'signOut':
+        return await signOut(call);
+      default:
+        throw PlatformException(
+          code: 'Unimplemented',
+          details: 'doesn\'t implement \'${call.method}\'',
+        );
+    }
   }
 }
