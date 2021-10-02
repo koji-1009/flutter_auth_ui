@@ -78,6 +78,11 @@ Note: In order to implement EmailLink, you will need to prepare in advance; chec
 * [iOS](https://firebase.google.com/docs/auth/ios/email-link-auth)
 * [Web](https://firebase.google.com/docs/auth/web/email-link-auth)
 
+Let's check the code sample for firebase auth.
+
+* [Android](https://github.com/firebase/snippets-android/blob/8184cba2c40842a180f91dcfb4a216e721cc6ae6/auth/app/src/main/java/com/google/firebase/quickstart/auth/MainActivity.java#L340)
+* [iOS](https://github.com/firebase/quickstart-ios/blob/70e424c8b3740597d17ad7f25c5f98918a567bc0/authentication/LegacyAuthQuickstart/AuthenticationExampleSwift/PasswordlessViewController.swift#L66)
+
 #### Android
 
 To handle dynamic link, add `FlutterAuthUiPlugin.catchEmailLink` to `onCreate` and `onNewIntent`.
