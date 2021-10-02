@@ -94,13 +94,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
 
     private var result: FlutterResult?
 
-    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        let method = call.method
-        if method != "startUi" {
-            result(FlutterMethodNotImplemented)
-            return
-        }
-
+    public func startUi(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         guard let args = call.arguments as? [String: Any] else {
             result(FlutterError(code: "InvalidArgs", message: "Missing arguments", details: "Expected valid arguments."))
             return
@@ -194,5 +188,22 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
         let authViewController = authUI.authViewController()
         let viewController = UIApplication.shared.delegate?.window??.rootViewController
         viewController?.present(authViewController, animated: true, completion: nil)
+    }
+
+    public func signOut(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard let authUI = FUIAuth.defaultAuthUI() else {
+            result(nil)
+            return
+        }
+        try? authUI.signOut()
+    }
+
+    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        let method = call.method
+        switch method {
+            case "startUi": startUi(call, result: result)
+            case "signOut": signOut(call, result: result)
+            default: result(FlutterMethodNotImplemented)            
+        }
     }
 }

@@ -155,13 +155,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
         activity = null;
     }
 
-    @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        String method = call.method;
-        if (!"startUi".equals(method)) {
-            result.notImplemented();
-            return;
-        }
+    private void startUi(@NonNull MethodCall call, @NonNull Result result) {
 
         possibilityEmailLink = false;
         ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>();
@@ -278,5 +272,28 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
         }
 
         this.result = result;
+    }
+
+    private void signOut(@NonNull MethodCall call, @NonNull Result result) {
+        if (activity != null) {
+            AuthUI.getInstance().signOut(activity);
+        }
+    }
+
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        String method = call.method;
+        switch (method) {
+            case "startUi":
+                startUi(call, result);
+                break;
+            case "signOut":
+                signOut(call, result);
+                break;
+            default:
+                result.notImplemented();
+                break;
+        }
+
     }
 }
