@@ -53,8 +53,11 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ElevatedButton(
-                child: const Text("sign out"),
-                onPressed: FlutterAuthUi.signOut,
+                onPressed: () async {
+                  await FlutterAuthUi.signOut();
+                  print('Signed out !');
+                },
+                child: Text('sign out'),
               ),
             ],
           ),
