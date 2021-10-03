@@ -53,7 +53,7 @@ final result = await FlutterAuthUi.startUi(
 ## Requirements
 
 - flutter 2.0.0 or higher
-- [firebase_auth](https://pub.dev/packages/firebase_auth) 3.0.0
+- [firebase_auth](https://pub.dev/packages/firebase_auth) 3.1.0
 
 ### Android
 
