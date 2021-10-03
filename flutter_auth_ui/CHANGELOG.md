@@ -1,3 +1,7 @@
+## 2.4.1
+
+- Add `FlutterAuthUi.signOut()`
+
 ## 2.4.0
 
 - firebase_auth `^3.1.0`

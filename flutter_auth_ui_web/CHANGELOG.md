@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Add `FlutterAuthUi.signOut()`
+
 ## 1.0.5
 
 - Update dependencies
