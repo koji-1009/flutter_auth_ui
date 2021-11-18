@@ -93,13 +93,14 @@ class FlutterAuthUiWeb {
     final tosUrl = args['tosUrl'];
     final privacyPolicyUrl = args['privacyPolicyUrl'];
 
-    // add div element instead of 'firebaseui-auth-container' div
-    final containerDiv = html.Element.div();
-    html.window.document.documentElement?.append(containerDiv);
-
     // get flutter web's main view
     final fltGlassPane = html.window.document
         .getElementsByTagName('flt-glass-pane')[0] as html.Element;
+
+    final containerDiv = html.Element.div();
+    // add div element instead of 'firebaseui-auth-container' div
+    // 'fltGlassPane.parent' is a body element, maybe
+    fltGlassPane.parent?.append(containerDiv);
 
     // watch back event, if not, we cannot support back key
     html.window.addEventListener('popstate', (event) {
