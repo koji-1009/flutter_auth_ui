@@ -1,3 +1,7 @@
+## 1.0.7
+
+- Add a container in the body element
+
 ## 1.0.6
 
 - Add `FlutterAuthUi.signOut()`
