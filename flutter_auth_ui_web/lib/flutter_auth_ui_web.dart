@@ -94,8 +94,13 @@ class FlutterAuthUiWeb {
     final privacyPolicyUrl = args['privacyPolicyUrl'];
 
     // get flutter web's main view
-    final fltGlassPane = html.window.document
-        .getElementsByTagName('flt-glass-pane')[0] as html.Element;
+    final fltGlassPane = html.window.document.querySelector('flt-glass-pane');
+    if (fltGlassPane == null) {
+      throw PlatformException(
+        code: 'IllegalStateException',
+        details: 'Failed to locate <flt-glass-pane>',
+      );
+    }
 
     final containerDiv = html.Element.div();
     // add div element instead of 'firebaseui-auth-container' div
