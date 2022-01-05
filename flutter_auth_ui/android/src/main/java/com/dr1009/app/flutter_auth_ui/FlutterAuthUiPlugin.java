@@ -209,7 +209,7 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
                     case "Apple":
                         providers.add(new AuthUI.IdpConfig.AppleBuilder().build());
                         break;
-                    case "Github":
+                    case "GitHub":
                         providers.add(new AuthUI.IdpConfig.GitHubBuilder().build());
                         break;
                     case "Microsoft":

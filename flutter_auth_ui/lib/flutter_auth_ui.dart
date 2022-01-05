@@ -62,7 +62,7 @@ extension _AuthUiProviderExt on AuthUiProvider {
       case AuthUiProvider.apple:
         return 'Apple';
       case AuthUiProvider.github:
-        return 'Github';
+        return 'GitHub';
       case AuthUiProvider.microsoft:
         return 'Microsoft';
       case AuthUiProvider.yahoo:

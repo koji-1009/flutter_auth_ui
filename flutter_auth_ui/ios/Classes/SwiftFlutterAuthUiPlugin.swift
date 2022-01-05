@@ -158,7 +158,7 @@ public class SwiftFlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate 
                 if #available(iOS 13.0, *) {
                     providers.append(FUIOAuth.appleAuthProvider())
                 }
-            case "Github" :
+            case "GitHub" :
                 providers.append(FUIOAuth.githubAuthProvider())
             case "Microsoft" :
                 providers.append(FUIOAuth.microsoftAuthProvider())
