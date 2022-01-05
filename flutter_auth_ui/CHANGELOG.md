@@ -1,3 +1,7 @@
+## 2.4.2
+
+- Fix typo
+
 ## 2.4.1
 
 - Add `FlutterAuthUi.signOut()`
