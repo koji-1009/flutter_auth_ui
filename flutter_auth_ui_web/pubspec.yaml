@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  firebase: ^9.0.1
+  firebase: ^9.0.2
   js: ^0.6.3
 
 dev_dependencies:
@@ -24,5 +24,5 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.16.0 <3.0.0"
+  flutter: ">=2.10.0"

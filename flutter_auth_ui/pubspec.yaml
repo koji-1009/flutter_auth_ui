@@ -17,8 +17,8 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^3.1.0
-  flutter_plugin_android_lifecycle: ^2.0.0
+  firebase_auth: ^3.3.6
+  flutter_plugin_android_lifecycle: ^2.0.3
   flutter_auth_ui_web: ^1.0.0
 
 dev_dependencies:
@@ -27,5 +27,5 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.16.0 <3.0.0"
+  flutter: ">=2.10.0"
