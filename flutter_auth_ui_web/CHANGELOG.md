@@ -1,3 +1,7 @@
+## 2.0.0-dev.0
+
+- Flutter 2.10.0
+
 ## 1.0.7
 
 - Add a container in the body element
