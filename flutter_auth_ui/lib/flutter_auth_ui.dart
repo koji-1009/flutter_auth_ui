@@ -78,9 +78,10 @@ extension _AuthUiProviderExt on AuthUiProvider {
 }
 
 /// Terms of service(Tos) and Privacy Policy link.
+@immutable
 class TosAndPrivacyPolicy {
   /// Set Terms of service url and Privacy Policy url.
-  TosAndPrivacyPolicy({
+  const TosAndPrivacyPolicy({
     required this.tosUrl,
     required this.privacyPolicyUrl,
   });
@@ -93,6 +94,7 @@ class TosAndPrivacyPolicy {
 }
 
 /// for FirebaseUI-Android
+@immutable
 class AndroidOption {
   /// [enableSmartLock] enables SmartLock on Android.
   /// [showLogo] enables logo display on Android.
@@ -113,7 +115,25 @@ class AndroidOption {
   final bool overrideTheme;
 }
 
+/// for firebaseui-web
+@immutable
+class WebAuthOption {
+  /// [pageTitle] is title displayed on the auth page
+  /// [authenticationPath] is path on the auth page
+  const WebAuthOption({
+    this.pageTitle,
+    this.authenticationPath = 'authentication',
+  });
+
+  /// title displayed on the auth page, if null, set window's title
+  final String? pageTitle;
+
+  /// path of the auth page, default is 'authentication'
+  final String authenticationPath;
+}
+
 /// Email sign-in config
+@immutable
 class EmailAuthOption {
   /// [requireDisplayName] enables the option to require the display name.
   /// [enableMailLink] enables email link sign-in
@@ -159,6 +179,7 @@ class FlutterAuthUi {
     required TosAndPrivacyPolicy tosAndPrivacyPolicy,
     bool autoUpgradeAnonymousUsers = false,
     AndroidOption androidOption = const AndroidOption(),
+    WebAuthOption webAuthOption = const WebAuthOption(),
     EmailAuthOption emailAuthOption = const EmailAuthOption(),
   }) async {
     final providers = items.map((e) => e.providerName).join(',');
@@ -177,6 +198,10 @@ class FlutterAuthUi {
           'enableSmartLockForAndroid': androidOption.enableSmartLock,
           'showLogoAndroid': androidOption.showLogo,
           'overrideThemeAndroid': androidOption.overrideTheme,
+
+          /// Web
+          'webPageTitle': webAuthOption.pageTitle,
+          'webAuthenticationPath': webAuthOption.authenticationPath,
 
           /// EmailLink
           'emailLinkRequireDisplayName': emailAuthOption.requireDisplayName,

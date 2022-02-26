@@ -22,12 +22,16 @@ class FlutterAuthUiWeb {
   }
 
   Future<dynamic> startUi(MethodCall call) async {
-    // add history
-    final title = html.window.document.documentElement?.title ?? '';
-    final path = '${html.window.location.origin}/#/';
-    html.window.history.pushState(null, title, path);
-
     final args = Map<String, dynamic>.from(call.arguments);
+    final window = html.window;
+    
+    // add history
+    final pageTitle = args['webPageTitle'] as String?;
+    final title = pageTitle ?? window.document.documentElement?.title ?? '';
+    final authenticationPath = args['webAuthenticationPath'];
+    final path = '${window.location.href}$authenticationPath';
+    window.history.pushState(null, title, path);
+
     final providers = args['providers'] as String;
     final setProviders = providers.split(',');
     final options = setProviders.map((name) {
@@ -94,7 +98,7 @@ class FlutterAuthUiWeb {
     final privacyPolicyUrl = args['privacyPolicyUrl'];
 
     // get flutter web's main view
-    final fltGlassPane = html.window.document.querySelector('flt-glass-pane');
+    final fltGlassPane = window.document.querySelector('flt-glass-pane');
     if (fltGlassPane == null) {
       throw PlatformException(
         code: 'IllegalStateException',
@@ -108,7 +112,7 @@ class FlutterAuthUiWeb {
     fltGlassPane.parent?.append(containerDiv);
 
     // watch back event, if not, we cannot support back key
-    html.window.addEventListener('popstate', (event) {
+    window.addEventListener('popstate', (event) {
       containerDiv.remove();
       fltGlassPane.style.visibility = 'visible';
     });
@@ -117,13 +121,13 @@ class FlutterAuthUiWeb {
     final callbacks = Callbacks(
       signInSuccessWithAuthResult: allowInterop((authResult, redirectUrl) {
         completer.complete(auth().currentUser != null);
-        html.window.history.back();
+        window.history.back();
 
         return false;
       }),
       signInFailure: allowInterop((error) {
         completer.completeError(error);
-        html.window.history.back();
+        window.history.back();
       }),
       uiShown: allowInterop(() {
         fltGlassPane.style.visibility = 'hidden';
