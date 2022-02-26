@@ -1,3 +1,8 @@
+## 3.0.0-dev.0
+
+- Flutter 2.10.0
+- Add web option
+
 ## 2.4.2
 
 - Fix typo

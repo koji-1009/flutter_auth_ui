@@ -17,11 +17,11 @@ PODS:
     - FirebaseAuth (~> 8.11.0)
   - Firebase/CoreOnly (8.11.0):
     - FirebaseCore (= 8.11.0)
-  - firebase_auth (3.3.7):
+  - firebase_auth (3.3.9):
     - Firebase/Auth (= 8.11.0)
     - firebase_core
     - Flutter
-  - firebase_core (1.12.0):
+  - firebase_core (1.13.1):
     - Firebase/CoreOnly (= 8.11.0)
     - Flutter
   - FirebaseAnonymousAuthUI (12.1.1):
@@ -82,7 +82,7 @@ PODS:
   - FirebaseUI/Phone (12.1.1):
     - FirebasePhoneAuthUI (~> 12.0)
   - Flutter (1.0.0)
-  - flutter_auth_ui (2.4.2):
+  - flutter_auth_ui (3.0.0-dev.0):
     - FirebaseUI/Anonymous (~> 12.1)
     - FirebaseUI/Auth (~> 12.1)
     - FirebaseUI/Email (~> 12.1)
@@ -177,8 +177,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit_Basics: 6bee7c1f0932432901781203fa5e587ec5099148
   FBSDKLoginKit: 56d55e23fe66a6db045826190b0b4dbc0e1ca0a0
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  firebase_auth: 20bf788012988ef04ce608fada5b8d8cd1069302
-  firebase_core: 443bccfd6aa6b42f07be365b500773dc69db2d87
+  firebase_auth: 99c9cdc8cc2e59f6fd4960b6e183f5430d237838
+  firebase_core: 08f6a85f62060111de5e98d6a214810d11365de9
   FirebaseAnonymousAuthUI: d360aca0dd89480ad31c632b0f638aa4af932705
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
   FirebaseAuthUI: 71ad7db60f0e3eb34b790868163dde99fde6d989
@@ -191,7 +191,7 @@ SPEC CHECKSUMS:
   FirebasePhoneAuthUI: bcd9026caa9a97a27a16cc3539eace8df829cf65
   FirebaseUI: dc90cd9081a0c2dcb94413cfdac3f1b662205c42
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_auth_ui: 573eaedc5ddfb4873760f035b0427c07ffb1d1d4
+  flutter_auth_ui: c0a4130dcaac837f46c6d03c126252b1a826617c
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleSignIn: c90b5bec45e780f54c6a8e1e3c182a86e3dda69d
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
