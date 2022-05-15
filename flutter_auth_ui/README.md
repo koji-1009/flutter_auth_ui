@@ -31,16 +31,16 @@ final providers = [
 
 final result = await FlutterAuthUi.startUi(
   items: providers,
-  tosAndPrivacyPolicy: TosAndPrivacyPolicy(
+  tosAndPrivacyPolicy: const TosAndPrivacyPolicy(
     tosUrl: "https://www.google.com",
     privacyPolicyUrl: "https://www.google.com",
   ),
-  androidOption: AndroidOption(
+  androidOption: const AndroidOption(
     enableSmartLock: false, // default true
     showLogo: true, // default false
     overrideTheme: true, // default false
   ),
-  emailAuthOption: EmailAuthOption(
+  emailAuthOption: const EmailAuthOption(
     requireDisplayName: true, // default true
     enableMailLink: false, // default false
     handleURL: '',
@@ -52,13 +52,13 @@ final result = await FlutterAuthUi.startUi(
 
 ## Requirements
 
-- flutter 2.0.0 or higher
-- [firebase_auth](https://pub.dev/packages/firebase_auth) 3.1.0
+- flutter 3.0.0 or higher
+- [firebase_auth](https://pub.dev/packages/firebase_auth) 3.3.0
 
 ### Android
 
 - minSdkVersion 21
-- compileSdkVersion 30
+- compileSdkVersion 31
 
 ### iOS
 

@@ -4,8 +4,8 @@ The web implementation of `flutter_auth_ui`.
 
 ## Requirements
 
-- flutter 2.0.0 or higher
-- [firebase](https://pub.dev/packages/firebase) 9.0.1
+- flutter 3.0.0 or higher
+- [firebase](https://pub.dev/packages/firebase) 9.0.3
 
 ## Link
 
