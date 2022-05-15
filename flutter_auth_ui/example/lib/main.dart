@@ -1,7 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_ui/flutter_auth_ui.dart';
 
-void main() => runApp(const MyApp());
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,32 +42,34 @@ class MyApp extends StatelessWidget {
 
                   final result = await FlutterAuthUi.startUi(
                     items: providers,
-                    tosAndPrivacyPolicy: TosAndPrivacyPolicy(
+                    tosAndPrivacyPolicy: const TosAndPrivacyPolicy(
                       tosUrl: "https://www.google.com",
                       privacyPolicyUrl: "https://www.google.com",
                     ),
-                    androidOption: AndroidOption(
+                    androidOption: const AndroidOption(
                       enableSmartLock: false, // default true
                       showLogo: true, // default false
                       overrideTheme: true, // default false
                     ),
-                    emailAuthOption: EmailAuthOption(
-                      requireDisplayName: true, // default true
-                      enableMailLink: false, // default false
+                    emailAuthOption: const EmailAuthOption(
+                      requireDisplayName: true,
+                      // default true
+                      enableMailLink: false,
+                      // default false
                       handleURL: '',
                       androidPackageName: '',
                       androidMinimumVersion: '',
                     ),
                   );
-                  print(result);
+                  debugPrint(result.toString());
                 },
               ),
               ElevatedButton(
                 onPressed: () async {
                   await FlutterAuthUi.signOut();
-                  print('Signed out !');
+                  debugPrint('Signed out !');
                 },
-                child: Text('sign out'),
+                child: const Text('sign out'),
               ),
             ],
           ),

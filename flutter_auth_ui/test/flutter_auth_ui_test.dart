@@ -21,7 +21,7 @@ void main() {
     expect(
       await FlutterAuthUi.startUi(
         items: [],
-        tosAndPrivacyPolicy: TosAndPrivacyPolicy(
+        tosAndPrivacyPolicy: const TosAndPrivacyPolicy(
           tosUrl: '',
           privacyPolicyUrl: '',
         ),
