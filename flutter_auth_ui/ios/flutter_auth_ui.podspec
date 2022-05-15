@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_auth_ui'
-  s.version          = '3.0.0-dev.0'
+  s.version          = '3.0.0'
   s.summary          = 'Unofficial firebaseui package for flutter. This library aims to provide support for Android, iOS and the web. Login with Email, Phone, Google account and etc.'
   s.description      = <<-DESC
 A new Flutter plugin.
@@ -18,13 +18,13 @@ A new Flutter plugin.
 
   s.static_framework = true
 
-  s.dependency 'FirebaseUI/Auth', '~> 12.1'
-  s.dependency 'FirebaseUI/Anonymous', '~> 12.1'
-  s.dependency 'FirebaseUI/Email', '~> 12.1'
-  s.dependency 'FirebaseUI/Facebook', '~> 12.1'
-  s.dependency 'FirebaseUI/Google', '~> 12.1'
-  s.dependency 'FirebaseUI/OAuth', '~> 12.1'
-  s.dependency 'FirebaseUI/Phone', '~> 12.1'
+  s.dependency 'FirebaseUI/Auth', '~> 12.2'
+  s.dependency 'FirebaseUI/Anonymous', '~> 12.2'
+  s.dependency 'FirebaseUI/Email', '~> 12.2'
+  s.dependency 'FirebaseUI/Facebook', '~> 12.2'
+  s.dependency 'FirebaseUI/Google', '~> 12.2'
+  s.dependency 'FirebaseUI/OAuth', '~> 12.2'
+  s.dependency 'FirebaseUI/Phone', '~> 12.2'
 
   s.platform = :ios, '12.0'
 
