@@ -1,6 +1,6 @@
 name: flutter_auth_ui
 description: Unofficial firebaseui package for flutter. This library aims to provide support for Android, iOS and the web. Login with Email, Phone, Google account and etc.
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/koji-1009/flutter_auth_ui
 
 flutter:
@@ -17,7 +17,7 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^3.3.0
+  firebase_auth: ^4.0.0
   flutter_plugin_android_lifecycle: ^2.0.0
   flutter_auth_ui_web: ^2.0.0
 
