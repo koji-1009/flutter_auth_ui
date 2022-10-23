@@ -1,3 +1,10 @@
+## 3.1.0
+
+* firebase_core v2
+* firebase_auth v4
+* FirebaseUI-Android v8.0.2
+* FirebaseUI-iOS v12.3.0
+
 ## 3.0.0
 
 - Flutter 3.0.0
