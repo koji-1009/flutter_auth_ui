@@ -121,7 +121,10 @@ public class FlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate {
     var providers: [FUIAuthProvider] = []
 
     guard let authUI = FUIAuth.defaultAuthUI() else {
-      result(false)
+      result(
+        FlutterError(
+          code: "InvalidState", message: "FirebaseUI is not ready.",
+          details: "Can not get the default authUI instance."))
       return
     }
     authUI.shouldAutoUpgradeAnonymousUsers = args["autoUpgradeAnonymousUsers"] as? Bool ?? false
@@ -215,10 +218,21 @@ public class FlutterAuthUiPlugin: NSObject, FlutterPlugin, FUIAuthDelegate {
 
   public func signOut(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     guard let authUI = FUIAuth.defaultAuthUI() else {
-      result(nil)
+      result(
+        FlutterError(
+          code: "InvalidState", message: "FirebaseUI is not ready.",
+          details: "Can not get the default authUI instance."))
       return
     }
-    try? authUI.signOut()
+    do {
+      try authUI.signOut()
+      result(nil)
+    } catch {
+      result(
+        FlutterError(
+          code: "SignOutError", message: "Failed to sign out.", details: error.localizedDescription)
+      )
+    }
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

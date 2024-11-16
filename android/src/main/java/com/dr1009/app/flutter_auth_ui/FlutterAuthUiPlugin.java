@@ -156,7 +156,6 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
     }
 
     private void startUi(@NonNull MethodCall call, @NonNull Result result) {
-
         possibilityEmailLink = false;
         ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>();
         String providerArray = call.argument("providers");
@@ -276,7 +275,12 @@ public class FlutterAuthUiPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
     private void signOut(@NonNull MethodCall call, @NonNull Result result) {
         if (activity != null) {
-            AuthUI.getInstance().signOut(activity);
+            try {
+                AuthUI.getInstance().signOut(activity);
+                result.success(null);
+            } catch (Exception e) {
+                result.error("SignOutError", "Failed to sign out.", e.getMessage());
+            }
         }
     }
 
