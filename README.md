@@ -58,7 +58,7 @@ final result = await FlutterAuthUi.startUi(
 ### Android
 
 - minSdkVersion 21
-- compileSdkVersion 31
+- compileSdkVersion 34
 
 ### iOS
 
