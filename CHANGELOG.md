@@ -1,3 +1,7 @@
+## 4.0.1
+
+* Set android min sdk to 21
+
 ## 4.0.0
 
 Completely reviewed and updated to the latest firebase libraries.
