@@ -1,12 +1,14 @@
 ## 4.0.0
 
 Completely reviewed and updated to the latest firebase libraries.
+`flutter_auth_ui_web` is now integrated into the main package.
 
-* Integrated flutter_auth_ui_web package
 * Updated firebase_auth to ^3.0.0
 * Update firebase_auth to ^5.0.0
 * Update FirebaseUI-iOS to 14.0.0~
 * Support wasm build for web
+* Bug fixes on iOS and web
+* Update README
 
 ## 3.1.0
 
