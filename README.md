@@ -147,5 +147,5 @@ Behavior depends on [FirebaseUI-Android](https://github.com/firebase/FirebaseUI-
 ### Change Appbar and link color (Android)
 
 1. Add `flutter_auth_ui_style` style to your `android/app/src/main/res/values/style.xml`
-  - [example](https://github.com/koji-1009/flutter_auth_ui/blob/main/flutter_auth_ui/example/android/app/src/main/res/values/styles.xml)
+  - [example](https://github.com/koji-1009/flutter_auth_ui/blob/main/example/android/app/src/main/res/values/styles.xml)
 2. Enable `AndroidOption.overrideTheme`
